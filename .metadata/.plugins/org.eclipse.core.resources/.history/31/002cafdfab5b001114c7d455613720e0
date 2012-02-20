@@ -1,0 +1,10 @@
+'''
+Created on Feb 20, 2012
+
+@author: Jeppe
+'''
+def prettyMatrix(matrix):
+    rows=matrix.shape(0)
+    for i in range(0,rows):
+        print matrix[i]
+        
