@@ -16,7 +16,7 @@ import pylab as p
 global inited
 inited=False;
 global TwoTank
-def init(modelfile ='../../ModelFiles/TwoTank.mo',model_name = 'TwoTank'):
+def init(modelfile ='../../ModelFiles/TwoTank.mo',model_name = 'TwoSingleTanks'):
     """
     Initialise and set up the instance of the model.
     """
@@ -26,9 +26,10 @@ def init(modelfile ='../../ModelFiles/TwoTank.mo',model_name = 'TwoTank'):
     
     print curr_dir
     print modelfile
-    model_name = 'TwoTank' #'TwoTank'
+
     global TwoTank
-    print "... compiling jmu"
+    print "starting compilation for "+model_name
+    print "... compiling jmu "
     jmuName = compile_jmu(model_name, modelfile)
     jmumodel=JMUModel(jmuName)
     print "... jmu compiled sucessfully"
@@ -37,10 +38,12 @@ def init(modelfile ='../../ModelFiles/TwoTank.mo',model_name = 'TwoTank'):
     fmuModel= FMUModel(fmuName)
     print "... fmu compiled sucessfully"
     print "... compiling fmux"
-    
+    fmuxModel=None
+    """
     fmuxName=compile_fmux(model_name,modelfile)
     fmuxModel=CasadiModel(fmuxName)
     print "... fmux compiled sucessfully"
+    """
     TwoTank=ModelicaObject(jmumodel,fmuModel,fmuxModel)
     
 def prettyprintTwoTankLinDae():

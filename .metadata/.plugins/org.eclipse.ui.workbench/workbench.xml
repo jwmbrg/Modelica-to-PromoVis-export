@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="29" version="2.0">
+<workbench progressCount="31" version="2.0">
 <workbenchAdvisor/>
 <window height="1381" width="1280" x="1280" y="19">
 <fastViewData fastViewLocation="1024"/>
@@ -14,7 +14,7 @@
 <coolItem id="com.python.pydev.navigate.actionSet" itemType="typeToolBarContribution" x="38" y="22"/>
 <coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="129" y="22"/>
 <coolItem id="org.eclipse.jdt.ui.JavaElementCreationActionSet" itemType="typeToolBarContribution" x="76" y="22"/>
-<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="99" y="22"/>
+<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="76" y="22"/>
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="190" y="22"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
@@ -41,9 +41,9 @@
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.jmodelica.ide.editor" name="TwoTank.mo" partName="TwoTank.mo" path="C:/Users/Public/Documents/JModelica.org/ExempelTank/ModelFiles/TwoTank.mo" title="TwoTank.mo" tooltip="ModelFiles/TwoTank.mo" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.jmodelica.ide.editor" name="TwoTank.mo" partName="TwoTank.mo" path="C:/Users/Public/Documents/JModelica.org/Modelica-to-PromoVis-export/ModelFiles/TwoTank.mo" title="TwoTank.mo" tooltip="ModelFiles/TwoTank.mo" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ModelFiles/TwoTank.mo"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="327" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="476" selectionTopPixel="0"/>
 </editor>
 <editor id="org.python.pydev.editor.PythonEditor" name="TwoTankModule.py" partName="TwoTankModule" path="C:/Users/Public/Documents/JModelica.org/ExempelTank/TwoTankSource/TwoTank/TwoTankModule.py" title="TwoTankModule" tooltip="TwoTankSource/TwoTank/TwoTankModule.py" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/TwoTankSource/TwoTank/TwoTankModule.py"/>
@@ -63,9 +63,6 @@
 </editor>
 </editors>
 <views>
-<view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
-<viewState/>
-</view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <columnWidths org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="90" org.eclipse.ui.ide.pathField="120" org.eclipse.ui.ide.resourceField="90" org.eclipse.ui.ide.severityAndDescriptionField="300"/>
@@ -75,6 +72,9 @@
 <visible IMemento.internal.id="org.eclipse.ui.ide.locationField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.markerType"/>
 </viewState>
+</view>
+<view id="org.eclipse.ui.console.ConsoleView" partName="Console">
+<viewState/>
 </view>
 <view id="org.eclipse.jdt.ui.PackageExplorer" partName="Package Explorer">
 <viewState group_libraries="1" layout="2" linkWithEditor="0" rootMode="1" workingSetName="Aggregate for window 1329724977598">
@@ -103,9 +103,6 @@
 </customFilters>
 </viewState>
 </view>
-<view id="org.eclipse.ui.console.ConsoleView" partName="Console">
-<viewState/>
-</view>
 <view id="org.eclipse.ui.internal.introview" partName="Welcome">
 <viewState>
 <presentation currentPage="overview" restore="true"/>
@@ -127,16 +124,17 @@
 <filteredTreeFindHistory/>
 </viewState>
 </view>
+<view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
+<viewState/>
+</view>
 <view id="org.eclipse.jdt.ui.SourceView" partName="Declaration"/>
-<view id="org.eclipse.jdt.ui.JavadocView" partName="Javadoc"/>
 <view id="org.python.pydev.navigator.view" partName="PyDev Package Explorer">
 <viewState CommonNavigator.LINKING_ENABLED="0" currentWorkingSetName="Aggregate for window 1329724977598" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0">
-<expanded IMemento.internal.id="C:/Users/Public/Documents/JModelica.org/ExempelTank/TwoTankSource"/>
-<expanded IMemento.internal.id="C:/Users/Public/Documents/JModelica.org/ExempelTank/TwoTankSource/TwoTank"/>
-<expanded IMemento.internal.id="C:/Users/Public/Documents/JModelica.org/ExempelTank/ModelFiles"/>
-<selected IMemento.internal.id="C:/Users/Public/Documents/JModelica.org/ExempelTank/TwoTankSource"/>
+<expanded IMemento.internal.id="C:/Users/Public/Documents/JModelica.org/Modelica-to-PromoVis-export/TwoTankSource"/>
+<expanded IMemento.internal.id="C:/Users/Public/Documents/JModelica.org/Modelica-to-PromoVis-export/ModelFiles"/>
 </viewState>
 </view>
+<view id="org.eclipse.jdt.ui.JavadocView" partName="Javadoc"/>
 </views>
 <perspectives activePart="org.jmodelica.ide.editor" activePerspective="org.python.pydev.ui.PythonPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
