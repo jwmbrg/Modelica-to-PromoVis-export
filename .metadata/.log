@@ -1064,3 +1064,226 @@ java.lang.StringIndexOutOfBoundsException: String index out of range: -4
 	at org.python.pydev.editor.hover.PyTextHover.getDocstringHover(PyTextHover.java:280)
 	at org.python.pydev.editor.hover.PyTextHover.getHoverInfo(PyTextHover.java:147)
 	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:168)
+!SESSION 2012-03-08 10:20:38.409 -----------------------------------------------
+eclipse.buildId=M20110909-1335
+java.version=1.7.0_02
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.eclipse.core.resources 2 10035 2012-03-08 10:20:48.105
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.jface 2 0 2012-03-08 10:20:52.074
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-03-08 10:20:52.074
+!MESSAGE A conflict occurred for ALT+CTRL+E:
+Binding(ALT+CTRL+E,
+	ParameterizedCommand(Command(org.eclipse.team.svn.ui.command.MergeCommand,Merge...,
+		,
+		Category(org.eclipse.team.svn.ui.command.category,SVN,null,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+CTRL+E,
+	ParameterizedCommand(Command(JModelicaIDE.ErrorCheckCommand,Error check,
+		Perform error check,
+		Category(JModelicaIDE.ModelicaCommandCategory,JModelica,JModelica commands,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-03-08 10:20:52.074
+!MESSAGE A conflict occurred for F3:
+Binding(F3,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.open.editor,Open Declaration,
+		Open an editor on the selected element,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(F3,
+	ParameterizedCommand(Command(JModelicaIDE.GoToDeclarationCommand,Go to declaration,
+		Go to declaration,
+		Category(JModelicaIDE.ModelicaCommandCategory,JModelica,JModelica commands,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-03-08 10:20:52.074
+!MESSAGE A conflict occurred for ALT+CTRL+R:
+Binding(ALT+CTRL+R,
+	ParameterizedCommand(Command(org.eclipse.team.svn.ui.command.CompareWithRevisionCommand,URL...,
+		,
+		Category(org.eclipse.team.svn.ui.command.category,SVN,null,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+CTRL+R,
+	ParameterizedCommand(Command(org.python.pydev.debug.setnext,Set Next Statement,
+		,
+		Category(org.python.pydev.ui.category.run,PyDev - Run,Python run category,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.ltk.ui.refactoring 4 10000 2012-03-08 10:21:14.388
+!MESSAGE Internal Error
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Problems encountered while moving resources.
+	at org.eclipse.core.internal.resources.Resource.move(Resource.java:1603)
+	at org.eclipse.ltk.core.refactoring.resource.RenameResourceChange.perform(RenameResourceChange.java:123)
+	at org.eclipse.ltk.core.refactoring.CompositeChange.perform(CompositeChange.java:278)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation$1.run(PerformChangeOperation.java:258)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation.executeChange(PerformChangeOperation.java:306)
+	at org.eclipse.ltk.internal.ui.refactoring.UIPerformChangeOperation.executeChange(UIPerformChangeOperation.java:92)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation.run(PerformChangeOperation.java:218)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+	at org.eclipse.ltk.internal.ui.refactoring.WorkbenchRunnableAdapter.run(WorkbenchRunnableAdapter.java:87)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Contains: Could not move '/TwoTankSource'.
+org.eclipse.core.runtime.CoreException: Could not move: C:\Users\Public\Documents\JModelica.org\Modelica-to-PromoVis-export\TwoTankSource.
+	at org.eclipse.core.internal.filesystem.Policy.error(Policy.java:55)
+	at org.eclipse.core.filesystem.provider.FileStore.move(FileStore.java:415)
+	at org.eclipse.core.internal.filesystem.local.LocalFile.move(LocalFile.java:352)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.move(FileSystemResourceManager.java:767)
+	at org.eclipse.core.internal.resources.ResourceTree.moveProjectContent(ResourceTree.java:753)
+	at org.eclipse.core.internal.resources.ResourceTree.standardMoveProject(ResourceTree.java:1070)
+	at org.eclipse.core.internal.resources.Resource.unprotectedMove(Resource.java:1976)
+	at org.eclipse.core.internal.resources.Resource.move(Resource.java:1591)
+	at org.eclipse.ltk.core.refactoring.resource.RenameResourceChange.perform(RenameResourceChange.java:123)
+	at org.eclipse.ltk.core.refactoring.CompositeChange.perform(CompositeChange.java:278)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation$1.run(PerformChangeOperation.java:258)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation.executeChange(PerformChangeOperation.java:306)
+	at org.eclipse.ltk.internal.ui.refactoring.UIPerformChangeOperation.executeChange(UIPerformChangeOperation.java:92)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation.run(PerformChangeOperation.java:218)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+	at org.eclipse.ltk.internal.ui.refactoring.WorkbenchRunnableAdapter.run(WorkbenchRunnableAdapter.java:87)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Caused by: org.eclipse.core.runtime.CoreException: Problems encountered while deleting files.
+	at org.eclipse.core.internal.filesystem.local.LocalFile.delete(LocalFile.java:125)
+	at org.eclipse.core.filesystem.provider.FileStore.move(FileStore.java:411)
+	... 16 more
+!SUBENTRY 1 org.eclipse.core.resources 1 4 2012-03-08 10:21:14.388
+!MESSAGE Problems encountered while moving resources.
+!SUBENTRY 2 org.eclipse.core.resources 1 4 2012-03-08 10:21:14.388
+!MESSAGE Could not move '/TwoTankSource'.
+!STACK 1
+org.eclipse.core.runtime.CoreException: Could not move: C:\Users\Public\Documents\JModelica.org\Modelica-to-PromoVis-export\TwoTankSource.
+	at org.eclipse.core.internal.filesystem.Policy.error(Policy.java:55)
+	at org.eclipse.core.filesystem.provider.FileStore.move(FileStore.java:415)
+	at org.eclipse.core.internal.filesystem.local.LocalFile.move(LocalFile.java:352)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.move(FileSystemResourceManager.java:767)
+	at org.eclipse.core.internal.resources.ResourceTree.moveProjectContent(ResourceTree.java:753)
+	at org.eclipse.core.internal.resources.ResourceTree.standardMoveProject(ResourceTree.java:1070)
+	at org.eclipse.core.internal.resources.Resource.unprotectedMove(Resource.java:1976)
+	at org.eclipse.core.internal.resources.Resource.move(Resource.java:1591)
+	at org.eclipse.ltk.core.refactoring.resource.RenameResourceChange.perform(RenameResourceChange.java:123)
+	at org.eclipse.ltk.core.refactoring.CompositeChange.perform(CompositeChange.java:278)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation$1.run(PerformChangeOperation.java:258)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation.executeChange(PerformChangeOperation.java:306)
+	at org.eclipse.ltk.internal.ui.refactoring.UIPerformChangeOperation.executeChange(UIPerformChangeOperation.java:92)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation.run(PerformChangeOperation.java:218)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+	at org.eclipse.ltk.internal.ui.refactoring.WorkbenchRunnableAdapter.run(WorkbenchRunnableAdapter.java:87)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Caused by: org.eclipse.core.runtime.CoreException: Problems encountered while deleting files.
+	at org.eclipse.core.internal.filesystem.local.LocalFile.delete(LocalFile.java:125)
+	at org.eclipse.core.filesystem.provider.FileStore.move(FileStore.java:411)
+	... 16 more
+!SUBENTRY 3 org.eclipse.core.filesystem 4 272 2012-03-08 10:21:14.388
+!MESSAGE Could not move: C:\Users\Public\Documents\JModelica.org\Modelica-to-PromoVis-export\TwoTankSource.
+!STACK 1
+org.eclipse.core.runtime.CoreException: Problems encountered while deleting files.
+	at org.eclipse.core.internal.filesystem.local.LocalFile.delete(LocalFile.java:125)
+	at org.eclipse.core.filesystem.provider.FileStore.move(FileStore.java:411)
+	at org.eclipse.core.internal.filesystem.local.LocalFile.move(LocalFile.java:352)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.move(FileSystemResourceManager.java:767)
+	at org.eclipse.core.internal.resources.ResourceTree.moveProjectContent(ResourceTree.java:753)
+	at org.eclipse.core.internal.resources.ResourceTree.standardMoveProject(ResourceTree.java:1070)
+	at org.eclipse.core.internal.resources.Resource.unprotectedMove(Resource.java:1976)
+	at org.eclipse.core.internal.resources.Resource.move(Resource.java:1591)
+	at org.eclipse.ltk.core.refactoring.resource.RenameResourceChange.perform(RenameResourceChange.java:123)
+	at org.eclipse.ltk.core.refactoring.CompositeChange.perform(CompositeChange.java:278)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation$1.run(PerformChangeOperation.java:258)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation.executeChange(PerformChangeOperation.java:306)
+	at org.eclipse.ltk.internal.ui.refactoring.UIPerformChangeOperation.executeChange(UIPerformChangeOperation.java:92)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation.run(PerformChangeOperation.java:218)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+	at org.eclipse.ltk.internal.ui.refactoring.WorkbenchRunnableAdapter.run(WorkbenchRunnableAdapter.java:87)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Contains: Could not delete: C:\Users\Public\Documents\JModelica.org\Modelica-to-PromoVis-export\TwoTankSource\TwoTank.
+Contains: Could not delete: C:\Users\Public\Documents\JModelica.org\Modelica-to-PromoVis-export\TwoTankSource.
+!SUBENTRY 4 org.eclipse.core.filesystem 4 273 2012-03-08 10:21:14.388
+!MESSAGE Problems encountered while deleting files.
+!SUBENTRY 5 org.eclipse.core.filesystem 4 273 2012-03-08 10:21:14.388
+!MESSAGE Could not delete: C:\Users\Public\Documents\JModelica.org\Modelica-to-PromoVis-export\TwoTankSource\TwoTank.
+!SUBENTRY 5 org.eclipse.core.filesystem 4 273 2012-03-08 10:21:14.388
+!MESSAGE Could not delete: C:\Users\Public\Documents\JModelica.org\Modelica-to-PromoVis-export\TwoTankSource.
+
+!ENTRY org.eclipse.core.resources 1 4 2012-03-08 10:21:14.388
+!MESSAGE Problems encountered while moving resources.
+!SUBENTRY 1 org.eclipse.core.resources 1 4 2012-03-08 10:21:14.388
+!MESSAGE Could not move '/TwoTankSource'.
+!STACK 1
+org.eclipse.core.runtime.CoreException: Could not move: C:\Users\Public\Documents\JModelica.org\Modelica-to-PromoVis-export\TwoTankSource.
+	at org.eclipse.core.internal.filesystem.Policy.error(Policy.java:55)
+	at org.eclipse.core.filesystem.provider.FileStore.move(FileStore.java:415)
+	at org.eclipse.core.internal.filesystem.local.LocalFile.move(LocalFile.java:352)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.move(FileSystemResourceManager.java:767)
+	at org.eclipse.core.internal.resources.ResourceTree.moveProjectContent(ResourceTree.java:753)
+	at org.eclipse.core.internal.resources.ResourceTree.standardMoveProject(ResourceTree.java:1070)
+	at org.eclipse.core.internal.resources.Resource.unprotectedMove(Resource.java:1976)
+	at org.eclipse.core.internal.resources.Resource.move(Resource.java:1591)
+	at org.eclipse.ltk.core.refactoring.resource.RenameResourceChange.perform(RenameResourceChange.java:123)
+	at org.eclipse.ltk.core.refactoring.CompositeChange.perform(CompositeChange.java:278)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation$1.run(PerformChangeOperation.java:258)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation.executeChange(PerformChangeOperation.java:306)
+	at org.eclipse.ltk.internal.ui.refactoring.UIPerformChangeOperation.executeChange(UIPerformChangeOperation.java:92)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation.run(PerformChangeOperation.java:218)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+	at org.eclipse.ltk.internal.ui.refactoring.WorkbenchRunnableAdapter.run(WorkbenchRunnableAdapter.java:87)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Caused by: org.eclipse.core.runtime.CoreException: Problems encountered while deleting files.
+	at org.eclipse.core.internal.filesystem.local.LocalFile.delete(LocalFile.java:125)
+	at org.eclipse.core.filesystem.provider.FileStore.move(FileStore.java:411)
+	... 16 more
+!SUBENTRY 2 org.eclipse.core.filesystem 4 272 2012-03-08 10:21:14.388
+!MESSAGE Could not move: C:\Users\Public\Documents\JModelica.org\Modelica-to-PromoVis-export\TwoTankSource.
+!STACK 1
+org.eclipse.core.runtime.CoreException: Problems encountered while deleting files.
+	at org.eclipse.core.internal.filesystem.local.LocalFile.delete(LocalFile.java:125)
+	at org.eclipse.core.filesystem.provider.FileStore.move(FileStore.java:411)
+	at org.eclipse.core.internal.filesystem.local.LocalFile.move(LocalFile.java:352)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.move(FileSystemResourceManager.java:767)
+	at org.eclipse.core.internal.resources.ResourceTree.moveProjectContent(ResourceTree.java:753)
+	at org.eclipse.core.internal.resources.ResourceTree.standardMoveProject(ResourceTree.java:1070)
+	at org.eclipse.core.internal.resources.Resource.unprotectedMove(Resource.java:1976)
+	at org.eclipse.core.internal.resources.Resource.move(Resource.java:1591)
+	at org.eclipse.ltk.core.refactoring.resource.RenameResourceChange.perform(RenameResourceChange.java:123)
+	at org.eclipse.ltk.core.refactoring.CompositeChange.perform(CompositeChange.java:278)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation$1.run(PerformChangeOperation.java:258)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation.executeChange(PerformChangeOperation.java:306)
+	at org.eclipse.ltk.internal.ui.refactoring.UIPerformChangeOperation.executeChange(UIPerformChangeOperation.java:92)
+	at org.eclipse.ltk.core.refactoring.PerformChangeOperation.run(PerformChangeOperation.java:218)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+	at org.eclipse.ltk.internal.ui.refactoring.WorkbenchRunnableAdapter.run(WorkbenchRunnableAdapter.java:87)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Contains: Could not delete: C:\Users\Public\Documents\JModelica.org\Modelica-to-PromoVis-export\TwoTankSource\TwoTank.
+Contains: Could not delete: C:\Users\Public\Documents\JModelica.org\Modelica-to-PromoVis-export\TwoTankSource.
+!SUBENTRY 3 org.eclipse.core.filesystem 4 273 2012-03-08 10:21:14.398
+!MESSAGE Problems encountered while deleting files.
+!SUBENTRY 4 org.eclipse.core.filesystem 4 273 2012-03-08 10:21:14.398
+!MESSAGE Could not delete: C:\Users\Public\Documents\JModelica.org\Modelica-to-PromoVis-export\TwoTankSource\TwoTank.
+!SUBENTRY 4 org.eclipse.core.filesystem 4 273 2012-03-08 10:21:14.398
+!MESSAGE Could not delete: C:\Users\Public\Documents\JModelica.org\Modelica-to-PromoVis-export\TwoTankSource.

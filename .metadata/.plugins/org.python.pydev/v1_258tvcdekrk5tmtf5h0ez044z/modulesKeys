@@ -1604,6 +1604,7 @@ numpy.compat._inspect|C:\Python27\Lib\site-packages\numpy\compat\_inspect.py
 numpy.compat.py3k|C:\Python27\Lib\site-packages\numpy\compat\py3k.py
 numpy.compat.setup|C:\Python27\Lib\site-packages\numpy\compat\setup.py
 numpy.compat.setupscons|C:\Python27\Lib\site-packages\numpy\compat\setupscons.py
+numpy.core
 numpy.core.__init__|C:\Python27\Lib\site-packages\numpy\core\__init__.py
 numpy.core._dotblas|C:\Python27\Lib\site-packages\numpy\core\_dotblas.pyd
 numpy.core._internal|C:\Python27\Lib\site-packages\numpy\core\_internal.py
@@ -1739,6 +1740,7 @@ numpy.fft.helper|C:\Python27\Lib\site-packages\numpy\fft\helper.py
 numpy.fft.info|C:\Python27\Lib\site-packages\numpy\fft\info.py
 numpy.fft.setup|C:\Python27\Lib\site-packages\numpy\fft\setup.py
 numpy.fft.setupscons|C:\Python27\Lib\site-packages\numpy\fft\setupscons.py
+numpy.lib
 numpy.lib.__init__|C:\Python27\Lib\site-packages\numpy\lib\__init__.py
 numpy.lib._compiled_base|C:\Python27\Lib\site-packages\numpy\lib\_compiled_base.pyd
 numpy.lib._datasource|C:\Python27\Lib\site-packages\numpy\lib\_datasource.py
@@ -1781,6 +1783,7 @@ numpy.ma.testutils|C:\Python27\Lib\site-packages\numpy\ma\testutils.py
 numpy.ma.timer_comparison|C:\Python27\Lib\site-packages\numpy\ma\timer_comparison.py
 numpy.ma.version|C:\Python27\Lib\site-packages\numpy\ma\version.py
 numpy.matlib|C:\Python27\Lib\site-packages\numpy\matlib.py
+numpy.matrixlib
 numpy.matrixlib.__init__|C:\Python27\Lib\site-packages\numpy\matrixlib\__init__.py
 numpy.matrixlib.defmatrix|C:\Python27\Lib\site-packages\numpy\matrixlib\defmatrix.py
 numpy.matrixlib.setup|C:\Python27\Lib\site-packages\numpy\matrixlib\setup.py
@@ -2081,6 +2084,7 @@ scipy.fftpack.pseudo_diffs|C:\Python27\Lib\site-packages\scipy\fftpack\pseudo_di
 scipy.fftpack.realtransforms|C:\Python27\Lib\site-packages\scipy\fftpack\realtransforms.py
 scipy.fftpack.setup|C:\Python27\Lib\site-packages\scipy\fftpack\setup.py
 scipy.fftpack.setupscons|C:\Python27\Lib\site-packages\scipy\fftpack\setupscons.py
+scipy.integrate
 scipy.integrate.__init__|C:\Python27\Lib\site-packages\scipy\integrate\__init__.py
 scipy.integrate._dop|C:\Python27\Lib\site-packages\scipy\integrate\_dop.pyd
 scipy.integrate._ode|C:\Python27\Lib\site-packages\scipy\integrate\_ode.py
