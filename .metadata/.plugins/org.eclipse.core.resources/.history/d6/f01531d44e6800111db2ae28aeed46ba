@@ -1,0 +1,52 @@
+'''
+Created on Mar 7, 2012
+
+@author: Jesper Moberg
+'''
+class pmv_variable(object):
+    '''
+    classdocs
+    '''
+    class _type_params(object):
+        _input=0
+        _state=1
+        _disturbance=2
+        
+    def __init__(self,E,A,B,F,g,state_names, input_names,algebraic_names):
+        '''
+        Constructor
+        '''
+        self.E=E
+        self.A=A
+        self.B=B
+        self.F=F
+        self.g=g
+        self.state_names=state_names
+        self.input_names=input_names
+        self.algebraic_names=algebraic_names
+        self.createModel();
+        
+        
+    def createModel(self):
+        return
+    
+    
+    def createStateVar(self,index):
+        name=name=self.state_names.get(index)
+        type=self._type_params._state
+        
+        
+        dividerCoeff=self.E[index,index]
+        
+        #find transfer function
+        state_dict=0
+    
+        input_dict=0
+        disturbance_dict=0
+        
+        
+        
+        
+        
+        return pmv_variable(name,type,state_dict,input_dict,disturbance_dict)
+        

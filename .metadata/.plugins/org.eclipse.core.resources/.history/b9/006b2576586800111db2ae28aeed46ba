@@ -1,0 +1,70 @@
+'''
+Created on Mar 7, 2012
+
+@author: Jesper Moberg
+'''
+import pmv_tf
+import pmv_variable
+class pmv_scenario(object):
+    '''
+    classdocs
+    '''
+    varArr=None
+    class _type_params(object):
+        _input=0
+        _state=1
+        _disturbance=2
+        
+    def __init__(self,E,A,B,F,g,state_names, input_names,algebraic_names):
+        '''
+        Constructor
+        Assumes E to be identity
+        '''
+        self.E=E
+        self.A=A
+        self.B=B
+        self.F=F
+        self.g=g
+        self.state_names=state_names
+        self.input_names=input_names
+        self.algebraic_names=algebraic_names
+        self.createModel();
+        
+        
+    def createModel(self):
+        self.createStateVar(1)
+        self.createStateVar(2)
+        return
+    
+    
+    def createStateVar(self,index):
+        name=name=self.state_names.get(index)
+        type=self._type_params._state
+        
+        
+        dividerCoeff=self.E[index,index]
+        coeffarr=self.A[index]
+        #create the common denominator
+        i=0
+        for element in coeffarr:
+            if(i==index):
+                denominator=[1, -element]*dividerCoeff
+        
+        
+        #find all numerators for states, and input the common denominator
+        state=0
+        state_dict={}
+        for  element in coeffarr:
+            if(element!=0 and state!=index):
+                numerator=[element]
+                varName=self.state_names.get(state)
+                tf=pmv_tf(numerator,denominator,varName)
+                state_dict[varName]=tf
+        
+        #find transfer function
+      
+    
+        input_dict=0
+        disturbance_dict=0
+        toReturn= pmv_variable(name,type,state_dict,input_dict,disturbance_dict)
+        return toReturn

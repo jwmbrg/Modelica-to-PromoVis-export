@@ -1,0 +1,17 @@
+'''
+Created on Mar 7, 2012
+
+@author: Jeppe
+'''
+
+class proVariable(object):
+    '''
+    classdocs
+    '''
+
+
+    def __init__(selfparams):
+        '''
+        Constructor
+        '''
+        

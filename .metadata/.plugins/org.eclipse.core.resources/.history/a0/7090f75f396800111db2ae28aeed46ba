@@ -1,0 +1,17 @@
+'''
+Created on Mar 7, 2012
+
+@author: Jeppe
+'''
+
+class pmv_variable(object):
+    '''
+    classdocs
+    '''
+
+
+    def __init__(self,name,state_dict={]},disturbance_dict={},input_dict={}):
+        '''
+        Constructor
+        '''
+        
