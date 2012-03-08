@@ -1,0 +1,12 @@
+'''
+Created on Mar 7, 2012
+
+@author: Jeppe
+'''
+class pmv_tf(object):
+    def __init__(self,num,den):
+        '''
+        Constructor
+        '''
+        self.num=nu
+        self.den=den

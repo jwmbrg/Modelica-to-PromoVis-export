@@ -19,8 +19,8 @@ within;
 
 
     // Initial tank levels
-	parameter Modelica.SIunits.Length h1_0 = 0.04;
-	parameter Modelica.SIunits.Length h2_0 = 0.06;
+	parameter Modelica.SIunits.Length h1_0 = 0.361265;
+	parameter Modelica.SIunits.Length h2_0 = 0.093252;
 
 	
     // Tank levels

@@ -1,0 +1,27 @@
+'''
+Created on Mar 7, 2012
+
+@author: Jesper Moberg
+'''
+class pmv_variable(object):
+    '''
+    classdocs
+    '''
+
+
+    def __init__(self,E,A,B,F,g,state_names, input_names):
+        '''
+        Constructor
+        '''
+        self.E=E
+        self.A=A
+        self.B=B
+        self.F=F
+        self.g=g
+        self.state_names=state_names
+        self.input_names=input_names
+        self.createModel();
+        
+        
+    def createModel(self):
+        
