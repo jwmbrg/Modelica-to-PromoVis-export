@@ -1,0 +1,195 @@
+<Scenario name="TwoTank">
+	<Components/>
+	<Variables>
+		<ControlVariable>
+			<Variable tag="" comp="          ">
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="40" height="40"/>
+						<Position x="208" y="442"/>
+					</ScenarioObject>
+					<Name v="u" visible="true">
+						<PositionOffset x="15" y="8"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Saturation>
+					<Min>
+						<SpecifiedValue v="-Inf"/>
+					</Min>
+					<Max>
+						<SpecifiedValue v="Inf"/>
+					</Max>
+				</Saturation>
+				<Range>
+					<Saturation>
+						<Min>
+							<SpecifiedValue v="-Inf"/>
+						</Min>
+						<Max>
+							<SpecifiedValue v="Inf"/>
+						</Max>
+					</Saturation>
+				</Range>
+				<WorkingPoint>
+					<SpecifiedEmptyValue v=""/>
+				</WorkingPoint>
+				<RateLimiter>
+					<SpecifiedValue v="Inf"/>
+				</RateLimiter>
+				<Variance>
+					<SpecifiedEmptyValue v=""/>
+				</Variance>
+				<Delay>
+					<SpecifiedValue v="0.0"/>
+				</Delay>
+				<Resolution v=""/>
+			</Variable>
+		</ControlVariable>
+		<InternalVariable>
+			<Variable tag="" comp="          ">
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="40" height="40"/>
+						<Position x="369" y="276"/>
+					</ScenarioObject>
+					<Name v="h1" visible="true">
+						<PositionOffset x="14" y="12"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Saturation>
+					<Min>
+						<SpecifiedValue v="-Inf"/>
+					</Min>
+					<Max>
+						<SpecifiedValue v="Inf"/>
+					</Max>
+				</Saturation>
+				<Range>
+					<Saturation>
+						<Min>
+							<SpecifiedValue v="-Inf"/>
+						</Min>
+						<Max>
+							<SpecifiedValue v="Inf"/>
+						</Max>
+					</Saturation>
+				</Range>
+				<WorkingPoint>
+					<SpecifiedEmptyValue v=""/>
+				</WorkingPoint>
+				<Variance>
+					<SpecifiedEmptyValue v=""/>
+				</Variance>
+				<Delay>
+					<SpecifiedValue v="0.0"/>
+				</Delay>
+			</Variable>
+		</InternalVariable>
+		<InternalVariable>
+			<Variable tag="" comp="          ">
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="40" height="40"/>
+						<Position x="386" y="454"/>
+					</ScenarioObject>
+					<Name v="h2" visible="true">
+						<PositionOffset x="11" y="10"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Saturation>
+					<Min>
+						<SpecifiedValue v="-Inf"/>
+					</Min>
+					<Max>
+						<SpecifiedValue v="Inf"/>
+					</Max>
+				</Saturation>
+				<Range>
+					<Saturation>
+						<Min>
+							<SpecifiedValue v="-Inf"/>
+						</Min>
+						<Max>
+							<SpecifiedValue v="Inf"/>
+						</Max>
+					</Saturation>
+				</Range>
+				<WorkingPoint>
+					<SpecifiedEmptyValue v=""/>
+				</WorkingPoint>
+				<Variance>
+					<SpecifiedEmptyValue v=""/>
+				</Variance>
+				<Delay>
+					<SpecifiedValue v="0.0"/>
+				</Delay>
+			</Variable>
+		</InternalVariable>
+	</Variables>
+	<Controllers/>
+	<PortConnectors/>
+	<CPortConnectors/>
+	<ProcessModels>
+		<ProcessModel>
+			<ScaledObject/>
+			<Inputs>
+				<InVar name="u"/>
+			</Inputs>
+			<Outputs>
+				<OutVar name="h1"/>
+			</Outputs>
+			<SampleTime>
+				<SpecifiedValue v="0.0"/>
+			</SampleTime>
+			<PMD>
+				<TransferFunctionData>
+					<ModelData inputs="1" outputs="1"/>
+					<Numerator>
+						<CellArray T="promovis.misc.SpecifiedDoubleArray" rows="1" columns="1" v="{[1.14]}"/>
+					</Numerator>
+					<Denominator>
+						<CellArray T="promovis.misc.SpecifiedDoubleArray" rows="1" columns="1" v="{[23.89, 1.0]}"/>
+					</Denominator>
+					<Uncertainty v="0"/>
+					<ChannelDelay>
+						<CellArray T="promovis.misc.NonNegativeValue" rows="1" columns="1" v="{0.0}"/>
+					</ChannelDelay>
+				</TransferFunctionData>
+			</PMD>
+		</ProcessModel>
+		<ProcessModel>
+			<ScaledObject/>
+			<Inputs>
+				<InVar name="h1"/>
+			</Inputs>
+			<Outputs>
+				<OutVar name="h2"/>
+			</Outputs>
+			<SampleTime>
+				<SpecifiedValue v="0.0"/>
+			</SampleTime>
+			<PMD>
+				<TransferFunctionData>
+					<ModelData inputs="1" outputs="1"/>
+					<Numerator>
+						<CellArray T="promovis.misc.SpecifiedDoubleArray" rows="1" columns="1" v="{[2.62]}"/>
+					</Numerator>
+					<Denominator>
+						<CellArray T="promovis.misc.SpecifiedDoubleArray" rows="1" columns="1" v="{[62.0, 1.0]}"/>
+					</Denominator>
+					<Uncertainty v="0"/>
+					<ChannelDelay>
+						<CellArray T="promovis.misc.NonNegativeValue" rows="1" columns="1" v="{0.0}"/>
+					</ChannelDelay>
+				</TransferFunctionData>
+			</PMD>
+		</ProcessModel>
+	</ProcessModels>
+	<Layers/>
+</Scenario>

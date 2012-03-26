@@ -1,0 +1,1883 @@
+<Scenario name="Quadruple Tanks">
+	<Components>
+		<Component>
+			<IconObject>
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="50" height="50"/>
+						<Position x="466" y="369"/>
+					</ScenarioObject>
+					<Name v="Pump 1" visible="true">
+						<PositionOffset x="-108" y="19"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Orientation>
+					<RotateCW/>
+					<RotateCW/>
+					<RotateCW/>
+				</Orientation>
+				<ImgFileName v="icons/Pump_general.icn"/>
+			</IconObject>
+			<Ports>
+				<Port ratio="0.5" alignment="1" id="0">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.5" alignment="0" id="1">
+					<ScaledObject/>
+				</Port>
+			</Ports>
+		</Component>
+		<Component>
+			<IconObject>
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="50" height="50"/>
+						<Position x="1070" y="364"/>
+					</ScenarioObject>
+					<Name v="Pump 2" visible="true">
+						<PositionOffset x="52" y="20"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Orientation>
+					<RotateCCW/>
+				</Orientation>
+				<ImgFileName v="icons/Pump_general.icn"/>
+			</IconObject>
+			<Ports>
+				<Port ratio="0.5" alignment="1" id="0">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.5" alignment="0" id="1">
+					<ScaledObject/>
+				</Port>
+			</Ports>
+		</Component>
+		<Component>
+			<IconObject>
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="50" height="87"/>
+						<Position x="463" y="168"/>
+					</ScenarioObject>
+					<Name v="Pipe" visible="false">
+						<PositionOffset x="60" y="0"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Orientation>
+					<RotateCW/>
+				</Orientation>
+				<ImgFileName v="icons/Pipe.icn"/>
+			</IconObject>
+			<Ports>
+				<Port ratio="0.5" alignment="0" id="0">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.5" alignment="1" id="1">
+					<ScaledObject/>
+				</Port>
+			</Ports>
+		</Component>
+		<Component>
+			<IconObject>
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="51" height="85"/>
+						<Position x="466" y="422"/>
+					</ScenarioObject>
+					<Name v="Pipe_1" visible="false">
+						<PositionOffset x="60" y="0"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Orientation>
+					<RotateCW/>
+				</Orientation>
+				<ImgFileName v="icons/Pipe.icn"/>
+			</IconObject>
+			<Ports>
+				<Port ratio="0.5" alignment="0" id="0">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.5" alignment="1" id="1">
+					<ScaledObject/>
+				</Port>
+			</Ports>
+		</Component>
+		<Component>
+			<IconObject>
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="52" height="46"/>
+						<Position x="1014" y="311"/>
+					</ScenarioObject>
+					<Name v="Pipe_2" visible="false">
+						<PositionOffset x="60" y="0"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Orientation>
+					<RotateCW/>
+					<RotateCW/>
+				</Orientation>
+				<ImgFileName v="icons/Pipe.icn"/>
+			</IconObject>
+			<Ports>
+				<Port ratio="0.5" alignment="3" id="0">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.5" alignment="2" id="1">
+					<ScaledObject/>
+				</Port>
+			</Ports>
+		</Component>
+		<Component>
+			<IconObject>
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="53" height="50"/>
+						<Position x="704" y="260"/>
+					</ScenarioObject>
+					<Name v="Pipe_3" visible="false">
+						<PositionOffset x="60" y="0"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Orientation>
+					<RotateCW/>
+				</Orientation>
+				<ImgFileName v="icons/Pipe.icn"/>
+			</IconObject>
+			<Ports>
+				<Port ratio="0.5" alignment="0" id="0">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.5" alignment="1" id="1">
+					<ScaledObject/>
+				</Port>
+			</Ports>
+		</Component>
+		<Component>
+			<IconObject>
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="50" height="50"/>
+						<Position x="463" y="115"/>
+					</ScenarioObject>
+					<Name v="Elbow" visible="false">
+						<PositionOffset x="60" y="0"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Orientation>
+					<RotateCCW/>
+				</Orientation>
+				<ImgFileName v="icons/Elbow.icn"/>
+			</IconObject>
+			<Ports>
+				<Port ratio="0.5" alignment="3" id="1">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.5" alignment="1" id="0">
+					<ScaledObject/>
+				</Port>
+			</Ports>
+		</Component>
+		<Component>
+			<IconObject>
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="49" height="49"/>
+						<Position x="518" y="313"/>
+					</ScenarioObject>
+					<Name v="Pipe_4" visible="false">
+						<PositionOffset x="60" y="0"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Orientation/>
+				<ImgFileName v="icons/Pipe.icn"/>
+			</IconObject>
+			<Ports>
+				<Port ratio="0.5" alignment="2" id="0">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.5" alignment="3" id="1">
+					<ScaledObject/>
+				</Port>
+			</Ports>
+		</Component>
+		<Component>
+			<IconObject>
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="50" height="50"/>
+						<Position x="463" y="312"/>
+					</ScenarioObject>
+					<Name v="T" visible="false">
+						<PositionOffset x="60" y="0"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Orientation>
+					<RotateCCW/>
+				</Orientation>
+				<ImgFileName v="icons/T.icn"/>
+			</IconObject>
+			<Ports>
+				<Port ratio="0.5" alignment="3" id="2">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.5" alignment="1" id="0">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.5" alignment="0" id="1">
+					<ScaledObject/>
+				</Port>
+			</Ports>
+		</Component>
+		<Component>
+			<IconObject>
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="377" height="46"/>
+						<Position x="520" y="116"/>
+					</ScenarioObject>
+					<Name v="Pipe_5" visible="false">
+						<PositionOffset x="60" y="0"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Orientation>
+					<RotateCW/>
+					<RotateCW/>
+				</Orientation>
+				<ImgFileName v="icons/Pipe.icn"/>
+			</IconObject>
+			<Ports>
+				<Port ratio="0.5" alignment="3" id="0">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.5" alignment="2" id="1">
+					<ScaledObject/>
+				</Port>
+			</Ports>
+		</Component>
+		<Component>
+			<IconObject>
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="196" height="83"/>
+						<Position x="583" y="176"/>
+					</ScenarioObject>
+					<Name v="Tank 3" visible="true">
+						<PositionOffset x="-58" y="73"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Orientation/>
+				<ImgFileName v="icons/Tank_disturbance.icn"/>
+			</IconObject>
+			<Ports>
+				<Port ratio="0.3" alignment="0" id="0">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.3" alignment="1" id="1">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.75" alignment="1" id="2">
+					<ScaledObject/>
+				</Port>
+			</Ports>
+		</Component>
+		<Component>
+			<IconObject>
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="195" height="83"/>
+						<Position x="797" y="173"/>
+					</ScenarioObject>
+					<Name v="Tank 4" visible="true">
+						<PositionOffset x="161" y="74"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Orientation>
+					<Flip/>
+					<RotateCW/>
+					<RotateCW/>
+				</Orientation>
+				<ImgFileName v="icons/Tank_disturbance.icn"/>
+			</IconObject>
+			<Ports>
+				<Port ratio="0.7" alignment="0" id="0">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.7" alignment="1" id="1">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.25" alignment="1" id="2">
+					<ScaledObject/>
+				</Port>
+			</Ports>
+		</Component>
+		<Component>
+			<IconObject>
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="143" height="89"/>
+						<Position x="555" y="370"/>
+					</ScenarioObject>
+					<Name v="Tank 1" visible="true">
+						<PositionOffset x="-26" y="89"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Orientation/>
+				<ImgFileName v="icons/Tank.icn"/>
+			</IconObject>
+			<Ports>
+				<Port ratio="0.29913580246913585" alignment="0" id="0">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.5" alignment="1" id="1">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.6713286713286712" alignment="0" id="2">
+					<ScaledObject/>
+				</Port>
+			</Ports>
+		</Component>
+		<Component>
+			<IconObject>
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="142" height="89"/>
+						<Position x="895" y="366"/>
+					</ScenarioObject>
+					<Name v="Tank 2" visible="true">
+						<PositionOffset x="80" y="83"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Orientation>
+					<Flip/>
+					<RotateCW/>
+					<RotateCW/>
+				</Orientation>
+				<ImgFileName v="icons/Tank.icn"/>
+			</IconObject>
+			<Ports>
+				<Port ratio="0.23761427460468323" alignment="0" id="0">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.5" alignment="1" id="1">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.647887323943662" alignment="0" id="2">
+					<ScaledObject/>
+				</Port>
+			</Ports>
+		</Component>
+		<Component>
+			<IconObject>
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="62" height="53"/>
+						<Position x="572" y="312"/>
+					</ScenarioObject>
+					<Name v="Elbow_1" visible="false">
+						<PositionOffset x="60" y="0"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Orientation/>
+				<ImgFileName v="icons/Elbow.icn"/>
+			</IconObject>
+			<Ports>
+				<Port ratio="0.5" alignment="1" id="1">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.5" alignment="2" id="0">
+					<ScaledObject/>
+				</Port>
+			</Ports>
+		</Component>
+		<Component>
+			<IconObject>
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="50" height="50"/>
+						<Position x="464" y="257"/>
+					</ScenarioObject>
+					<Name v="Valve actuator" visible="false">
+						<PositionOffset x="60" y="0"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Orientation>
+					<RotateCW/>
+					<RotateCW/>
+					<RotateCW/>
+				</Orientation>
+				<ImgFileName v="icons/Valve_actuator.icn"/>
+			</IconObject>
+			<Ports>
+				<Port ratio="0.5" alignment="1" id="0">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.5" alignment="0" id="1">
+					<ScaledObject/>
+				</Port>
+			</Ports>
+		</Component>
+		<Component>
+			<IconObject>
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="50" height="49"/>
+						<Position x="902" y="117"/>
+					</ScenarioObject>
+					<Name v="Elbow_2" visible="false">
+						<PositionOffset x="60" y="0"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Orientation/>
+				<ImgFileName v="icons/Elbow.icn"/>
+			</IconObject>
+			<Ports>
+				<Port ratio="0.5" alignment="1" id="1">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.5" alignment="2" id="0">
+					<ScaledObject/>
+				</Port>
+			</Ports>
+		</Component>
+		<Component>
+			<IconObject>
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="57" height="50"/>
+						<Position x="824" y="259"/>
+					</ScenarioObject>
+					<Name v="Pipe_8" visible="false">
+						<PositionOffset x="60" y="0"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Orientation>
+					<RotateCW/>
+				</Orientation>
+				<ImgFileName v="icons/Pipe.icn"/>
+			</IconObject>
+			<Ports>
+				<Port ratio="0.5" alignment="0" id="0">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.5" alignment="1" id="1">
+					<ScaledObject/>
+				</Port>
+			</Ports>
+		</Component>
+		<Component>
+			<IconObject>
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="50" height="50"/>
+						<Position x="1068" y="311"/>
+					</ScenarioObject>
+					<Name v="T_1" visible="false">
+						<PositionOffset x="60" y="0"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Orientation>
+					<RotateCW/>
+				</Orientation>
+				<ImgFileName v="icons/T.icn"/>
+			</IconObject>
+			<Ports>
+				<Port ratio="0.5" alignment="2" id="2">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.5" alignment="0" id="0">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.5" alignment="1" id="1">
+					<ScaledObject/>
+				</Port>
+			</Ports>
+		</Component>
+		<Component>
+			<IconObject>
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="50" height="50"/>
+						<Position x="960" y="312"/>
+					</ScenarioObject>
+					<Name v="Elbow_3" visible="false">
+						<PositionOffset x="60" y="0"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Orientation>
+					<RotateCW/>
+					<RotateCW/>
+					<RotateCW/>
+				</Orientation>
+				<ImgFileName v="icons/Elbow.icn"/>
+			</IconObject>
+			<Ports>
+				<Port ratio="0.5" alignment="3" id="1">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.5" alignment="1" id="0">
+					<ScaledObject/>
+				</Port>
+			</Ports>
+		</Component>
+		<Component>
+			<IconObject>
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="50" height="50"/>
+						<Position x="705" y="312"/>
+					</ScenarioObject>
+					<Name v="Valve actuator_1" visible="false">
+						<PositionOffset x="60" y="0"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Orientation>
+					<RotateCW/>
+				</Orientation>
+				<ImgFileName v="icons/Valve_actuator.icn"/>
+			</IconObject>
+			<Ports>
+				<Port ratio="0.5" alignment="0" id="0">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.5" alignment="1" id="1">
+					<ScaledObject/>
+				</Port>
+			</Ports>
+		</Component>
+		<Component>
+			<IconObject>
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="50" height="50"/>
+						<Position x="827" y="308"/>
+					</ScenarioObject>
+					<Name v="Valve actuator_2" visible="false">
+						<PositionOffset x="60" y="0"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Orientation>
+					<RotateCCW/>
+				</Orientation>
+				<ImgFileName v="icons/Valve_actuator.icn"/>
+			</IconObject>
+			<Ports>
+				<Port ratio="0.5" alignment="1" id="0">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.5" alignment="0" id="1">
+					<ScaledObject/>
+				</Port>
+			</Ports>
+		</Component>
+		<Component>
+			<IconObject>
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="1319" height="147"/>
+						<Position x="139" y="518"/>
+					</ScenarioObject>
+					<Name v="Tank_2" visible="false">
+						<PositionOffset x="88" y="45"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Orientation/>
+				<ImgFileName v="icons/Tank.icn"/>
+			</IconObject>
+			<Ports>
+				<Port ratio="0.3695456124520148" alignment="0" id="0">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.26698518439215807" alignment="0" id="1">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.45013305862226427" alignment="0" id="2">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.6299424505072178" alignment="0" id="3">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.729332762353805" alignment="0" id="4">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.5434494300764923" alignment="0" id="5">
+					<ScaledObject/>
+				</Port>
+			</Ports>
+		</Component>
+		<Component>
+			<IconObject>
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="51" height="145"/>
+						<Position x="706" y="363"/>
+					</ScenarioObject>
+					<Name v="Pipe_6" visible="false">
+						<PositionOffset x="60" y="0"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Orientation>
+					<RotateCW/>
+				</Orientation>
+				<ImgFileName v="icons/Pipe.icn"/>
+			</IconObject>
+			<Ports>
+				<Port ratio="0.5" alignment="0" id="0">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.5" alignment="1" id="1">
+					<ScaledObject/>
+				</Port>
+			</Ports>
+		</Component>
+		<Component>
+			<IconObject>
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="53" height="145"/>
+						<Position x="827" y="362"/>
+					</ScenarioObject>
+					<Name v="Pipe_7" visible="false">
+						<PositionOffset x="60" y="0"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Orientation>
+					<RotateCW/>
+				</Orientation>
+				<ImgFileName v="icons/Pipe.icn"/>
+			</IconObject>
+			<Ports>
+				<Port ratio="0.5" alignment="0" id="0">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.5" alignment="1" id="1">
+					<ScaledObject/>
+				</Port>
+			</Ports>
+		</Component>
+		<Component>
+			<IconObject>
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="49" height="92"/>
+						<Position x="1069" y="418"/>
+					</ScenarioObject>
+					<Name v="Pipe_9" visible="false">
+						<PositionOffset x="60" y="0"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Orientation>
+					<RotateCW/>
+				</Orientation>
+				<ImgFileName v="icons/Pipe.icn"/>
+			</IconObject>
+			<Ports>
+				<Port ratio="0.5" alignment="0" id="0">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.5" alignment="1" id="1">
+					<ScaledObject/>
+				</Port>
+			</Ports>
+		</Component>
+		<Component>
+			<IconObject>
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="52" height="144"/>
+						<Position x="1066" y="110"/>
+					</ScenarioObject>
+					<Name v="Pipe_10" visible="false">
+						<PositionOffset x="60" y="0"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Orientation>
+					<RotateCW/>
+				</Orientation>
+				<ImgFileName v="icons/Pipe.icn"/>
+			</IconObject>
+			<Ports>
+				<Port ratio="0.5" alignment="0" id="0">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.5" alignment="1" id="1">
+					<ScaledObject/>
+				</Port>
+			</Ports>
+		</Component>
+		<Component>
+			<IconObject>
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="50" height="50"/>
+						<Position x="1068" y="58"/>
+					</ScenarioObject>
+					<Name v="Elbow_4" visible="false">
+						<PositionOffset x="60" y="0"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Orientation/>
+				<ImgFileName v="icons/Elbow.icn"/>
+			</IconObject>
+			<Ports>
+				<Port ratio="0.5" alignment="1" id="1">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.5" alignment="2" id="0">
+					<ScaledObject/>
+				</Port>
+			</Ports>
+		</Component>
+		<Component>
+			<IconObject>
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="50" height="50"/>
+						<Position x="625" y="55"/>
+					</ScenarioObject>
+					<Name v="Elbow_5" visible="false">
+						<PositionOffset x="60" y="0"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Orientation>
+					<RotateCW/>
+					<RotateCW/>
+					<RotateCW/>
+				</Orientation>
+				<ImgFileName v="icons/Elbow.icn"/>
+			</IconObject>
+			<Ports>
+				<Port ratio="0.5" alignment="3" id="1">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.5" alignment="1" id="0">
+					<ScaledObject/>
+				</Port>
+			</Ports>
+		</Component>
+		<Component>
+			<IconObject>
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="50" height="64"/>
+						<Position x="624" y="108"/>
+					</ScenarioObject>
+					<Name v="Pipe_11" visible="false">
+						<PositionOffset x="60" y="0"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Orientation>
+					<RotateCW/>
+				</Orientation>
+				<ImgFileName v="icons/Pipe.icn"/>
+			</IconObject>
+			<Ports>
+				<Port ratio="0.5" alignment="0" id="0">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.5" alignment="1" id="1">
+					<ScaledObject/>
+				</Port>
+			</Ports>
+		</Component>
+		<Component>
+			<IconObject>
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="391" height="52"/>
+						<Position x="677" y="55"/>
+					</ScenarioObject>
+					<Name v="Pipe_12" visible="false">
+						<PositionOffset x="60" y="0"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Orientation/>
+				<ImgFileName v="icons/Pipe.icn"/>
+			</IconObject>
+			<Ports>
+				<Port ratio="0.5" alignment="2" id="0">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.5" alignment="3" id="1">
+					<ScaledObject/>
+				</Port>
+			</Ports>
+		</Component>
+		<Component>
+			<IconObject>
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="50" height="50"/>
+						<Position x="1067" y="254"/>
+					</ScenarioObject>
+					<Name v="Valve actuator_3" visible="false">
+						<PositionOffset x="60" y="0"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Orientation>
+					<RotateCW/>
+				</Orientation>
+				<ImgFileName v="icons/Valve_actuator.icn"/>
+			</IconObject>
+			<Ports>
+				<Port ratio="0.5" alignment="0" id="0">
+					<ScaledObject/>
+				</Port>
+				<Port ratio="0.5" alignment="1" id="1">
+					<ScaledObject/>
+				</Port>
+			</Ports>
+		</Component>
+	</Components>
+	<Variables>
+		<MeasuredVariable>
+			<Variable tag="" comp="Tank 1">
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="51" height="51"/>
+						<Position x="655" y="366"/>
+					</ScenarioObject>
+					<Name v="h1" visible="true">
+						<PositionOffset x="12" y="2"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Saturation>
+					<Min>
+						<SpecifiedValue v="0.0"/>
+					</Min>
+					<Max>
+						<SpecifiedValue v="20.0"/>
+					</Max>
+				</Saturation>
+				<Range>
+					<Saturation>
+						<Min>
+							<SpecifiedValue v="0.0"/>
+						</Min>
+						<Max>
+							<SpecifiedValue v="20.0"/>
+						</Max>
+					</Saturation>
+				</Range>
+				<WorkingPoint>
+					<SpecifiedEmptyValue v=""/>
+				</WorkingPoint>
+				<Variance>
+					<SpecifiedEmptyValue v=""/>
+				</Variance>
+				<Delay>
+					<SpecifiedValue v="5.0"/>
+				</Delay>
+				<Resolution v=""/>
+				<SensorNoise>
+					<SpecifiedEmptyValue v=""/>
+				</SensorNoise>
+			</Variable>
+		</MeasuredVariable>
+		<MeasuredVariable>
+			<Variable tag="" comp="Tank 2">
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="51" height="51"/>
+						<Position x="877" y="361"/>
+					</ScenarioObject>
+					<Name v="h2" visible="true">
+						<PositionOffset x="10" y="1"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Saturation>
+					<Min>
+						<SpecifiedValue v="0.0"/>
+					</Min>
+					<Max>
+						<SpecifiedValue v="20.0"/>
+					</Max>
+				</Saturation>
+				<Range>
+					<Saturation>
+						<Min>
+							<SpecifiedValue v="0.0"/>
+						</Min>
+						<Max>
+							<SpecifiedValue v="20.0"/>
+						</Max>
+					</Saturation>
+				</Range>
+				<WorkingPoint>
+					<SpecifiedEmptyValue v=""/>
+				</WorkingPoint>
+				<Variance>
+					<SpecifiedEmptyValue v=""/>
+				</Variance>
+				<Delay>
+					<SpecifiedValue v="0.0"/>
+				</Delay>
+				<Resolution v=""/>
+				<SensorNoise>
+					<SpecifiedEmptyValue v=""/>
+				</SensorNoise>
+			</Variable>
+		</MeasuredVariable>
+		<MeasuredVariable>
+			<Variable tag="" comp="Tank 3">
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="51" height="51"/>
+						<Position x="683" y="154"/>
+					</ScenarioObject>
+					<Name v="h3" visible="true">
+						<PositionOffset x="11" y="4"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Saturation>
+					<Min>
+						<SpecifiedValue v="0.0"/>
+					</Min>
+					<Max>
+						<SpecifiedValue v="20.0"/>
+					</Max>
+				</Saturation>
+				<Range>
+					<Saturation>
+						<Min>
+							<SpecifiedValue v="0.0"/>
+						</Min>
+						<Max>
+							<SpecifiedValue v="11.0"/>
+						</Max>
+					</Saturation>
+				</Range>
+				<WorkingPoint>
+					<SpecifiedEmptyValue v=""/>
+				</WorkingPoint>
+				<Variance>
+					<SpecifiedEmptyValue v=""/>
+				</Variance>
+				<Delay>
+					<SpecifiedValue v="0.0"/>
+				</Delay>
+				<Resolution v=""/>
+				<SensorNoise>
+					<SpecifiedEmptyValue v=""/>
+				</SensorNoise>
+			</Variable>
+		</MeasuredVariable>
+		<MeasuredVariable>
+			<Variable tag="" comp="Tank 4">
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="51" height="51"/>
+						<Position x="842" y="150"/>
+					</ScenarioObject>
+					<Name v="h4" visible="true">
+						<PositionOffset x="9" y="5"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Saturation>
+					<Min>
+						<SpecifiedValue v="0.0"/>
+					</Min>
+					<Max>
+						<SpecifiedValue v="20.0"/>
+					</Max>
+				</Saturation>
+				<Range>
+					<Saturation>
+						<Min>
+							<SpecifiedValue v="0.0"/>
+						</Min>
+						<Max>
+							<SpecifiedValue v="20.0"/>
+						</Max>
+					</Saturation>
+				</Range>
+				<WorkingPoint>
+					<SpecifiedEmptyValue v=""/>
+				</WorkingPoint>
+				<Variance>
+					<SpecifiedEmptyValue v=""/>
+				</Variance>
+				<Delay>
+					<SpecifiedValue v="0.0"/>
+				</Delay>
+				<Resolution v=""/>
+				<SensorNoise>
+					<SpecifiedEmptyValue v=""/>
+				</SensorNoise>
+			</Variable>
+		</MeasuredVariable>
+		<ProcessDisturbanceVariable>
+			<Variable tag="" comp="Valve actuator_1">
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="51" height="51"/>
+						<Position x="740" y="280"/>
+					</ScenarioObject>
+					<Name v="w1" visible="true">
+						<PositionOffset x="8" y="2"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Range>
+					<Saturation>
+						<Min>
+							<SpecifiedValue v="-Inf"/>
+						</Min>
+						<Max>
+							<SpecifiedValue v="Inf"/>
+						</Max>
+					</Saturation>
+				</Range>
+				<WorkingPoint>
+					<SpecifiedEmptyValue v=""/>
+				</WorkingPoint>
+				<Variance>
+					<SpecifiedEmptyValue v=""/>
+				</Variance>
+				<Delay>
+					<SpecifiedValue v="0.0"/>
+				</Delay>
+				<SensorNoise>
+					<SpecifiedEmptyValue v=""/>
+				</SensorNoise>
+			</Variable>
+		</ProcessDisturbanceVariable>
+		<ProcessDisturbanceVariable>
+			<Variable tag="" comp="Valve actuator_2">
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="51" height="51"/>
+						<Position x="790" y="278"/>
+					</ScenarioObject>
+					<Name v="w2" visible="true">
+						<PositionOffset x="8" y="5"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Range>
+					<Saturation>
+						<Min>
+							<SpecifiedValue v="-Inf"/>
+						</Min>
+						<Max>
+							<SpecifiedValue v="Inf"/>
+						</Max>
+					</Saturation>
+				</Range>
+				<WorkingPoint>
+					<SpecifiedEmptyValue v=""/>
+				</WorkingPoint>
+				<Variance>
+					<SpecifiedEmptyValue v=""/>
+				</Variance>
+				<Delay>
+					<SpecifiedValue v="0.0"/>
+				</Delay>
+				<SensorNoise>
+					<SpecifiedEmptyValue v=""/>
+				</SensorNoise>
+			</Variable>
+		</ProcessDisturbanceVariable>
+		<ControlVariable>
+			<Variable tag="" comp="Pump 1">
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="51" height="51"/>
+						<Position x="404" y="336"/>
+					</ScenarioObject>
+					<Name v="u1" visible="true">
+						<PositionOffset x="9" y="5"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Saturation>
+					<Min>
+						<SpecifiedValue v="0.0"/>
+					</Min>
+					<Max>
+						<SpecifiedValue v="Inf"/>
+					</Max>
+				</Saturation>
+				<Range>
+					<Saturation>
+						<Min>
+							<SpecifiedValue v="0.0"/>
+						</Min>
+						<Max>
+							<SpecifiedValue v="20.0"/>
+						</Max>
+					</Saturation>
+				</Range>
+				<WorkingPoint>
+					<SpecifiedEmptyValue v=""/>
+				</WorkingPoint>
+				<RateLimiter>
+					<SpecifiedValue v="Inf"/>
+				</RateLimiter>
+				<Variance>
+					<SpecifiedEmptyValue v=""/>
+				</Variance>
+				<Delay>
+					<SpecifiedValue v="3.0"/>
+				</Delay>
+				<Resolution v=""/>
+			</Variable>
+		</ControlVariable>
+		<ControlVariable>
+			<Variable tag="" comp="Pump 2">
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="51" height="51"/>
+						<Position x="1118" y="325"/>
+					</ScenarioObject>
+					<Name v="u2" visible="true">
+						<PositionOffset x="13" y="3"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Saturation>
+					<Min>
+						<SpecifiedValue v="-Inf"/>
+					</Min>
+					<Max>
+						<SpecifiedValue v="Inf"/>
+					</Max>
+				</Saturation>
+				<Range>
+					<Saturation>
+						<Min>
+							<SpecifiedValue v="-Inf"/>
+						</Min>
+						<Max>
+							<SpecifiedValue v="Inf"/>
+						</Max>
+					</Saturation>
+				</Range>
+				<WorkingPoint>
+					<SpecifiedEmptyValue v=""/>
+				</WorkingPoint>
+				<RateLimiter>
+					<SpecifiedValue v="Inf"/>
+				</RateLimiter>
+				<Variance>
+					<SpecifiedEmptyValue v=""/>
+				</Variance>
+				<Delay>
+					<SpecifiedValue v="0.0"/>
+				</Delay>
+				<Resolution v=""/>
+			</Variable>
+		</ControlVariable>
+		<ReferenceVariable>
+			<Variable tag="" comp="          ">
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="51" height="51"/>
+						<Position x="19" y="458"/>
+					</ScenarioObject>
+					<Name v="r_h1" visible="false">
+						<PositionOffset x="-14" y="59"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Saturation>
+					<Min>
+						<SpecifiedValue v="-Inf"/>
+					</Min>
+					<Max>
+						<SpecifiedValue v="Inf"/>
+					</Max>
+				</Saturation>
+				<Range>
+					<Saturation>
+						<Min>
+							<SpecifiedValue v="-Inf"/>
+						</Min>
+						<Max>
+							<SpecifiedValue v="Inf"/>
+						</Max>
+					</Saturation>
+				</Range>
+				<Resolution v=""/>
+				<UserValue>
+					<SpecifiedEmptyValue v=""/>
+				</UserValue>
+				<Reference v="h1"/>
+			</Variable>
+		</ReferenceVariable>
+		<ReferenceVariable>
+			<Variable tag="" comp="          ">
+				<NamedScenarioObject>
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="51" height="51"/>
+						<Position x="1429" y="479"/>
+					</ScenarioObject>
+					<Name v="r_h2" visible="false">
+						<PositionOffset x="10" y="11"/>
+					</Name>
+					<Description v=""/>
+				</NamedScenarioObject>
+				<Saturation>
+					<Min>
+						<SpecifiedValue v="-Inf"/>
+					</Min>
+					<Max>
+						<SpecifiedValue v="Inf"/>
+					</Max>
+				</Saturation>
+				<Range>
+					<Saturation>
+						<Min>
+							<SpecifiedValue v="-Inf"/>
+						</Min>
+						<Max>
+							<SpecifiedValue v="Inf"/>
+						</Max>
+					</Saturation>
+				</Range>
+				<Resolution v=""/>
+				<UserValue>
+					<SpecifiedEmptyValue v=""/>
+				</UserValue>
+				<Reference v="h2"/>
+			</Variable>
+		</ReferenceVariable>
+	</Variables>
+	<Controllers>
+		<MIMO>
+			<Controller mvPorts="1" spPorts="1" ffPorts="0" outPorts="1" layerName="Decentralized Control">
+				<Component>
+					<IconObject>
+						<NamedScenarioObject>
+							<ScenarioObject>
+								<ScaledObject/>
+								<PreferredSize width="158" height="96"/>
+								<Position x="156" y="410"/>
+							</ScenarioObject>
+							<Name v="1-DOF MIMO" visible="false">
+								<PositionOffset x="0" y="-15"/>
+							</Name>
+							<Description v=""/>
+						</NamedScenarioObject>
+						<Orientation/>
+						<ImgFileName v="icons/Controller_noFF.icn"/>
+					</IconObject>
+					<Ports/>
+				</Component>
+				<mvPorts>
+					<CPort in="true">
+						<Port ratio="0.25" alignment="2" id="2">
+							<ScaledObject/>
+						</Port>
+					</CPort>
+				</mvPorts>
+				<spPorts>
+					<CPort in="true">
+						<Port ratio="0.75" alignment="2" id="3">
+							<ScaledObject/>
+						</Port>
+					</CPort>
+				</spPorts>
+				<ffPorts/>
+				<outPorts>
+					<CPort in="false">
+						<Port ratio="0.5" alignment="3" id="1">
+							<ScaledObject/>
+						</Port>
+					</CPort>
+				</outPorts>
+				<sampleTime>
+					<SampleTime>
+						<SpecifiedValue v="0.0"/>
+					</SampleTime>
+				</sampleTime>
+				<MV>
+					<TransferFunctionData>
+						<ModelData inputs="1" outputs="1"/>
+						<Numerator>
+							<CellArray T="promovis.misc.SpecifiedDoubleArray" rows="1" columns="1" v="{[-1.0]}"/>
+						</Numerator>
+						<Denominator>
+							<CellArray T="promovis.misc.SpecifiedDoubleArray" rows="1" columns="1" v="{[1.0, 1.0, 0.0]}"/>
+						</Denominator>
+						<Uncertainty v="0"/>
+						<ChannelDelay>
+							<CellArray T="promovis.misc.NonNegativeValue" rows="1" columns="1" v="{0.0}"/>
+						</ChannelDelay>
+					</TransferFunctionData>
+				</MV>
+				<SP>
+					<TransferFunctionData>
+						<ModelData inputs="1" outputs="1"/>
+						<Numerator>
+							<CellArray T="promovis.misc.SpecifiedDoubleArray" rows="1" columns="1" v="{[1.0]}"/>
+						</Numerator>
+						<Denominator>
+							<CellArray T="promovis.misc.SpecifiedDoubleArray" rows="1" columns="1" v="{[1.0, 1.0, 0.0]}"/>
+						</Denominator>
+						<Uncertainty v="0"/>
+						<ChannelDelay>
+							<CellArray T="promovis.misc.NonNegativeValue" rows="1" columns="1" v="{0.0}"/>
+						</ChannelDelay>
+					</TransferFunctionData>
+				</SP>
+				<FF>
+					<TransferFunctionData>
+						<ModelData inputs="0" outputs="1"/>
+						<Numerator>
+							<CellArray T="promovis.misc.SpecifiedDoubleArray" rows="1" columns="0" v="{}"/>
+						</Numerator>
+						<Denominator>
+							<CellArray T="promovis.misc.SpecifiedDoubleArray" rows="1" columns="0" v="{}"/>
+						</Denominator>
+						<Uncertainty v="0"/>
+						<ChannelDelay>
+							<CellArray T="promovis.misc.NonNegativeValue" rows="1" columns="0" v="{}"/>
+						</ChannelDelay>
+					</TransferFunctionData>
+				</FF>
+			</Controller>
+		</MIMO>
+		<MIMO>
+			<Controller mvPorts="1" spPorts="1" ffPorts="0" outPorts="1" layerName="Decentralized Control">
+				<Component>
+					<IconObject>
+						<NamedScenarioObject>
+							<ScenarioObject>
+								<ScaledObject/>
+								<PreferredSize width="158" height="96"/>
+								<Position x="1200" y="415"/>
+							</ScenarioObject>
+							<Name v="1-DOF MIMO_1" visible="false">
+								<PositionOffset x="0" y="-15"/>
+							</Name>
+							<Description v=""/>
+						</NamedScenarioObject>
+						<Orientation>
+							<RotateCW/>
+							<RotateCW/>
+							<Flip/>
+						</Orientation>
+						<ImgFileName v="icons/Controller_noFF.icn"/>
+					</IconObject>
+					<Ports/>
+				</Component>
+				<mvPorts>
+					<CPort in="true">
+						<Port ratio="0.25" alignment="3" id="2">
+							<ScaledObject/>
+						</Port>
+					</CPort>
+				</mvPorts>
+				<spPorts>
+					<CPort in="true">
+						<Port ratio="0.75" alignment="3" id="3">
+							<ScaledObject/>
+						</Port>
+					</CPort>
+				</spPorts>
+				<ffPorts/>
+				<outPorts>
+					<CPort in="false">
+						<Port ratio="0.5" alignment="2" id="1">
+							<ScaledObject/>
+						</Port>
+					</CPort>
+				</outPorts>
+				<sampleTime>
+					<SampleTime>
+						<SpecifiedValue v="0.0"/>
+					</SampleTime>
+				</sampleTime>
+				<MV>
+					<TransferFunctionData>
+						<ModelData inputs="1" outputs="1"/>
+						<Numerator>
+							<CellArray T="promovis.misc.SpecifiedDoubleArray" rows="1" columns="1" v="{[-1.0]}"/>
+						</Numerator>
+						<Denominator>
+							<CellArray T="promovis.misc.SpecifiedDoubleArray" rows="1" columns="1" v="{[1.0, 1.0, 0.0]}"/>
+						</Denominator>
+						<Uncertainty v="0"/>
+						<ChannelDelay>
+							<CellArray T="promovis.misc.NonNegativeValue" rows="1" columns="1" v="{0.0}"/>
+						</ChannelDelay>
+					</TransferFunctionData>
+				</MV>
+				<SP>
+					<TransferFunctionData>
+						<ModelData inputs="1" outputs="1"/>
+						<Numerator>
+							<CellArray T="promovis.misc.SpecifiedDoubleArray" rows="1" columns="1" v="{[1.0]}"/>
+						</Numerator>
+						<Denominator>
+							<CellArray T="promovis.misc.SpecifiedDoubleArray" rows="1" columns="1" v="{[1.0, 1.0, 0.0]}"/>
+						</Denominator>
+						<Uncertainty v="0"/>
+						<ChannelDelay>
+							<CellArray T="promovis.misc.NonNegativeValue" rows="1" columns="1" v="{0.0}"/>
+						</ChannelDelay>
+					</TransferFunctionData>
+				</SP>
+				<FF>
+					<TransferFunctionData>
+						<ModelData inputs="0" outputs="1"/>
+						<Numerator>
+							<CellArray T="promovis.misc.SpecifiedDoubleArray" rows="1" columns="0" v="{}"/>
+						</Numerator>
+						<Denominator>
+							<CellArray T="promovis.misc.SpecifiedDoubleArray" rows="1" columns="0" v="{}"/>
+						</Denominator>
+						<Uncertainty v="0"/>
+						<ChannelDelay>
+							<CellArray T="promovis.misc.NonNegativeValue" rows="1" columns="0" v="{}"/>
+						</ChannelDelay>
+					</TransferFunctionData>
+				</FF>
+			</Controller>
+		</MIMO>
+	</Controllers>
+	<PortConnectors>
+		<PortConnector>
+			<PortA comp="Tank 4" id="1"/>
+			<PortB comp="Tank 2" id="0"/>
+		</PortConnector>
+		<PortConnector>
+			<PortA comp="Valve actuator" id="0"/>
+			<PortB comp="T" id="1"/>
+		</PortConnector>
+		<PortConnector>
+			<PortA comp="T" id="0"/>
+			<PortB comp="Pump 1" id="1"/>
+		</PortConnector>
+		<PortConnector>
+			<PortA comp="Pipe_1" id="0"/>
+			<PortB comp="Pump 1" id="0"/>
+		</PortConnector>
+		<PortConnector>
+			<PortA comp="Tank_2" id="1"/>
+			<PortB comp="Pipe_1" id="1"/>
+		</PortConnector>
+		<PortConnector>
+			<PortA comp="Pipe_9" id="1"/>
+			<PortB comp="Tank_2" id="4"/>
+		</PortConnector>
+		<PortConnector>
+			<PortA comp="Tank 3" id="2"/>
+			<PortB comp="Pipe_3" id="0"/>
+		</PortConnector>
+		<PortConnector>
+			<PortA comp="Pipe_3" id="1"/>
+			<PortB comp="Valve actuator_1" id="0"/>
+		</PortConnector>
+		<PortConnector>
+			<PortA comp="Valve actuator_1" id="1"/>
+			<PortB comp="Pipe_6" id="0"/>
+		</PortConnector>
+		<PortConnector>
+			<PortA comp="Pipe_7" id="1"/>
+			<PortB comp="Tank_2" id="5"/>
+		</PortConnector>
+		<PortConnector>
+			<PortA comp="Pipe_6" id="1"/>
+			<PortB comp="Tank_2" id="2"/>
+		</PortConnector>
+		<PortConnector>
+			<PortA comp="Valve actuator_2" id="0"/>
+			<PortB comp="Pipe_7" id="0"/>
+		</PortConnector>
+		<PortConnector>
+			<PortA comp="Elbow_3" id="1"/>
+			<PortB comp="Pipe_2" id="1"/>
+		</PortConnector>
+		<PortConnector>
+			<PortA comp="Pipe_2" id="0"/>
+			<PortB comp="T_1" id="2"/>
+		</PortConnector>
+		<PortConnector>
+			<PortA comp="Valve actuator_3" id="1"/>
+			<PortB comp="T_1" id="0"/>
+		</PortConnector>
+		<PortConnector>
+			<PortA comp="Pump 2" id="0"/>
+			<PortB comp="Pipe_9" id="0"/>
+		</PortConnector>
+		<PortConnector>
+			<PortA comp="T_1" id="1"/>
+			<PortB comp="Pump 2" id="1"/>
+		</PortConnector>
+		<PortConnector>
+			<PortA comp="Elbow_4" id="1"/>
+			<PortB comp="Pipe_10" id="0"/>
+		</PortConnector>
+		<PortConnector>
+			<PortA comp="Pipe_12" id="1"/>
+			<PortB comp="Elbow_4" id="0"/>
+		</PortConnector>
+		<PortConnector>
+			<PortA comp="Elbow_5" id="1"/>
+			<PortB comp="Pipe_12" id="0"/>
+		</PortConnector>
+		<PortConnector>
+			<PortA comp="Elbow_5" id="0"/>
+			<PortB comp="Pipe_11" id="0"/>
+		</PortConnector>
+		<PortConnector>
+			<PortA comp="Tank 2" id="1"/>
+			<PortB comp="Tank_2" id="3"/>
+		</PortConnector>
+		<PortConnector>
+			<PortA comp="Tank 1" id="1"/>
+			<PortB comp="Tank_2" id="0"/>
+		</PortConnector>
+		<PortConnector>
+			<PortA comp="Tank 1" id="2"/>
+			<PortB comp="Tank 3" id="1"/>
+		</PortConnector>
+		<PortConnector>
+			<PortA comp="Elbow_2" id="1"/>
+			<PortB comp="Tank 4" id="0"/>
+		</PortConnector>
+		<PortConnector>
+			<PortA comp="Pipe_5" id="0"/>
+			<PortB comp="Elbow_2" id="0"/>
+		</PortConnector>
+		<PortConnector>
+			<PortA comp="Pipe_11" id="1"/>
+			<PortB comp="Tank 3" id="0"/>
+		</PortConnector>
+		<PortConnector>
+			<PortA comp="Pipe_5" id="1"/>
+			<PortB comp="Elbow" id="1"/>
+		</PortConnector>
+		<PortConnector>
+			<PortA comp="Elbow" id="0"/>
+			<PortB comp="Pipe" id="0"/>
+		</PortConnector>
+		<PortConnector>
+			<PortA comp="Pipe" id="1"/>
+			<PortB comp="Valve actuator" id="1"/>
+		</PortConnector>
+	</PortConnectors>
+	<CPortConnectors>
+		<CPortConnector fromC="false" verticalFirst="false">
+			<PortC controller="1-DOF MIMO" id="3"/>
+			<Variable v="r_h1"/>
+			<CConnectorPoints/>
+		</CPortConnector>
+		<CPortConnector fromC="true" verticalFirst="false">
+			<PortC controller="1-DOF MIMO" id="1"/>
+			<Variable v="u1"/>
+			<CConnectorPoints/>
+		</CPortConnector>
+		<CPortConnector fromC="false" verticalFirst="true">
+			<PortC controller="1-DOF MIMO" id="2"/>
+			<Variable v="h1"/>
+			<CConnectorPoints>
+				<CConnectorPoint verticalFirst="false">
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="10" height="10"/>
+						<Position x="136" y="393"/>
+					</ScenarioObject>
+				</CConnectorPoint>
+			</CConnectorPoints>
+		</CPortConnector>
+		<CPortConnector fromC="true" verticalFirst="false">
+			<PortC controller="1-DOF MIMO_1" id="1"/>
+			<Variable v="u2"/>
+			<CConnectorPoints/>
+		</CPortConnector>
+		<CPortConnector fromC="false" verticalFirst="false">
+			<PortC controller="1-DOF MIMO_1" id="3"/>
+			<Variable v="r_h2"/>
+			<CConnectorPoints/>
+		</CPortConnector>
+		<CPortConnector fromC="false" verticalFirst="true">
+			<PortC controller="1-DOF MIMO_1" id="2"/>
+			<Variable v="h2"/>
+			<CConnectorPoints>
+				<CConnectorPoint verticalFirst="false">
+					<ScenarioObject>
+						<ScaledObject/>
+						<PreferredSize width="10" height="10"/>
+						<Position x="1396" y="385"/>
+					</ScenarioObject>
+				</CConnectorPoint>
+			</CConnectorPoints>
+		</CPortConnector>
+	</CPortConnectors>
+	<ProcessModels>
+		<ProcessModel>
+			<ScaledObject/>
+			<Inputs>
+				<InVar name="u2"/>
+			</Inputs>
+			<Outputs>
+				<OutVar name="h2"/>
+			</Outputs>
+			<SampleTime>
+				<SpecifiedValue v="0.0"/>
+			</SampleTime>
+			<PMD>
+				<TransferFunctionData>
+					<ModelData inputs="1" outputs="1"/>
+					<Numerator>
+						<CellArray T="promovis.misc.SpecifiedDoubleArray" rows="1" columns="1" v="{[5.2]}"/>
+					</Numerator>
+					<Denominator>
+						<CellArray T="promovis.misc.SpecifiedDoubleArray" rows="1" columns="1" v="{[90.0, 1.0]}"/>
+					</Denominator>
+					<Uncertainty v="0"/>
+					<ChannelDelay>
+						<CellArray T="promovis.misc.NonNegativeValue" rows="1" columns="1" v="{0.0}"/>
+					</ChannelDelay>
+				</TransferFunctionData>
+			</PMD>
+		</ProcessModel>
+		<ProcessModel>
+			<ScaledObject/>
+			<Inputs>
+				<InVar name="u1"/>
+			</Inputs>
+			<Outputs>
+				<OutVar name="h1"/>
+				<OutVar name="h4"/>
+			</Outputs>
+			<SampleTime>
+				<SpecifiedValue v="0.0"/>
+			</SampleTime>
+			<PMD>
+				<TransferFunctionData>
+					<ModelData inputs="1" outputs="2"/>
+					<Numerator>
+						<CellArray T="promovis.misc.SpecifiedDoubleArray" rows="2" columns="1" v="{[5.2]; [0.9363]}"/>
+					</Numerator>
+					<Denominator>
+						<CellArray T="promovis.misc.SpecifiedDoubleArray" rows="2" columns="1" v="{[62.0, 1.0]; [30.0, 1.0]}"/>
+					</Denominator>
+					<Uncertainty v="0"/>
+					<ChannelDelay>
+						<CellArray T="promovis.misc.NonNegativeValue" rows="2" columns="1" v="{0.0; 0.0}"/>
+					</ChannelDelay>
+				</TransferFunctionData>
+			</PMD>
+		</ProcessModel>
+		<ProcessModel>
+			<ScaledObject/>
+			<Inputs>
+				<InVar name="u2"/>
+			</Inputs>
+			<Outputs>
+				<OutVar name="h3"/>
+			</Outputs>
+			<SampleTime>
+				<SpecifiedValue v="0.0"/>
+			</SampleTime>
+			<PMD>
+				<TransferFunctionData>
+					<ModelData inputs="1" outputs="1"/>
+					<Numerator>
+						<CellArray T="promovis.misc.SpecifiedDoubleArray" rows="1" columns="1" v="{[1.14]}"/>
+					</Numerator>
+					<Denominator>
+						<CellArray T="promovis.misc.SpecifiedDoubleArray" rows="1" columns="1" v="{[23.89, 1.0]}"/>
+					</Denominator>
+					<Uncertainty v="0"/>
+					<ChannelDelay>
+						<CellArray T="promovis.misc.NonNegativeValue" rows="1" columns="1" v="{0.0}"/>
+					</ChannelDelay>
+				</TransferFunctionData>
+			</PMD>
+		</ProcessModel>
+		<ProcessModel>
+			<ScaledObject/>
+			<Inputs>
+				<InVar name="h3"/>
+			</Inputs>
+			<Outputs>
+				<OutVar name="h1"/>
+			</Outputs>
+			<SampleTime>
+				<SpecifiedValue v="0.0"/>
+			</SampleTime>
+			<PMD>
+				<TransferFunctionData>
+					<ModelData inputs="1" outputs="1"/>
+					<Numerator>
+						<CellArray T="promovis.misc.SpecifiedDoubleArray" rows="1" columns="1" v="{[2.6247]}"/>
+					</Numerator>
+					<Denominator>
+						<CellArray T="promovis.misc.SpecifiedDoubleArray" rows="1" columns="1" v="{[62.0, 1.0]}"/>
+					</Denominator>
+					<Uncertainty v="0"/>
+					<ChannelDelay>
+						<CellArray T="promovis.misc.NonNegativeValue" rows="1" columns="1" v="{0.0}"/>
+					</ChannelDelay>
+				</TransferFunctionData>
+			</PMD>
+		</ProcessModel>
+		<ProcessModel>
+			<ScaledObject/>
+			<Inputs>
+				<InVar name="h4"/>
+			</Inputs>
+			<Outputs>
+				<OutVar name="h2"/>
+			</Outputs>
+			<SampleTime>
+				<SpecifiedValue v="0.0"/>
+			</SampleTime>
+			<PMD>
+				<TransferFunctionData>
+					<ModelData inputs="1" outputs="1"/>
+					<Numerator>
+						<CellArray T="promovis.misc.SpecifiedDoubleArray" rows="1" columns="1" v="{[3.01]}"/>
+					</Numerator>
+					<Denominator>
+						<CellArray T="promovis.misc.SpecifiedDoubleArray" rows="1" columns="1" v="{[90.0, 1.0]}"/>
+					</Denominator>
+					<Uncertainty v="0"/>
+					<ChannelDelay>
+						<CellArray T="promovis.misc.NonNegativeValue" rows="1" columns="1" v="{0.0}"/>
+					</ChannelDelay>
+				</TransferFunctionData>
+			</PMD>
+		</ProcessModel>
+		<ProcessModel>
+			<ScaledObject/>
+			<Inputs>
+				<InVar name="w1"/>
+			</Inputs>
+			<Outputs>
+				<OutVar name="h3"/>
+			</Outputs>
+			<SampleTime>
+				<SpecifiedValue v="0.0"/>
+			</SampleTime>
+			<PMD>
+				<TransferFunctionData>
+					<ModelData inputs="1" outputs="1"/>
+					<Numerator>
+						<CellArray T="promovis.misc.SpecifiedDoubleArray" rows="1" columns="1" v="{[0.0357]}"/>
+					</Numerator>
+					<Denominator>
+						<CellArray T="promovis.misc.SpecifiedDoubleArray" rows="1" columns="1" v="{[1.0, 0.0419]}"/>
+					</Denominator>
+					<Uncertainty v="0"/>
+					<ChannelDelay>
+						<CellArray T="promovis.misc.NonNegativeValue" rows="1" columns="1" v="{0.0}"/>
+					</ChannelDelay>
+				</TransferFunctionData>
+			</PMD>
+		</ProcessModel>
+		<ProcessModel>
+			<ScaledObject/>
+			<Inputs>
+				<InVar name="w2"/>
+			</Inputs>
+			<Outputs>
+				<OutVar name="h4"/>
+			</Outputs>
+			<SampleTime>
+				<SpecifiedValue v="0.0"/>
+			</SampleTime>
+			<PMD>
+				<TransferFunctionData>
+					<ModelData inputs="1" outputs="1"/>
+					<Numerator>
+						<CellArray T="promovis.misc.SpecifiedDoubleArray" rows="1" columns="1" v="{[0.0313]}"/>
+					</Numerator>
+					<Denominator>
+						<CellArray T="promovis.misc.SpecifiedDoubleArray" rows="1" columns="1" v="{[1.0, 0.0333]}"/>
+					</Denominator>
+					<Uncertainty v="0"/>
+					<ChannelDelay>
+						<CellArray T="promovis.misc.NonNegativeValue" rows="1" columns="1" v="{0.0}"/>
+					</ChannelDelay>
+				</TransferFunctionData>
+			</PMD>
+		</ProcessModel>
+	</ProcessModels>
+	<Layers>
+		<Layer name="Decentralized Control" visible="true"/>
+	</Layers>
+</Scenario>
