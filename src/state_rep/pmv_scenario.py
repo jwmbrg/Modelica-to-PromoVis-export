@@ -6,22 +6,31 @@ Created on Mar 7, 2012
 import pmv_tf
 import pmv_variable
 import numpy as np
+import layout_emitter
+from xml.dom.minidom import Document
+class default_values(object):
+        posInf="Inf"
+        negInf="-Inf"
+        specEmptyVal=""
+        specVal="0.0"
+    
+class type_params(object):
+    input=0
+    state=1
+    disturbance=2
+
 class pmv_scenario(object):
     '''
     classdocs
     '''
-    
-    class _type_params(object):
-        _input=0
-        _state=1
-        _disturbance=2
+
         
     def __init__(self,matrix_dict):
         '''
         Constructor
         Assumes E to be identity
         '''
-        
+        self.name="fixme"
         self.E=matrix_dict.get('E')
         self.A=matrix_dict.get('A')
         self.B=matrix_dict.get('B')
@@ -42,13 +51,26 @@ class pmv_scenario(object):
         for element in self.state_names :
             toReturn.append(self.createStateVar(i))
             i+=1
+        i=0
+        for element in self.input_names :
+            toReturn.append(self.createInputVar(i))
+            i+=1
+            
+      
+        return toReturn
+    
+    def createInputVar(self,index):
+        name=self.input_names[index]
+        typ=type_params.input
+        toReturn=pmv_variable.pmv_variable(name,typ)
+        toReturn.workingPoint=str(self.matrix_dict.get("u0")[index])
         return toReturn
     
     
     def createStateVar(self,index):
         name=self.state_names[index]
         print name
-        typ=self._type_params._state
+        typ=type_params.state
         
         
         dividerCoeff=self.E[index][index]
@@ -77,7 +99,12 @@ class pmv_scenario(object):
         
         
         disturbance_dict=0
-        toReturn= pmv_variable.pmv_variable(name,typ,state_dict,disturbance_dict,input_dict)
+        
+        
+    
+        
+        toReturn=pmv_variable.pmv_variable(name,typ,state_dict,disturbance_dict,input_dict)
+        toReturn.workingPoint=str(self.matrix_dict.get("x0")[index])
         
         return toReturn
     
@@ -108,4 +135,51 @@ class pmv_scenario(object):
     def printMe(self):
         for element in self.varArr:
             element.printMe()
-            
+    def getAsXML(self):
+        doc=Document()
+    
+        scenario=doc.createElement("Scenario")
+        scenario.setAttribute("name", self.name);
+        doc.appendChild(scenario)
+  
+        childToAdd=doc.createElement("Components")
+        scenario.appendChild(childToAdd)
+    
+        childToAdd=doc.createElement("Variables")
+        le=layout_emitter.layout_emitter(len(self.varArr))
+        for element in self.varArr :
+            childToAdd.appendChild(element.getAsXMLVariable(doc,le))
+        
+        
+        scenario.appendChild(childToAdd)
+    
+    
+        childToAdd=doc.createElement("Controllers")
+        scenario.appendChild(childToAdd)
+    
+    
+        childToAdd=doc.createElement("PortConnectors")
+        scenario.appendChild(childToAdd)
+    
+        childToAdd=doc.createElement("CPortConnectors")
+        scenario.appendChild(childToAdd)
+    
+        childToAdd=doc.createElement("ProcessModels")
+        for element in self.varArr :
+            toAdd=element.getAsXMLProcessModel(doc)
+            if(toAdd==None):
+                pass
+            else:
+                childToAdd.appendChild(toAdd)
+        scenario.appendChild(childToAdd)
+    
+        childToAdd=doc.createElement("Layers")
+        scenario.appendChild(childToAdd)
+        print doc.toprettyxml(indent="   ")
+       
+        fileObj = open("test.pmv","w") 
+        fileObj.write(doc.toprettyxml())
+        fileObj.close()
+
+        return doc
+        

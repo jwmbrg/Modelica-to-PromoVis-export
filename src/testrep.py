@@ -9,13 +9,6 @@ import TwoTank.TwoTankModule as dualtanks
 global twoT
 global quadT
 global d
-def run_me():
-    print "you have loaded the test module for scenario representations"
-    dualtanks.init()
-    global d
-    d=dualtanks.getTwoTank().getLinearDaeFromJmu()
-    global twoT
-    twoT=pmv.pmv_scenario(d.get('E'),d.get('A'), d.get('B'),d.get('F'),d.get('g'),d.get('State_names'), d.get('input_names'),d.get('algebraic_names'))
 
 def run_me_quad():
     print "you have loaded the test module for scenario representations"
@@ -24,7 +17,7 @@ def run_me_quad():
     
     d=dualtanks.getQuadTank().getLinearDaeFromJmu()
     global quadT
-    quadT=pmv.pmv_scenario()
+    quadT=pmv.pmv_scenario(d)
         
 if __name__ == '__main__':
     
@@ -33,5 +26,5 @@ if __name__ == '__main__':
     # __file__ fails if someone does os.chdir() before
     # sys.argv[0] also fails because it doesn't not always contains the path
 
-    run_me()
+   
     run_me_quad()
