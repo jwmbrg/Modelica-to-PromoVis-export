@@ -1,0 +1,77 @@
+%&latex
+\documentclass{report}
+
+%+Make Index
+\usepackage{makeidx}
+\makeindex
+%-Make Index
+
+\begin{document}
+
+%+Title
+\title{\Huge\bf Export of Modelica models to the ProMoVis environment}
+\author{Jesper Moberg}
+\date{\today}
+\maketitle
+%-Title
+
+%+Contents
+\tableofcontents
+%-Contents
+
+\chapter{Templates}
+There is text in first chapter
+
+\section{About Template}
+This template provides a sample layout of a Standard \LaTeX{} Report.
+
+The front matter has a number of sample entries that you should replace
+with your own. 
+
+\section{Document Class Options}
+The typesetting specification selected by this document template
+uses the default class options. There are a number of class options 
+supported by this document class. The available options include 
+setting the paper size, the point size of the font used in the 
+document body and others.
+
+\subsection{Customizing Class Options}
+Select `Insert', `Document Properties ...', the `Generic' tab
+and then modify desired class options in appeared dialog.
+Changes will be applied after pressing the 'OK' button.
+\chapter {Description of JModelica}
+\section{Background}
+JModelica is an open-source Modelica environment, written in python,  for compilation and simulation of Modelica models. Through its python front-end it provides an easy to use, still powerful way to perform complex tasks on compiled models. 
+
+\section{Example model}
+When explaining we sometimes reference this model to clarify stuff, fixme
+%\include{QuadTankPack.mo}
+
+\section{How the export tool uses JModelica}
+JModelica is used to compile the Modelica models to JModelicas JMU representation \cite{PythonAPI}. This representation is internally represented as a, possibly, nonlinear DAE. This model, can through the JModelica environemnt be linearized and a model with the following represenation can be extracted:
+\begin{equation}
+E*dx = A*x + B*u + F*w + g
+\end{equation}
+The current version of JModelica\cite{JModelicaVer} does not separate between internal states and outputs. Naturally, the x and dx vectors represents the states and outputs of the linearized system. The u vector represents declared inputs, w is modeled disturbances (FIXME are they modeled in modelica, or attached at simulation time cant find anything regarding this in modelica specification) and finally g is a constant bias.\\The linearization also outputs some useful information that we later use in the generation of ProMoVis scenarios:
+\begin{itemize}
+\item \textit{State names}, corresponding to the declared variable names from the original Modelica file.
+\item \textit{Input names}, corresponding to the declared input names from the original Modelica file.
+\item \textit{Working points} for the linear model \textit{dx0}, \textit{u0} and \textit{x0}. Which is used to provide feedback for the user regarding the (FIXME)sanity of the linearized model.
+\end{itemize}
+
+The export tool makes some assumptions about the 
+%+Bibliography
+\begin{thebibliography}{99}
+\bibitem{PythonAPI} JModelica.org python api docs 
+\bibitem{JModelicaVer} 1.7b2
+\end{thebibliography}
+%-Bibliography
+
+%+MakeIndex
+\printindex
+%-MakeIndex
+
+
+\end{document}
+
+

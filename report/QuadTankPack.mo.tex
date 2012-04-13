@@ -1,0 +1,59 @@
+% Document title: QuadTankPack.mo
+
+\input highlight.sty
+
+{
+\tt
+{\hlstd }{\hlkwa package\ }{\hlstd QuadTankPack\leavevmode\par
+\leavevmode\par
+}{\hlstd\ \ }{\hlstd }{\hlkwa model\ }{\hlstd Sim\_{}QuadTank\leavevmode\par
+}{\hlstd\ \ \ \ }{\hlstd QuadTank\ qt}{\hlopt ;}\leavevmode\par
+{\hlstd }{\hlstd\ \ \ \ }{\hlstd }{\hlkwa input\ }{\hlstd Real\ u1\ }{\hlopt $\mathord{=}$\ }{\hlstd qt.u1}{\hlopt ;}\leavevmode\par
+{\hlstd }{\hlstd\ \ \ \ }{\hlstd }{\hlkwa input\ }{\hlstd Real\ u2\ }{\hlopt $\mathord{=}$\ }{\hlstd qt.u2}{\hlopt ;}\leavevmode\par
+{\hlstd }{\hlstd\ \ }{\hlstd }{\hlkwb initial\ }{\hlstd }{\hlkwa equation}\leavevmode\par
+{\hlstd }{\hlstd\ \ }{\hlstd }{\hlslc //der(qt.x1)\ $\mathord{=}$\ 0;}\leavevmode\par
+{\hlstd }{\hlstd\ \ }{\hlstd }{\hlslc //der(qt.x2)\ $\mathord{=}$\ 0;}\leavevmode\par
+{\hlstd }{\hlstd\ \ \ \ }{\hlstd qt.x1\ }{\hlopt $\mathord{=}$\ }{\hlstd }{\hlnum 0.0627}{\hlstd }{\hlopt ;}\leavevmode\par
+{\hlstd }{\hlstd\ \ \ \ }{\hlstd qt.x2\ }{\hlopt $\mathord{=}$\ }{\hlstd }{\hlnum 0.06044}{\hlstd }{\hlopt ;}\leavevmode\par
+{\hlstd }{\hlstd\ \ \ \ }{\hlstd qt.x3\ }{\hlopt $\mathord{=}$\ }{\hlstd }{\hlnum 0.024}{\hlstd }{\hlopt ;}\leavevmode\par
+{\hlstd }{\hlstd\ \ \ \ }{\hlstd qt.x4\ }{\hlopt $\mathord{=}$\ }{\hlstd }{\hlnum 0.023}{\hlstd }{\hlopt ;}\leavevmode\par
+{\hlstd }{\hlstd\ \ }{\hlstd }{\hlkwa end\ }{\hlstd Sim\_{}QuadTank}{\hlopt ;}\leavevmode\par
+{\hlstd \leavevmode\par
+}{\hlstd\ \ }{\hlstd }{\hlkwa model\ }{\hlstd QuadTank\leavevmode\par
+}{\hlstd\ \ \ \ }{\hlstd }{\hlslc //\ Process\ parameters}\leavevmode\par
+{\hlstd \ }{\hlkwa parameter\ }{\hlstd Modelica.SIunits.Area\ A1}{\hlopt $\mathord{=}$}{\hlstd }{\hlnum 4.9e$\mathord{-}$4}{\hlstd }{\hlopt ,\ }{\hlstd A2}{\hlopt $\mathord{=}$}{\hlstd }{\hlnum 4.9e$\mathord{-}$4}{\hlstd }{\hlopt ,\ }{\hlstd A3}{\hlopt $\mathord{=}$}{\hlstd }{\hlnum 4.9e$\mathord{-}$4}{\hlstd }{\hlopt ,\ }{\hlstd A4}{\hlopt $\mathord{=}$}{\hlstd }{\hlnum 4.9e$\mathord{-}$4}{\hlstd }{\hlopt ;}\leavevmode\par
+{\hlstd \ }{\hlkwa parameter\ }{\hlstd Modelica.SIunits.Area\ a1}{\hlopt (}{\hlstd min}{\hlopt $\mathord{=}$}{\hlstd }{\hlnum 1e$\mathord{-}$6}{\hlstd }{\hlopt )$\mathord{=}$}{\hlstd }{\hlnum 0.03e$\mathord{-}$4}{\hlstd }{\hlopt ,\ }{\hlstd a2}{\hlopt $\mathord{=}$}{\hlstd }{\hlnum 0.03e$\mathord{-}$4}{\hlstd }{\hlopt ,\ }{\hlstd a3}{\hlopt $\mathord{=}$}{\hlstd }{\hlnum 0.03e$\mathord{-}$4}{\hlstd }{\hlopt ,\ }{\hlstd a4}{\hlopt $\mathord{=}$}{\hlstd }{\hlnum 0.03e$\mathord{-}$4}{\hlstd }{\hlopt ;}\leavevmode\par
+{\hlstd \ }{\hlkwa parameter\ }{\hlstd Modelica.SIunits.Acceleration\ g}{\hlopt $\mathord{=}$}{\hlstd }{\hlnum 9.81}{\hlstd }{\hlopt ;}\leavevmode\par
+{\hlstd \ }{\hlkwa parameter\ }{\hlstd Real\ k1\_{}nmp}{\hlopt (}{\hlstd unit}{\hlopt $\mathord{=}$}{\hlstd }{\hlstr "m{\bf\^{}}3/s/V"}{\hlstd }{\hlopt )\ $\mathord{=}$\ }{\hlstd }{\hlnum 0.56e$\mathord{-}$6}{\hlstd }{\hlopt ,\ }{\hlstd k2\_{}nmp}{\hlopt (}{\hlstd unit}{\hlopt $\mathord{=}$}{\hlstd }{\hlstr "m{\bf\^{}}3/s/V"}{\hlstd }{\hlopt )\ $\mathord{=}$\ }{\hlstd }{\hlnum 0.56e$\mathord{-}$6}{\hlstd }{\hlopt ;}\leavevmode\par
+{\hlstd \ }{\hlkwa parameter\ }{\hlstd Real\ g1\_{}nmp}{\hlopt $\mathord{=}$}{\hlstd }{\hlnum 0.30}{\hlstd }{\hlopt ,\ }{\hlstd g2\_{}nmp}{\hlopt $\mathord{=}$}{\hlstd }{\hlnum 0.30}{\hlstd }{\hlopt ;}\leavevmode\par
+{\hlstd \leavevmode\par
+}{\hlstd\ \ \ \ }{\hlstd }{\hlslc //\ Initial\ tank\ levels}\leavevmode\par
+{\hlstd \ }{\hlkwa parameter\ }{\hlstd Modelica.SIunits.Length\ x1\_{}0\ }{\hlopt $\mathord{=}$\ }{\hlstd }{\hlnum 0.04102638}{\hlstd }{\hlopt ;}\leavevmode\par
+{\hlstd \ }{\hlkwa parameter\ }{\hlstd Modelica.SIunits.Length\ x2\_{}0\ }{\hlopt $\mathord{=}$\ }{\hlstd }{\hlnum 0.06607553}{\hlstd }{\hlopt ;}\leavevmode\par
+{\hlstd \ }{\hlkwa parameter\ }{\hlstd Modelica.SIunits.Length\ x3\_{}0\ }{\hlopt $\mathord{=}$\ }{\hlstd }{\hlnum 0.00393984}{\hlstd }{\hlopt ;}\leavevmode\par
+{\hlstd \ }{\hlkwa parameter\ }{\hlstd Modelica.SIunits.Length\ x4\_{}0\ }{\hlopt $\mathord{=}$\ }{\hlstd }{\hlnum 0.00556818}{\hlstd }{\hlopt ;}\leavevmode\par
+{\hlstd \ \leavevmode\par
+}{\hlstd\ \ \ \ }{\hlstd }{\hlslc //\ Tank\ levels}\leavevmode\par
+{\hlstd \ Modelica.SIunits.Length\ x1}{\hlopt (}{\hlstd start}{\hlopt $\mathord{=}$}{\hlstd x1\_{}0}{\hlopt ,}{\hlstd min}{\hlopt $\mathord{=}$}{\hlstd }{\hlnum 0.0001}{\hlstd }{\hlcom /*,max$\mathord{=}$0.20*/}{\hlstd }{\hlopt );}\leavevmode\par
+{\hlstd \ Modelica.SIunits.Length\ x2}{\hlopt (}{\hlstd start}{\hlopt $\mathord{=}$}{\hlstd x2\_{}0}{\hlopt ,}{\hlstd min}{\hlopt $\mathord{=}$}{\hlstd }{\hlnum 0.0001}{\hlstd }{\hlcom /*,max$\mathord{=}$0.20*/}{\hlstd }{\hlopt );}\leavevmode\par
+{\hlstd \ Modelica.SIunits.Length\ x3}{\hlopt (}{\hlstd start}{\hlopt $\mathord{=}$}{\hlstd x3\_{}0}{\hlopt ,}{\hlstd min}{\hlopt $\mathord{=}$}{\hlstd }{\hlnum 0.0001}{\hlstd }{\hlcom /*,max$\mathord{=}$0.20*/}{\hlstd }{\hlopt );}\leavevmode\par
+{\hlstd \ Modelica.SIunits.Length\ x4}{\hlopt (}{\hlstd start}{\hlopt $\mathord{=}$}{\hlstd x4\_{}0}{\hlopt ,}{\hlstd min}{\hlopt $\mathord{=}$}{\hlstd }{\hlnum 0.0001}{\hlstd }{\hlcom /*,max$\mathord{=}$0.20*/}{\hlstd }{\hlopt );}\leavevmode\par
+{\hlstd \leavevmode\par
+\ }{\hlslc //\ Inputs}\leavevmode\par
+{\hlstd \ }{\hlkwa input\ }{\hlstd Modelica.SIunits.Voltage\ u1}{\hlopt ;}\leavevmode\par
+{\hlstd \ }{\hlkwa input\ }{\hlstd Modelica.SIunits.Voltage\ u2}{\hlopt ;}\leavevmode\par
+{\hlstd \leavevmode\par
+}{\hlstd\ \ }{\hlstd }{\hlkwa equation}\leavevmode\par
+{\hlstd }{\hlstd\ \ \ \ }{\hlstd }{\hlkwb der}{\hlstd }{\hlopt (}{\hlstd x1}{\hlopt )\ $\mathord{=}$\ $\mathord{-}$}{\hlstd a1}{\hlopt /}{\hlstd A1}{\hlopt *}{\hlstd sqrt}{\hlopt (}{\hlstd }{\hlnum 2}{\hlstd }{\hlopt *}{\hlstd g}{\hlopt *}{\hlstd x1}{\hlopt )\ $\mathord{+}$\ }{\hlstd a3}{\hlopt /}{\hlstd A1}{\hlopt *}{\hlstd sqrt}{\hlopt (}{\hlstd }{\hlnum 2}{\hlstd }{\hlopt *}{\hlstd g}{\hlopt *}{\hlstd x3}{\hlopt )\ $\mathord{+}$}\leavevmode\par
+{\hlstd }{\hlstd\ \ \ \ \ }{\hlstd g1\_{}nmp}{\hlopt *}{\hlstd k1\_{}nmp}{\hlopt /}{\hlstd A1}{\hlopt *}{\hlstd u1}{\hlopt ;}\leavevmode\par
+{\hlstd \ }{\hlkwb der}{\hlstd }{\hlopt (}{\hlstd x2}{\hlopt )\ $\mathord{=}$\ $\mathord{-}$}{\hlstd a2}{\hlopt /}{\hlstd A2}{\hlopt *}{\hlstd sqrt}{\hlopt (}{\hlstd }{\hlnum 2}{\hlstd }{\hlopt *}{\hlstd g}{\hlopt *}{\hlstd x2}{\hlopt )\ $\mathord{+}$\ }{\hlstd a4}{\hlopt /}{\hlstd A2}{\hlopt *}{\hlstd sqrt}{\hlopt (}{\hlstd }{\hlnum 2}{\hlstd }{\hlopt *}{\hlstd g}{\hlopt *}{\hlstd x4}{\hlopt )\ $\mathord{+}$}\leavevmode\par
+{\hlstd }{\hlstd\ \ \ \ \ }{\hlstd g2\_{}nmp}{\hlopt *}{\hlstd k2\_{}nmp}{\hlopt /}{\hlstd A2}{\hlopt *}{\hlstd u2}{\hlopt ;}\leavevmode\par
+{\hlstd \ }{\hlkwb der}{\hlstd }{\hlopt (}{\hlstd x3}{\hlopt )\ $\mathord{=}$\ $\mathord{-}$}{\hlstd a3}{\hlopt /}{\hlstd A3}{\hlopt *}{\hlstd sqrt}{\hlopt (}{\hlstd }{\hlnum 2}{\hlstd }{\hlopt *}{\hlstd g}{\hlopt *}{\hlstd x3}{\hlopt )\ $\mathord{+}$\ (}{\hlstd }{\hlnum 1}{\hlstd }{\hlopt $\mathord{-}$}{\hlstd g2\_{}nmp}{\hlopt )*}{\hlstd k2\_{}nmp}{\hlopt /}{\hlstd A3}{\hlopt *}{\hlstd u2}{\hlopt ;}\leavevmode\par
+{\hlstd \ }{\hlkwb der}{\hlstd }{\hlopt (}{\hlstd x4}{\hlopt )\ $\mathord{=}$\ $\mathord{-}$}{\hlstd a4}{\hlopt /}{\hlstd A4}{\hlopt *}{\hlstd sqrt}{\hlopt (}{\hlstd }{\hlnum 2}{\hlstd }{\hlopt *}{\hlstd g}{\hlopt *}{\hlstd x4}{\hlopt )\ $\mathord{+}$\ (}{\hlstd }{\hlnum 1}{\hlstd }{\hlopt $\mathord{-}$}{\hlstd g1\_{}nmp}{\hlopt )*}{\hlstd k1\_{}nmp}{\hlopt /}{\hlstd A4}{\hlopt *}{\hlstd u1}{\hlopt ;}\leavevmode\par
+{\hlstd \leavevmode\par
+}{\hlstd\ \ }{\hlstd }{\hlkwa end\ }{\hlstd QuadTank}{\hlopt ;}\leavevmode\par
+{\hlstd }\leavevmode\par
+{\hlkwa end\ }{\hlstd QuadTankPack}{\hlopt ;}{\hlstd }\leavevmode\par
+}
+\bye
+% TeX generated by Highlight 3.8, http://www.andre-simon.de/

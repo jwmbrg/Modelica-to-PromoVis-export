@@ -1,0 +1,8 @@
+\contentsline {chapter}{\numberline {1}Templates}{2}
+\contentsline {section}{\numberline {1.1}About Template}{2}
+\contentsline {section}{\numberline {1.2}Document Class Options}{2}
+\contentsline {subsection}{\numberline {1.2.1}Customizing Class Options}{2}
+\contentsline {chapter}{\numberline {2}Description of JModelica}{3}
+\contentsline {section}{\numberline {2.1}Background}{3}
+\contentsline {section}{\numberline {2.2}Example model}{3}
+\contentsline {section}{\numberline {2.3}How the export tool uses JModelica}{3}
