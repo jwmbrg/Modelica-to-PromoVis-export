@@ -18,6 +18,7 @@ class type_params(object):
     input=0
     state=1
     disturbance=2
+    measured=3
 
 class pmv_scenario(object):
     '''
@@ -69,7 +70,7 @@ class pmv_scenario(object):
     
     def createStateVar(self,index):
         name=self.state_names[index]
-        print name
+        # print name
         typ=type_params.state
         
         
@@ -82,8 +83,8 @@ class pmv_scenario(object):
       
         for element in coeffarr:
             if(i==index):
-                denominator=np.array([1.0, -element])
-                denominator=denominator*dividerCoeff
+                denominator=np.array([dividerCoeff, -element])
+               # denominator=denominator*dividerCoeff
             i+=1
 
 
@@ -111,20 +112,20 @@ class pmv_scenario(object):
     
     def fillDict(self, coeffarr,toDict,denominator,index,picknames,notState=False):
         state=0
-        print "coeffarr is :"
-        print coeffarr
+       # print "coeffarr is :"
+        #print coeffarr
         #find transfer function
         for  element in coeffarr:
-            print element
+            #print element
             if(element!=0 and (state!=index or notState)):
                 numerator=[element]
                 varName=picknames[state]
                 tf=pmv_tf.pmv_tf(numerator,denominator,varName)
                 toDict[varName]=tf
-                print toDict
+                #print toDict
             state+=1
-        print "created"
-        print toDict
+        #print "created"
+        #print toDict
     
     def sanityCheck(self):
         '''
@@ -135,6 +136,11 @@ class pmv_scenario(object):
     def printMe(self):
         for element in self.varArr:
             element.printMe()
+            
+    def getNumOfType(self,type):
+        toCount=[x for x in self.varArr if x.typ==type]
+        return len(toCount)
+        
     def getAsXML(self):
         doc=Document()
     
@@ -146,7 +152,7 @@ class pmv_scenario(object):
         scenario.appendChild(childToAdd)
     
         childToAdd=doc.createElement("Variables")
-        le=layout_emitter.layout_emitter(len(self.varArr))
+        le=layout_emitter.layout_emitter(self.getNumOfType(type_params.input),self.getNumOfType(type_params.state),self.getNumOfType(type_params.measured))
         for element in self.varArr :
             childToAdd.appendChild(element.getAsXMLVariable(doc,le))
         
@@ -175,11 +181,18 @@ class pmv_scenario(object):
     
         childToAdd=doc.createElement("Layers")
         scenario.appendChild(childToAdd)
-        print doc.toprettyxml(indent="   ")
+        #print doc.toprettyxml(indent="   ")
        
         fileObj = open("test.pmv","w") 
         fileObj.write(doc.toprettyxml())
         fileObj.close()
 
         return doc
+    def setMeasuredVars(self,listOfVars):
+        for element in self.varArr:
+            for s in listOfVars:
+                if element.name==s:
+                    element.typ=type_params.measured
+                    print "changed type of" +element.name
+        return
         

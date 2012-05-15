@@ -3,7 +3,7 @@ Created on Mar 7, 2012
 
 @author: Jeppe
 '''
-import state_rep.pmv_scenario as pmv
+#import state_rep.pmv_scenario as pmv
 import os, sys, inspect
 import TwoTank.TwoTankModule as dualtanks
 global twoT
@@ -17,7 +17,7 @@ def run_me_quad():
     
     d=dualtanks.getQuadTank().getLinearDaeFromJmu()
     global quadT
-    quadT=pmv.pmv_scenario(d)
+   # quadT=pmv.pmv_scenario(d)
         
 if __name__ == '__main__':
     

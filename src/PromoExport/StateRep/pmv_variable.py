@@ -205,12 +205,14 @@ class pmv_variable(object):
     """
     Methods for creating the variable node in XML
     """
-    def getAsXMLVariable(self,doc=Document(),layoutFactory=le.layout_emitter(0)):
+    def getAsXMLVariable(self,doc,layoutFactory):
         toReturn=None
         
         if(self.typ==pmv.type_params.input):
             toReturn=doc.createElement("ControlVariable")
-        elif(self.typ==pmv.type_params.state):
+        elif(self.typ==pmv.type_params.measured):
+            toReturn=doc.createElement("MeasuredVariable")
+        else:
             toReturn=doc.createElement("InternalVariable")
             
             
@@ -255,7 +257,15 @@ class pmv_variable(object):
         return toReturn
     
     def getPosNode(self, doc,layoutFactory):
-        gurka=layoutFactory.getCord()
+        if(self.typ==pmv.type_params.measured):
+            gurka=layoutFactory.getMeasCord()
+        elif self.typ==pmv.type_params.state:
+            gurka=layoutFactory.getInternalCord()
+        elif self.typ==pmv.type_params.input :
+            gurka=layoutFactory.getControlCord()
+            print "emitting ann input" +self.name
+        else:
+            gurka=layoutFactory.getInternalCord()
         toReturn=doc.createElement("Position")
         toReturn.setAttribute("x",str(gurka[0]))
         toReturn.setAttribute("y",str(gurka[1]))

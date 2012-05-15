@@ -30,6 +30,7 @@ def startExport():
     #generate the internal represenatation
     matrix_dict=moObject.getLinearDaeFromJmu();
     scenarioObj=pmv_scenario(matrix_dict)
+    
     #print scenarioObj.getAsXML()
     varArr=matrix_dict.get("State_names")+matrix_dict.get("input_names");
     toSetAsMeasured=[x for x in varArr if isMeasured(x)]
@@ -37,6 +38,8 @@ def startExport():
         print "Given measured variables are: "+str(toSetAsMeasured);
     else:
         print "No variables is declared as measured"
+    scenarioObj.setMeasuredVars(toSetAsMeasured)
+    scenarioObj.getAsXML()
     
 def isMeasured(varName):
     
@@ -53,8 +56,9 @@ def isMeasured(varName):
         pattern=".*"+element
         regExp=re.compile(pattern)
         if(regExp.search(varName)):
-            #print "found"
-            #print(regExp.findall(varName))
+            print "found"
+            print(regExp.findall(varName))
+            print pattern
             return True; 
    
     return False;

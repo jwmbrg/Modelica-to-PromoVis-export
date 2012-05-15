@@ -2,3 +2,5 @@
 ModelFiles/.project
 src/.project
 src/.pydevproject
+report
+*.pyc

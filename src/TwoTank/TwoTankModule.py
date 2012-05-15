@@ -31,8 +31,8 @@ def init(modelfile ='../ModelFiles/TwoTank.mo',model_name = 'TwoTank'):
     global TwoTank
     print "starting compilation for "+model_name
     print "... compiling jmu "
-    #jmuName = compile_jmu(model_name, modelfile)
-    #print jmuName
+    jmuName = compile_jmu(model_name, modelfile)
+    print jmuName
     jmumodel=JMUModel(".\TwoTank.jmu")
     print "... jmu compiled sucessfully"
     print "... compiling fmu"
@@ -46,7 +46,7 @@ def init(modelfile ='../ModelFiles/TwoTank.mo',model_name = 'TwoTank'):
     fmuxModel=CasadiModel(fmuxName)
     print "... fmux compiled sucessfully"
     """
-    TwoTank=ModelicaObject(jmumodel)
+    #TwoTank=ModelicaObject(jmumodel)
 
 def initQuad(modelfile ='../ModelFiles/QuadTankPack.mo',model_name = 'QuadTankPack.QuadTank'):
     """
@@ -68,7 +68,7 @@ def initQuad(modelfile ='../ModelFiles/QuadTankPack.mo',model_name = 'QuadTankPa
     fmuxName=compile_fmux(model_name,modelfile)
 
    
-    QuadTank=ModelicaObject(jmumodel)
+    #QuadTank=ModelicaObject(jmumodel)
 
 
 def prettyprintTwoTankLinDae():
