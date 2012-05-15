@@ -1,0 +1,8 @@
+<?xml version="1.0" ?> 
+<root>
+        <filepath>C:\Users\Public\Documents\JModelica.org\Modelica-to-PromoVis-export\ModelFiles\QuadTankPack.mo</filepath>
+        <model>QuadTank</model>
+        <mpattern>_promovis;_pmv</mpattern>
+        <outputpath>C:\ProMoVis\output.xml</outputpath>
+</root>
+
