@@ -183,11 +183,11 @@ class pmv_scenario(object):
         scenario.appendChild(childToAdd)
         #print doc.toprettyxml(indent="   ")
        
-        fileObj = open("test.pmv","w") 
-        fileObj.write(doc.toprettyxml())
-        fileObj.close()
-
+        #fileObj = open("test.pmv","w") 
+        #fileObj.write(doc.toprettyxml())
+        #fileObj.close()
         return doc
+    
     def setMeasuredVars(self,listOfVars):
         for element in self.varArr:
             for s in listOfVars:

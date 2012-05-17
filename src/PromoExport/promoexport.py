@@ -9,14 +9,16 @@ from xml.dom.minidom import Document
 from StateRep.pmv_scenario import pmv_scenario
 import string
 import numpy
+import os.path
 launchParams=None
 moObject=None
 outPutDoc=None
 errnode=None
 rooterrnode=None
 scenarioObj=None
+rootnode=None
 def startExport():
-    global launchParams, moObject,scenarioObj
+    global launchParams, moObject,scenarioObj,rootnode
     
     
     if(launchParams):
@@ -39,7 +41,23 @@ def startExport():
     else:
         print "No variables is declared as measured"
     scenarioObj.setMeasuredVars(toSetAsMeasured)
-    scenarioObj.getAsXML()
+    
+    outPutpmv=scenarioObj.getAsXML()
+    pmv_path=getOutPmvPath();
+    fileObj = open(pmv_path,"w") 
+    fileObj.write(outPutpmv.toprettyxml())
+    fileObj.close()
+    
+    pmvNodeOut=outPutDoc.createElement("pmvlocation")
+    pmvNodeOut.appendChild(outPutDoc.createTextNode(pmv_path));
+    rootnode.appendChild(pmvNodeOut)
+    
+    xml_path=getOutXMLPath()
+    fileObj = open(xml_path,"w") 
+    fileObj.write(outPutDoc.toprettyxml())
+    fileObj.close()
+    
+    
     
 def isMeasured(varName):
     
@@ -71,8 +89,8 @@ def runXML(pathString):
 
 def run(xmlOrAbsString):
     print "reading "+xmlOrAbsString
-    import os.path
-    global outPutDoc, errnode, rooterrnode
+    
+    global outPutDoc, errnode, rooterrnode,rootnode
     
     outPutDoc=Document();
     rootnode=outPutDoc.createElement("root")
@@ -131,6 +149,41 @@ def putErr(toPut, i=1):
     errnode.appendChild(errormessnode);
     print outPutDoc.toprettyxml();
     i=i+1;
+def getOutPmvPath():
+    file_name=launchParams.getElementsByTagName("pmvoutputpath")[0].firstChild.nodeValue
+   
+    fileExists=os.path.isfile(file_name)
+    ensure_dir(file_name)
+    original=file_name
+    i=1
+    while fileExists :
+        file_name=incrementFileName(original,i,".pmv")
+        i+=1
+        fileExists=os.path.isfile(file_name)
+    return file_name
+
+def ensure_dir(f):
+    d = os.path.dirname(f)
+    if not os.path.exists(d):
+        os.makedirs(d)
+def getOutXMLPath():
+    file_name=launchParams.getElementsByTagName("outputpath")[0].firstChild.nodeValue
+    fileExists=os.path.isfile(file_name)
+    original=file_name
+    ensure_dir(file_name)
+    i=1
+    while fileExists :
+        file_name=incrementFileName(original,i,".xml")
+        i+=1
+        fileExists=os.path.isfile(file_name)
+    return file_name
+     
+def incrementFileName(file_name,i,ending):
+    first_half=string.split(file_name, ending)[0]
+   
+    first_half=first_half+"("+str(i)+")"
+    return first_half+ending 
+
 if __name__ == '__main__':
     import sys
     
