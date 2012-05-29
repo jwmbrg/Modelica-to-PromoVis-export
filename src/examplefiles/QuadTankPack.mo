@@ -38,7 +38,8 @@ package QuadTankPack
 	input Modelica.SIunits.Voltage u2;
 
   equation
-    der(x1_pmv) = -a1/A1*sqrt(2*g*x1_pmv) + a3/A1*sqrt(2*g*x3) +
+        
+        der(x1_pmv) = -a1/A1*sqrt(2*g*x1_pmv) + a3/A1*sqrt(2*g*x3) +
 					g1_nmp*k1_nmp/A1*u1;
 	der(x2) = -a2/A2*sqrt(2*g*x2) + a4/A2*sqrt(2*g*x4_blabla) +
 					g2_nmp*k2_nmp/A2*u2;
