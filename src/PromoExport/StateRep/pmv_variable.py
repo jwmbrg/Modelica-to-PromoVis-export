@@ -18,7 +18,7 @@ class pmv_variable(object):
         Constructor
         '''
         self.name=name
-        self.state_dict=matrix_dict
+        self.state_dict=dict(matrix_dict.items()+disturbance_dict.items())
         self.disturbance_dict=disturbance_dict
         self.input_dict=input_dict
         self.typ=typ
@@ -81,6 +81,8 @@ class pmv_variable(object):
     Methods for creating the ProcessModel node in xml
     """
     def getAsXMLProcessModel(self,doc):
+        if((len(self.input_dict)+len(self.state_dict))==0):
+            return None;
         if(self.typ==pmv.type_params.input):
             return None
         toReturn=doc.createElement("ProcessModel")
@@ -138,13 +140,13 @@ class pmv_variable(object):
             if(not first):
                 toSet+=","
                 first=False
-            toSet+=str(self.input_dict.get(element).num)
+            toSet+=str(self.input_dict.get(element).num.tolist())
         
         for element in self.state_dict :
             if(not first):
                 toSet+=","
                 first=False
-            toSet+=str(self.state_dict.get(element).num) 
+            toSet+=str(self.state_dict.get(element).num.tolist()) 
         toSet+="}"
         toAdd.setAttribute("v",toSet)
         toReturn.appendChild(toAdd)        

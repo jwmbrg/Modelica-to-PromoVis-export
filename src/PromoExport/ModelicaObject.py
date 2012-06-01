@@ -16,7 +16,8 @@ class ModelicaObject:
     def __init__(self,xmlFile,xmlDoc,rooterrornode):
         
         self.outPutDoc=xmlDoc
-        
+        import logging
+        logging.basicConfig(level=logging.DEBUG)
         self.errnode=self.outPutDoc.createElement("ModelicaErrors")
         rooterrornode.appendChild(self.errnode)
         
@@ -36,9 +37,8 @@ class ModelicaObject:
             jmumodel=JMUModel(jmuName)
             #print "created the following"+jmuName
             self.jmu=jmumodel;
-        except:
-            self.putErr("Problems in the modelica source file");
-            
+        except Exception, ex:
+            logging.exception("Something awful happened!")
         self.linJmu=None
         
     

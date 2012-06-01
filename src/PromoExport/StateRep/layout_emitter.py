@@ -42,12 +42,18 @@ class layout_emitter(object):
 
     def initCounters(self):
         if(self.noMeasureds!=0):
-            self.afMeas=3.14/(self.noMeasureds-1)
+            if(self.noMeasureds==1):
+                self.afMeas=3.14
+            else:
+                self.afMeas=3.14/(self.noMeasureds-1)
         else:
             self.afMeas=0;
             
         if(self.noControls!=0):
-            self.afControls=3.14/(self.noControls-1)
+            if(self.noControls==1):
+                self.afControls=3.14
+            else:
+                self.afControls=3.14/(self.noControls-1)
         else:
             self.afControls=0;
         return

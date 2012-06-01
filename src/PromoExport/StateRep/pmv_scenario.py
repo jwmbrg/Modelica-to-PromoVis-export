@@ -26,11 +26,14 @@ class pmv_scenario(object):
     '''
 
         
-    def __init__(self,matrix_dict):
-        '''
-        Constructor
-        Assumes E to be identity
-        '''
+    def __init__(self,matrix_dict,xmlDoc,rooterrornode):
+        
+        self.outPutDoc=xmlDoc
+        
+        self.errnode=self.outPutDoc.createElement("ScenarioGenerationErrors")
+        rooterrornode.appendChild(self.errnode)
+        
+        
         self.name="fixme"
         self.E=matrix_dict.get('E')
         self.A=matrix_dict.get('A')
@@ -48,11 +51,21 @@ class pmv_scenario(object):
     def createModel(self):
         global toReturn
         toReturn=[]
+       
         i=0
-        for element in self.state_names :
+        """for element in self.state_names :
             toReturn.append(self.createStateVar(i))
             i+=1
         i=0
+        """
+        
+        rowSolvDict=self.getRowForNameDict()
+        for rowNumber in rowSolvDict.keys():
+            theName=rowSolvDict[rowNumber]
+            if theName in self.state_names :
+                toReturn.append(self.getStateVar(rowNumber, theName))
+            else:
+                toReturn.append(self.getAlgeBraicVar(rowNumber, theName))
         for element in self.input_names :
             toReturn.append(self.createInputVar(i))
             i+=1
@@ -67,7 +80,205 @@ class pmv_scenario(object):
         toReturn.workingPoint=str(self.matrix_dict.get("u0")[index])
         return toReturn
     
+    def getRowForNameDict(self):
+        """ This returns a dictionary with state or algebraic names as keys, and and integer as values.
+        The integer represents the row, in the DAE-system, that should be used to solve the state or algebraic variable.
+        """
+        #Append E|
+        state_alg_names=np.append(self.state_names,self.algebraic_names,axis=1);
+        E_concat_F=np.append(self.E,self.F,axis=1)
+
+        toRun={}
+        rownum=0;
+        for element in state_alg_names:
+            toRun[element]=[]
+        for row in E_concat_F:
+                colnum=0
+                for col in row:
+                        if(col!=0):
+                                toRun[state_alg_names[colnum]].append(rownum)
+                        colnum+=1;
+                rownum+=1;
+       
+        
+        algebraic_loop=False;
+       
+        i=0;
+        loops =0
+        statesandrows={}
+        while toRun and not algebraic_loop:
+                element=toRun.keys()[i]
+                if(len(toRun[element])==1):
+                        loops=0;
+                        state=element
+                        val=toRun[element][0]
+                        
+                        statesandrows[val]=state
+                        del toRun[element]
+                        for remaining in toRun:
+                            self.removeRow(toRun[remaining],val )
+                        
+
+        
+                i+=1
+                if(i>=len(toRun)):
+                        if(loops==2):
+                                algebraic_loop=True
+                                self.p
+                                print "encountered an algebraic loop"
+                        i=0;
+                        loops+=1;
+        print "found statesandrows"
+        return statesandrows;
+
+    def removeRow(self,theList,val):
+        if val in theList:
+                theList.remove(val)
+        return True;
     
+    def getAlgeBraicVar(self,rowNumber,var_name):
+        Erow=self.E[rowNumber]
+        print "EEEROW"
+        print Erow
+        Arow=self.A[rowNumber]
+        Brow=self.B[rowNumber]
+        Frow=self.F[rowNumber]
+        index=self.algebraic_names.index(var_name)
+        
+        name=var_name
+        typ=type_params.state
+        
+       
+
+        denominator=np.array([Frow[index]])
+
+            
+        print "hoho"
+        state_dict={}
+        #find all numerators for states, and input the common denominator
+        i=0;
+        while(i<len(self.state_names)):
+            
+            derPart=Erow[i]
+            numerator=np.array([])
+            if(derPart==0):
+                numerator=np.array([-Arow[i]])
+            else:
+                numerator=np.array([derPart,-Arow[i]])
+
+            tf=pmv_tf.pmv_tf(numerator,denominator,self.state_names[i])
+            if(Erow[i]!=0 or Arow[i]!=0):
+                state_dict[self.state_names[i]]=tf
+            i+=1;
+        #self.fillDict(coeffarr,state_dict,denominator,index,self.state_names)
+        #do the same for inputs
+        print "states"
+        input_dict={}
+        i=0;
+        print "working with inputs "+name
+        print Brow
+        while(i<len(self.input_names)):
+            numerator=np.array([-Brow[i]])
+            print "numeartor is " +str(numerator) +" and " +str(Brow[i]!=0)
+            tf=pmv_tf.pmv_tf(numerator,denominator,self.input_names[i])
+            if(Brow[i]!=0):
+                print "adding to dict"
+                input_dict[self.input_names[i]]=tf
+            i+=1;
+        
+        #self.fillDict(coeffarr, input_dict, denominator, index,self.input_names,True)
+        print "mothers"
+        
+        disturbance_dict={}
+        i=0;
+        while(i<len(self.algebraic_names)):
+            if i!=index:
+                numerator=np.array([-Frow[i]])
+                tf=pmv_tf.pmv_tf(numerator,denominator,self.algebraic_names[i])
+                if(Frow[i]!=0):
+                    disturbance_dict[self.algebraic_names[i]]=tf
+            i+=1;
+            
+        
+    
+        
+        toReturn=pmv_variable.pmv_variable(name,typ,state_dict,disturbance_dict,input_dict)
+        
+        #set working points
+        toReturn.workingPoint=str(self.matrix_dict.get("w0")[index])
+        return toReturn
+    def getStateVar(self,rowNumber,var_name): 
+        Erow=self.E[rowNumber]
+        print "EEEROW"
+        print Erow
+        Arow=self.A[rowNumber]
+        Brow=self.B[rowNumber]
+        Frow=self.F[rowNumber]
+        index=self.state_names.index(var_name)
+        
+        name=var_name
+        typ=type_params.state
+        
+        derPart=Erow[index]
+        denominator=np.array([])
+        if(derPart==0):
+            denominator=np.array([-Arow[index]])
+        else:
+            denominator=np.array([derPart,-Arow[index]])
+            
+        print "hoho"
+        state_dict={}
+        #find all numerators for states, and input the common denominator
+        i=0;
+        while(i<len(self.state_names)):
+            if i!=index:
+                derPart=Erow[i]
+                numerator=np.array([])
+                if(derPart==0):
+                    numerator=np.array([Arow[i]])
+                else:
+                    numerator=np.array([-derPart,Arow[i]])
+
+                tf=pmv_tf.pmv_tf(numerator,denominator,self.state_names[i])
+                if(Erow[i]!=0 or Arow[i]!=0):
+                    state_dict[self.state_names[i]]=tf
+            i+=1;
+        #self.fillDict(coeffarr,state_dict,denominator,index,self.state_names)
+        #do the same for inputs
+        print "states"
+        input_dict={}
+        i=0;
+        print "working with inputs "+name
+        print Brow
+        while(i<len(self.input_names)):
+            numerator=np.array([Brow[i]])
+            print "numeartor is " +str(numerator) +" and " +str(Brow[i]!=0)
+            tf=pmv_tf.pmv_tf(numerator,denominator,self.input_names[i])
+            if(Brow[i]!=0):
+                print "adding to dict"
+                input_dict[self.input_names[i]]=tf
+            i+=1;
+        
+        #self.fillDict(coeffarr, input_dict, denominator, index,self.input_names,True)
+        print "mothers"
+        
+        disturbance_dict={}
+        i=0;
+        while(i<len(self.algebraic_names)):
+            numerator=np.array([Frow[i]])
+            tf=pmv_tf.pmv_tf(numerator,denominator,self.algebraic_names[i])
+            if(Frow[i]!=0):
+                disturbance_dict[self.algebraic_names[i]]=tf
+            i+=1;
+            
+        
+    
+        
+        toReturn=pmv_variable.pmv_variable(name,typ,state_dict,disturbance_dict,input_dict)
+        #set working points
+        toReturn.workingPoint=str(self.matrix_dict.get("x0")[index])
+        return toReturn
+
     def createStateVar(self,index):
         name=self.state_names[index]
         # print name
@@ -189,10 +400,22 @@ class pmv_scenario(object):
         return doc
     
     def setMeasuredVars(self,listOfVars):
+        print listOfVars
+        print self.varArr
         for element in self.varArr:
             for s in listOfVars:
                 if element.name==s:
                     element.typ=type_params.measured
                     print "changed type of" +element.name
         return
+    def putErr(self,toPut, i=1):
+        
+        errormessnode=self.outPutDoc.createElement("ModelicaError"+str(i))
+        errormess=self.outPutDoc.createTextNode(toPut)
+    
+    
+        errormessnode.appendChild(errormess);
+        self.errnode.appendChild(errormessnode);
+        print self.outPutDoc.toprettyxml();
+        i=i+1;
         

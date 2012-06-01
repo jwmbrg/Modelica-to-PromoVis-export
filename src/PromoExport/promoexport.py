@@ -3,13 +3,7 @@ Created on May 15, 2012
 
 @author: Jeppe
 '''
-from xml.dom.minidom import parse
-from ModelicaObject import ModelicaObject as ModelicaObject
-from xml.dom.minidom import Document
-from StateRep.pmv_scenario import pmv_scenario
-import string
-import numpy
-import os.path
+
 launchParams=None
 moObject=None
 outPutDoc=None
@@ -26,12 +20,12 @@ def startExport():
         moObject=ModelicaObject(launchParams,outPutDoc,rooterrnode)
     else:
         putErr("Unknown error, no parameters seems to be given")
-    #print outPutDoc.toprettyxml();
+        print outPutDoc.toprettyxml();
     #jmodelica options should be performed here
     
     #generate the internal represenatation
     matrix_dict=moObject.getLinearDaeFromJmu();
-    scenarioObj=pmv_scenario(matrix_dict)
+    scenarioObj=pmv_scenario(matrix_dict,outPutDoc,rooterrnode)
     
     #print scenarioObj.getAsXML()
     varArr=matrix_dict.get("State_names")+matrix_dict.get("input_names");
@@ -186,7 +180,20 @@ def incrementFileName(file_name,i,ending):
 
 if __name__ == '__main__':
     import sys
-    
+    from xml.dom.minidom import parse
+    from ModelicaObject import ModelicaObject as ModelicaObject
+    from xml.dom.minidom import Document
+    from StateRep.pmv_scenario import pmv_scenario
+    import string
+  
+    import os.path
+    launchParams=None
+    moObject=None
+    outPutDoc=None
+    errnode=None
+    rooterrnode=None
+    scenarioObj=None
+    rootnode=None
     run(sys.argv[1])
     
     
