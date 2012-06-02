@@ -3,6 +3,7 @@
         <filepath>C:\Users\Public\Documents\JModelica.org\Modelica-to-PromoVis-export\src\examplefiles\bigquad.mo</filepath>
         <model>QuadTankPack.QuadTank</model>
         <mpattern>_pmv</mpattern>
-        <outputpath>C:\ProMoVis\output.xml</outputpath>
+        <outputpath>C:\ProMoVis\emitted\output.xml</outputpath>
+        <pmvoutputpath>C:\ProMoVis\emitted\QuadTank.pmv</pmvoutputpath>
 </root>
 

@@ -92,6 +92,7 @@ class pmv_scenario(object):
         rownum=0;
         for element in state_alg_names:
             toRun[element]=[]
+      
         for row in E_concat_F:
                 colnum=0
                 for col in row:

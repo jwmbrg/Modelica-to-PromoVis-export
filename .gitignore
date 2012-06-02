@@ -2,6 +2,7 @@
 ModelFiles/.project
 src/.project
 src/.pydevproject
-report
 *.pyc
+*.jmu
+*.fmux
 src/PromoExport/QuadTankPack_QuadTank.jmu
