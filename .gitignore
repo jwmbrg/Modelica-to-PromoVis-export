@@ -6,3 +6,13 @@ src/.pydevproject
 *.jmu
 *.fmux
 src/PromoExport/QuadTankPack_QuadTank.jmu
+Report/PromoExportReport.aux
+Report/PromoExportReport.bbl
+Report/PromoExportReport.dvi
+Report/PromoExportReport.log
+Report/PromoExportReport.toc
+Report/csee_msc_example.pdf
+Report/texput.log
+ModelFiles/.goutputstream-XL0FEW
+Report/PromoExportReport.blg
+Report/PromoExportReport.pdf

@@ -1,0 +1,9 @@
+<?xml version="1.0" ?> 
+<root>
+        <filepath>C:\JModelica.org-1.7b2\Python\pyjmi\ModelicaStandardLibrary_v3.2_build5\Modelica\Mechanics\Rotational.mo</filepath>
+        <model>Rotational.Examples.ElasticBearing</model>
+        <mpattern>_pmv;_blabla;x2</mpattern>
+        <outputpath>C:\ProMoVis\emitted\output.xml</outputpath>
+        <pmvoutputpath>C:\ProMoVis\emitted\QuadTank.pmv</pmvoutputpath>
+</root>
+

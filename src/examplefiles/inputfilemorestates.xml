@@ -1,0 +1,9 @@
+<?xml version="1.0" ?> 
+<root>
+        <filepath>C:\Users\Public\Documents\JModelica.org\Modelica-to-PromoVis-export\src\examplefiles\PyMBSModels.mo</filepath>
+        <model>PyMBSModels.CraneCrab_explicit_der_state</model>
+        <mpattern>_pmv;_blabla;x2</mpattern>
+        <outputpath>C:\ProMoVis\emitted\output.xml</outputpath>
+        <pmvoutputpath>C:\ProMoVis\emitted\QuadTank.pmv</pmvoutputpath>
+</root>
+
