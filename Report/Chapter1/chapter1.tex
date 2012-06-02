@@ -1,0 +1,32 @@
+This document serves both as an example of the \LaTeX\ template
+for Master's theses, and at the same time as documentation
+on how to use it.
+
+\section{Background}
+Use a main document to set up title page and chapters. In this way
+you can compile a subset of the entire thesis by simply commenting
+the \texttt{$\backslash$input\{...\}} commands in the main document.
+Typeset the document by compiling the main document. The
+subdocuments can not be compiled by themselves.
+
+\section{Problem Description}
+
+\section{Project Goals}
+
+\section{Including appendices}
+At the end of the thesis, after all chapters but before the
+reference list, you might want to add some appendices. To do this,
+simply type \texttt{$\backslash$appendix} before the
+\texttt{$\backslash$thebibliography} command and then add each
+appendix with the \texttt{$\backslash$makeappendix} command
+(identical syntax as the \texttt{$\backslash$makechapter}
+command). See Appendix \ref{appA} for a completely meaningless
+mathematical derivation.
+
+\section{Including bibliography references}
+At the end of the document you will have the list of bibliography
+references. In this thesis the \textsc{BibTeX} reference system is
+used. Add your references to a database file and the reference
+list will be generated automatically. For more details on how to
+use the \textsc{BibTeX} system, please refer to any good \LaTeX\
+documentation, e.g.\ \cite{Lamport} or \cite{Goossens}.\nocite{*}
