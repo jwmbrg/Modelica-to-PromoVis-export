@@ -3,30 +3,24 @@ for Master's theses, and at the same time as documentation
 on how to use it.
 
 \section{Background}
-Use a main document to set up title page and chapters. In this way
-you can compile a subset of the entire thesis by simply commenting
-the \texttt{$\backslash$input\{...\}} commands in the main document.
-Typeset the document by compiling the main document. The
-subdocuments can not be compiled by themselves.
+The field of computer aided modelling of physical systems
+\subsection{Modelica}
+Modelica is a object-oriented declarative programming language used to create models of physical system. Unlike many other modelling languages, Modelica is not domain specific and thus can be used to model physical systems consisting of a mix of electrical, mechanical and chemical processes. Since the release of the first language specification in 1997 the continuous development of the language has been maintained by the Modelica Association and the current version of the Language specification is 3.2 \cite{ModelicaSpec}.\nocite{*}
+\subsection{ProMoVis}
+While Modelica, Simulink and other existing tools is very powerful when it comes to simulation and modelling of complex systems. A drawback with existing tools is that although a user declares the relations between inputs and outputs, at simulation time the models are still treated as "black boxes". Making it hard to monitor and analyse the internal behaviour of components in the modelled systems. Due to an identified need for a tool that can solve these problems \cite{ProMoVisPaper}\nocite{*}, the design and implementation of ProMoVis started in 2011(FIXME) and is currently being prepared for release as an open source project.
+
+
+
+
 
 \section{Problem Description}
+As stated earlier, ProMoVis purpose is visualisation and analysis of large systems, thus the components and the relation between them is assumed to be known. Today, there is no scripting interface to ProMoVis and models have to be created in the graphical environment a work that can become very tedious and error-prone for complex systems. At the same time a user that would benefit from using ProMoVis in his design process can be assumed to already have created models intended for simulation. The possibility to import existing models would therefore highly increase the "ease of use" of ProMoVis FIXME UGLY.
 
 \section{Project Goals}
 
-\section{Including appendices}
-At the end of the thesis, after all chapters but before the
-reference list, you might want to add some appendices. To do this,
-simply type \texttt{$\backslash$appendix} before the
-\texttt{$\backslash$thebibliography} command and then add each
-appendix with the \texttt{$\backslash$makeappendix} command
-(identical syntax as the \texttt{$\backslash$makechapter}
-command). See Appendix \ref{appA} for a completely meaningless
-mathematical derivation.
+Due to its widespread use and the amount of open source tools that are available for models created in Modelica the projects goal is to create a tool that can, import linearised models into ProMoVis.
 
-\section{Including bibliography references}
-At the end of the document you will have the list of bibliography
-references. In this thesis the \textsc{BibTeX} reference system is
-used. Add your references to a database file and the reference
-list will be generated automatically. For more details on how to
-use the \textsc{BibTeX} system, please refer to any good \LaTeX\
-documentation, e.g.\ \cite{Lamport} or \cite{Goossens}.\nocite{*}
+
+
+
+

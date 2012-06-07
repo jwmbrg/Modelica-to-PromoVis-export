@@ -10,7 +10,7 @@ from pymodelica import compile_fmux
 from pyfmi import FMUModel
 from pyjmi import JMUModel, CasadiModel
 
-from ModelicaObject import *
+from PromoExport.ModelicaObject import *
 
 import pylab as p
 global inited
@@ -66,9 +66,10 @@ def initQuad(modelfile ='../ModelFiles/QuadTankPack.mo',model_name = 'QuadTankPa
     jmumodel=JMUModel('.\QuadTankPack_QuadTank.jmu')
 
     fmuxName=compile_fmux(model_name,modelfile)
-
-   
-    #QuadTank=ModelicaObject(jmumodel)
+    from xml.dom.minidom import Document
+    outPutDoc=Document();
+    rootnode=outPutDoc.createElement("root")
+    QuadTank=ModelicaObject(jmumodel,outPutDoc,rootnode)
 
 
 def prettyprintTwoTankLinDae():

@@ -10,6 +10,7 @@
 %% Also change language definition after \begin{document}
 
 % English, twosided
+
 \documentclass[12pt,a4paper,openright,final,twoside,en]{csee_msc_thesis} 
 
 % English, onesided    
@@ -76,13 +77,13 @@
 \makechapter{Theory}{Theory\label{ch2}}
 \input{Chapter2/chapter2.tex}
 
-\makechapter{Method}{Method\label{ch2}}
+\makechapter{Method}{Method\label{ch3}}
 \input{Chapter3/chapter3.tex}
 
-\makechapter{Implementation}{Implementation\label{ch2}}
+\makechapter{Implementation}{Implementation\label{ch4}}
 \input{Chapter4/chapter4.tex}
 
-\makechapter{Discussion}{Discussion\label{ch2}}
+\makechapter{Discussion}{Discussion\label{ch5}}
 \input{Chapter5/chapter5.tex}
 
 %%==================================================================
@@ -94,7 +95,8 @@
 \makeappendix{Appendix A}{Least squares fit of response surface
 models by multiple linear regression\label{appA}}
 \input{Appendices/appendixA.tex}
-
+\makeappendix{Appendix A}{Solving DAE-system in correct order\label{appB}}
+\input{Appendices/appendixB.tex}
 %%==================================================================
 %% Include bibliography references here
 %% Replace the "thesisreferences" with your
