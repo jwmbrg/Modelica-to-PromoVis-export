@@ -19,3 +19,9 @@ Report/PromoExportReport.pdf
 .metadata/version.ini
 .metadata/version.ini
 .metadata/*
+Report/Chapter1/chapter1.log
+Report/Chapter2/chapter2.log
+Report/Chapter3/chapter3.log
+Report/Chapter4/chapter4.log
+refactor.bundle
+src/PromoExport/QuadTankPack_QuadTank_result.txt
