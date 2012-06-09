@@ -13,18 +13,19 @@ This represenation should be familiar, the x and dx vectors represents the state
 \item \textit{Algebraic names}, corresponding to the declared algebraic variable names from the original Modelica file.
 \item \textit{Operating points} for the linear model \textit{dx0},\textit{w0}, \textit{u0} and \textit{x0}. Which is , in later stages, used to provide feedback for the user regarding the validity of the resulting model.
 \end{itemize}
-From now on we will refer to states and algebraic variables as simply "variables" and whenever a distinction between the two is needed, it will be explicitly declared. When the DAE is obtained, the task is then to extract the relations between the variables and in the DAE.
+From now on we will refer to states and algebraic variables as simply "variables" and whenever a distinction between the two is needed, it will be explicitly declared. 
 
 \subsection{Generation of the internal structure}
+When the DAE is obtained, the task is then to extract the relations between the variables from it. Here we choose to collect and store each of the variables, together with each of the variables that acts as input to it. It might feel more natural to store a variable together with each of its outputvariables but since ProMoVis supports both conventions and due to the fact that it is straight forward to solve a variable for all its inputs from the original DAE the first representation was choosen.
 The generation of the internal structure is best illustrated with the following example.\\\newline
-When the linearised model is extracted and we have all non-zero diagonal elements the system might be represented as:\\\newline
+If we assume two state variables and two algebraic variables, the general structure of the DAE would look like the following:\\\newline
 $
 \begin{bmatrix} E_{11} & E_{12} \\ E_{21} & E_{22} \\ E_{31} & E_{32} \\ E_{41} & E_{42} \end{bmatrix} \left[ \begin{array}{c} x0' \\ x1' \end{array} \right]
 = \begin{bmatrix} A_{11} & A_{12} \\ A_{21} & A_{22} \\ A_{31} & A_{32} \\ A_{41} & A_{42} \end{bmatrix} \times \left[ \begin{array}{c} x0 \\ x1 \end{array} \right] + \begin{bmatrix} B_{11} & B_{12} \\ B_{21} & B_{22} \\ B_{31} & B_{32} \\ B_{41} & B_{42} \end{bmatrix} \times \left[ \begin{array}{c} u0 \\ u1 \end{array} \right]+
 \begin{bmatrix} F_{11} & F_{12} \\ F_{21} & F_{22} \\ F_{31} & F_{32} \\ F_{41} & F_{42}\end{bmatrix} \times \left[ \begin{array}{c} w0 \\ w1 \end{array} \right]$
 
-The task is now, to find which of the rows in the system that should be solved for which variable so that the whole system can be solved. A demand on the system is that it should not contain any Algebraic loops. For a more thorough discussion regarding this please review Appendix \ref{appB}\\\\After retrieving which row that we should solve for which of the variables we build up an intermediate representation of the SFG where we store each of the variables together with all of its input dependencies.\\\\
-As an example, if we assume that we should solve row 1 for x0 we get the following:\\\\$\begin{array}{rcl} E_{11}*x0*s  +E_{12}*x1*s=A_{11}*x0  +A_{12}*x1 +B_{11}*u0  +B_{12}*u1  +F_{11}*w0  +F_{12}*w1 \end{array}$\\
+The task is now, to find which of the rows in the system that should be solved for which variable so that the whole system can be solved. A demand on the system is that it should not contain any Algebraic loops. For a more thorough discussion regarding this please review Appendix \ref{appB}\\\\After retrieving which row that we should solve for which of the variables we build up an intermediate representation of the SFG where we store each of the variables together with all of its input variables.\\\\
+As an example, if we assume that we should solve row 1 for x0 the procedure is as follows:\\\\$\begin{array}{rcl} E_{11}*x0*s  +E_{12}*x1*s=A_{11}*x0  +A_{12}*x1 +B_{11}*u0  +B_{12}*u1  +F_{11}*w0  +F_{12}*w1 \end{array}$\\
 \\Putting x0 alone on the left-hand side and collecting the coefficients then yields:\\\\$\begin{array}{rcl} (E_{11}*s-A_{11})*x0  =(A_{12}-E_{12}*s)*x1 +B_{11}*u0  +B_{12}*u1 +F_{11}*w0  +F_{12}*w1 \end{array}$\\\\
 Finally, solving for x0 yields:\\\\
 $\begin{array}{rcl} x0  = \frac{(A_{12}-E_{12}*s)}{(E_{11}*s-A_{11})}*x1 +\frac{B_{11}}{(E_{11}*s-A_{11})}*u0  +\frac{B_{12}}{(E_{11}*s-A_{11})}*u1 ++\frac{F_{11}}{(E_{11}*s-A_{11})}*w0 +\frac{F_{12}}{(E_{11}*s-A_{11})}*w1\end{array}$\\\newline Which would correspond to the following SFG:\\Internally we then represent each of the variables in the following form.\\\newline
@@ -37,6 +38,13 @@ $\begin{array}{rcl} x0  = \frac{(A_{12}-E_{12}*s)}{(E_{11}*s-A_{11})}*x1 +\frac{
 
 \subsection{Validation and Transformations}
 \subsection{Scenario generation}
+When the structure is validated and all optional transformations are done. The actual generation of the ProMoVis represenation is straight forward. Basically the ProMoVis representation contains two parts. First a collection of all variables, with their names, graphical layout and additional mathematical properties. The second part, is called the processmodels, and describes the relation between a variable and the other variables in the system. 
+\subsubsection{Graphical Layout}
+Even though Modelica supports description of position and graphical represenation of models through its annotations interface, these are not necessary for a valid Modelica model. Therefore no effort has been put into trying to recieve this type of meta-information. Instead, to make sure that a user of ProMoVis is able to easilly access and attach controllers to the generated model the variables are emitted as depicted in the figure below.\\\newline
+\setlength\fboxsep{0pt}
+\setlength\fboxrule{0.5pt}
+\fbox{\includegraphics[scale=0.8,bb=0 0 117mm 154mm] {Figures/layout.pdf}}
+
 
 \section{Interfacing with the tool}
 \section{Important design choices}
