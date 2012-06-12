@@ -38,14 +38,47 @@ $\begin{array}{rcl} x0  = \frac{(A_{12}-E_{12}*s)}{(E_{11}*s-A_{11})}*x1 +\frac{
 
 \subsection{Validation and Transformations}
 \subsection{Scenario generation}
-When the structure is validated and all optional transformations are done. The actual generation of the ProMoVis represenation is straight forward. Basically the ProMoVis representation contains two parts. First a collection of all variables, with their names, graphical layout and additional mathematical properties. The second part, is called the processmodels, and describes the relation between a variable and the other variables in the system. 
+When the structure is validated and all optional transformations are done. The actual generation of the ProMoVis represenation is straight forward. Basically the ProMoVis representation contains two parts. First the descriptive part, a collection of all variables, with their names, graphical layout and additional mathematical properties. The second part,  the processmodels, describes the relation between a variable and the other variables in the system. 
 \subsubsection{Graphical Layout}
 Even though Modelica supports description of position and graphical represenation of models through its annotations interface, these are not necessary for a valid Modelica model. Therefore no effort has been put into trying to recieve this type of meta-information. Instead, to make sure that a user of ProMoVis is able to easilly access and attach controllers to the generated model the variables are emitted as depicted in the figure below.\\\newline
 \setlength\fboxsep{0pt}
 \setlength\fboxrule{0.5pt}
-\fbox{\includegraphics[scale=0.8,bb=0 0 117mm 154mm] {Figures/layout.pdf}}
+\fbox{\includegraphics[scale=0.8,bb=0 0 117mm 154mm] {Figures/layout.pdf}}\\\newline
 
+That is, inputs and measured variables are emitted as the upper and lower half of a circle while internal variables, that are assumed to not be of interest, are collected in the center of the circle. This achieved by a helper object, the layout emitter, that is initiated with the number of internal, measured and input variables and then calculates the step size in x and y direction that will eventually achieve the circular shape. 
+
+When we then iterate over each of the variables to get their corresponding descriptive part, the layout emitter is passed as an argument, so that it can be queried for the variables graphical x and y position. This i done in a very naive way, the layout emitter has counters for each of the variable types and then, each time it is queried, it increments the current counter value together with the previously calculated step sizes to generate one x,y coordinate that is returned to the querying variable. 
+\subsubsection{Additional information added}
 
 \section{Interfacing with the tool}
-\section{Important design choices}
+Since there are several seperate phases in the tool, and each of the phases might later be extended with additional options and necessary parameters xml is used to pass information to the tool. By using xml and not command line arguments one might, through using existing modules for xml-parsing and object representation of the xml files, just pass the instance of the "parsed" xml document to each of the phases. Where they then might extract the information needed for the phases.FIXME\\\\Following is an example of the input file to the tool, containing all the necessary parameters.
+\begin{lstlisting}
+<?xml version="1.0" ?> 
+<root>
+        <filepath>C:\Users\Public\Documents\QuadTankPack.mo</filepath>
+        <model>QuadTankPack.QuadTank</model>
+        <mpattern>_pmv;_fooBar;x2</mpattern>
+        <outputpath>C:\ProMoVis\output.xml</outputpath>
+        <pmvoutputpath>C:\ProMoVis\QuadTank.pmv</pmvoutputpath>
+</root>
+\end{lstlisting}
+The filepath and model nodes are the path to the original modelica source file and the full model name, including packagenames, of the target model. The node, mpattern, contains regular expression that the tool will try to match the ending of variable names on, so that if it encounters the variables foo\_pmv, foo\_foobar, foox2 or x2 it will make sure that those variables are indicated as measured variables in the ProMoVis representation.
+
+
+\section{DAE vs ODE}
+Readers familiar with Modelica and the JModelica environment might be accustomed to working on the ODE-representation of systems. The reason that we stick with the DAE even though the extraction of the SFG from the ODE is less complex is due to the fact that when using the ODE we loose casuality whenever an algebraic variable is in a path. Recall the general DAE representation:
+\begin{equation}
+E*dx = A*x + B*u + F*w + g
+\end{equation}
+
+Introducing the ODE representation that also can be extracted:
+
+\begin{equation}
+dx = A*x + B*u + g
+\end{equation}
+\begin{equation}
+w  = H*x + M*u + q
+\end{equation}
+
+Here it might be tempting to create the SFGs from the ODE instead, since one can solve for the states and algebraic variables separately. But notice, now the states does not depend at all on the algebraic variables in w. This is still a correct system, since algebraic variables is only a combination of other states, algebraic variables and constants thus they can be reduced and replaced by other states and a constant. But even though it is mathematically correct, we have lost information. The casuality is broken, and a user that has declared states that depends on algebraic variables can no longer view and analyse such a relation inside ProMoVis. One can easilly see this by just looking at the ODE and DAE representations above, the algebraic variables in w only has inputs and never acts as an input itself and therefore will become leafs in the SFG. FIXME DO WE NEED APPENDIX EXPLAINING THIS MORE THOROUGHLY.
 \section{A small case study}

@@ -1,1 +1,26 @@
-SOLVE THE DAE FOR A VARIABLE
+
+\section{Deciding which variable to solve first}
+When extracting the SFGs from the DAE one has to make sure that one solves each of the rows for the correct variables making sure that you can extract an SFG for every variable in the system.Recall the general equation for the DAE:
+\begin{equation}
+E*dx = A*x + B*u + F*w + g
+\end{equation}
+If no algebraic equations are present in the orignal Modelica model, the resulting DAE would have the following form:
+\begin{equation}
+E*dx = A*x + B*u + g
+\end{equation}
+The number of rows in such a system, containing no algebraic variables, would be the same as the amount of the number of declared or inferred states in the systems. The introduction of algebraic variables, that we recall are all variables that does not have a declared derivative, adds 1 row to the DAE.Since states, by definition, has a derivative declared, we can therefore look only at the E and F matrices to solve the problem of which row to solve for which variable. Since a state has to be solved for a row containing its derivative. If we declare:
+\begin{equation}
+S=[E|F]
+\end{equation}
+Here we easilly realize that the S matrix will be an nxn matrix, since we by concatenating the E and F matrix, add as many columns that there is extra rows.\\
+With the column vector L
+\begin{equation}
+L=[dx_0...dx_i, w_0...w_i]
+\end{equation}
+We then examine this system:
+\begin{equation}
+S*L
+\end{equation}
+ We then examine each of the rows, counting every non
+
+To solve the problem, we assume that the S matrix can be put on triangular form. Thus, we assume that S does not contain any algebraic loops. 
