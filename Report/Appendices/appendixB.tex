@@ -21,6 +21,63 @@ We then examine this system:
 \begin{equation}
 S*L
 \end{equation}
- We then examine each of the rows, counting every non
+By examining each of the columns in S and storing all the rownumbers that contains non-zero elements together with the variable corresponding to the column. In this way a list is retrieved for each of the variables, containing all the rownumbers where the variable is present.
+The pseudo code for this process might look something like this:
+\begin{lstlisting}
+varDict.initWithKeysAndValues(L,[])
+for row in S {
+	for col in row{
+		if(col.value !=0){
+			key=L(numberOf(col));
+			value=numberOf(row)
+			list=varDict(key)
+			list.append(value)		
+		}
+	}			
+}
+\end{lstlisting}
+As one can see, this approach has a quadratic running time, no matter the input, compared to a pure gaussian elimination, that has a cubic time complexity.
 
-To solve the problem, we assume that the S matrix can be put on triangular form. Thus, we assume that S does not contain any algebraic loops. 
+The task is then to start extracting the SFGs from the original DAE with the help of this list. If the system contains no algebraic loops, it should be possible to iterate through the dictionary and find a variable that has only one rownumber associated with it. Removing that variable from the dictionary and remove the corresponding rownumber from the remaining variables in the dictionary.
+
+Pseudocode for this process:
+\begin{lstlisting}
+int i=0
+int looped=0 // looped is used to detect algebraic loops
+solvList=[]
+while(varDict!=empty && looped !=2) {
+	key=varDict(i).key
+	list=varDict(key)
+	if(lengthOf(list)==1){
+		//add a tuple with rownumber and key
+		rowNumber=list[0]
+		solvList.append((key,rowNumber);
+		//remove the key (variable), since the
+		// problem is solved for this key
+		varDict.remove(key)
+		
+		for otherLists in varDict{
+			//we remove the rownumber 
+			//from the rest of the variables.
+			//Since this row is already consumed
+			//in the solution
+			otherLists.remove(rowNumber)
+		}
+		looped=0; 	//If we solved for a variable, 
+					//reset looped.
+	}
+	i=i+1;
+	if(i>varDict.size()){
+		i=0; //restart the process from the beginning
+		looped+=1; // increment looped 	
+	}			
+}
+if(looped==2){
+	print "failed due to algebraic loops
+}else{
+	print "success"
+}
+
+\end{lstlisting}
+
+At this point, we have a list of tuples, with each of the tuples containing a variable name and a row number, and we can begin to extract the SFGs from the DAE.
