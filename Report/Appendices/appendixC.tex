@@ -1,0 +1,29 @@
+This is the very short notes from the structured meetings during the project. When exporting them to this report i have tried to indicate if questions and suggestions, where they occur, have been solved or not. So this is also i kind of todo list for future development of the export tool. If Anything is indicated as solved or implemented, the original report contains more information regarding how.
+
+\section{2012-02-27}
+Attending: Johan Karlsson(ProMoVis Front-end), Jesper
+General discussion regarding the structure of the ProMoVis representation of the SFGs. ProMoVis does support any kind of representation of the system, one can specify the inputs to a variable as a single processmodel for every inputvariable, declare them on state space form, or you can create a MIMO-representation of the process model with several transfer functions and multiple input and output variables. 
+The last one, the possibility to create a MIMO-representation should probably be the most convenient to use in the project, since the straight forward way to extract relations from a DAE results in a Single output multiple input model.
+\section{2012-04-02}
+Attending: Wolfgang, Miguel and Jesper
+\begin{itemize}
+\item Misconception about the E-matrix on my part. I cannot assume that the E-matrix will be on diagonal form. A misunderstanding regarding what an algebraic variable is in Modelica also implies that another assumption, that there will always be exactly as many rows as there is states is wrong. This needs to be solved.[Solved]
+\item Discussion around how the export tool should create the graphical layout. 
+\begin{itemize}
+\item One might emit the input- and measured variables as the edges of a circle, and then put all the internal variables, that shouldn't be of interest for the user, inside that circle.[Solved]
+\item During this discussion a question came up wether or not it was possible to redo the export process, after a user might have changed the graphical layout of the system inside ProMoVis, and still keep the user defined layout. [Not solved]
+\item Discussion about how the user should be able to specify which variables that should have the type "Measured" inside ProMoVis. Some suggestions were proposed but the decision was to wait for input from the discussion with the potential users.[Solved]
+\end{itemize}
+\item lorem ipsum
+\end{itemize}
+
+
+\section{2012-04-27}
+Attending: Jesper, Migueal and Thomas Eriksson (Optimation AB)
+During this meeting we discussed the problem with Algebraic variables and how to make sure that they get valid in the generated ProMoVis representation. There was also the folloing suggestions from Thomas:
+\begin{itemize}
+\item Add the possibility to indicate that a variable in the original Modelica model should be of the type "Measured" in the generated ProMoVis scenario. Prefferably through the matching of the last part of the variable names.[Implemented]
+\item Try to extract the max and min values, if specified in the Modelica model and use these as values as "Saturation" in the ProMoVis representation. [Unimplemented]
+\item If nominal values is specified, use 0-nominal value as "Range" in the ProMoVis representation.[Unimplemented]
+\item See if the scaling factors can be extracted and try to find a way to automatically identify the tolerances on the derivatives with the help from this. E.g. are they "close enough" to zero in the linearized model.[Unimplemented]
+\end{itemize}
