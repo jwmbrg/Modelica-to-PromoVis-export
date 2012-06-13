@@ -1,83 +1,40 @@
-
-\section{Deciding which variable to solve first}
-When extracting the SFGs from the DAE one has to make sure that one solves each of the rows for the correct variables making sure that you can extract an SFG for every variable in the system.Recall the general equation for the DAE:
+Recall the general DAE representation:
 \begin{equation}
 E*dx = A*x + B*u + F*w + g
-\end{equation}
-If no algebraic equations are present in the orignal Modelica model, the resulting DAE would have the following form:
-\begin{equation}
-E*dx = A*x + B*u + g
-\end{equation}
-The number of rows in such a system, containing no algebraic variables, would be the same as the amount of the number of declared or inferred states in the systems. The introduction of algebraic variables, that we recall are all variables that does not have a declared derivative, adds 1 row to the DAE.Since states, by definition, has a derivative declared, we can therefore look only at the E and F matrices to solve the problem of which row to solve for which variable. Since a state has to be solved for a row containing its derivative. If we declare:
-\begin{equation}
-S=[E|F]
-\end{equation}
-Here we easilly realize that the S matrix will be an nxn matrix, since we by concatenating the E and F matrix, add as many columns that there is extra rows.\\
-With the column vector L
-\begin{equation}
-L=[dx_0...dx_i, w_0...w_i]
-\end{equation}
-We then examine this system:
-\begin{equation}
-S*L
-\end{equation}
-By examining each of the columns in S and storing all the rownumbers that contains non-zero elements together with the variable corresponding to the column. In this way a list is retrieved for each of the variables, containing all the rownumbers where the variable is present.
-The pseudo code for this process might look something like this:
-\begin{lstlisting}
-varDict.initWithKeysAndValues(L,[])
-for row in S {
-	for col in row{
-		if(col.value !=0){
-			key=L(numberOf(col));
-			value=numberOf(row)
-			list=varDict(key)
-			list.append(value)		
-		}
-	}			
-}
-\end{lstlisting}
-As one can see, this approach has a quadratic running time, no matter the input, compared to a pure gaussian elimination, that has a cubic time complexity.
+\end{equation}\newline Introducing the ODE representation that also can be extracted:
 
-The task is then to start extracting the SFGs from the original DAE with the help of this list. If the system contains no algebraic loops, it should be possible to iterate through the dictionary and find a variable that has only one rownumber associated with it. Removing that variable from the dictionary and remove the corresponding rownumber from the remaining variables in the dictionary.
+\begin{equation}
+dx = A*x + B*u + g
+\end{equation}
+\begin{equation}
+w  = H*x + M*u + q
+\end{equation}\newline Here it might be tempting to create the SFGs from the ODE instead, since one can solve for the states and algebraic variables separately. But notice, now the states does not depend at all on the algebraic variables in w. This is still a correct system, since algebraic variables is only a combination of other states, algebraic variables and constants thus they can be reduced and replaced by other states and a constant. But even though it is mathematically correct, we have lost information. The casuality is broken, and a user that has declared states that depends on algebraic variables can no longer view and analyse such these relations inside ProMoVis. If we consider the following, fictional, system:
 
-Pseudocode for this process:
-\begin{lstlisting}
-int i=0
-int looped=0 // looped is used to detect algebraic loops
-solvList=[]
-while(varDict!=empty && looped !=2) {
-	key=varDict(i).key
-	list=varDict(key)
-	if(lengthOf(list)==1){
-		//add a tuple with rownumber and key
-		rowNumber=list[0]
-		solvList.append((key,rowNumber);
-		//remove the key (variable), since the
-		// problem is solved for this key
-		varDict.remove(key)
-		
-		for otherLists in varDict{
-			//we remove the rownumber 
-			//from the rest of the variables.
-			//Since this row is already consumed
-			//in the solution
-			otherLists.remove(rowNumber)
-		}
-		looped=0; 	//If we solved for a variable, 
-					//reset looped.
-	}
-	i=i+1;
-	if(i>varDict.size()){
-		i=0; //restart the process from the beginning
-		looped+=1; // increment looped 	
-	}			
-}
-if(looped==2){
-	print "failed due to algebraic loops
-}else{
-	print "success"
-}
-
-\end{lstlisting}
-
-At this point, we have a list of tuples, with each of the tuples containing a variable name and a row number, and we can begin to extract the SFGs from the DAE.
+\begin{equation}
+dx_1=x2+w_1+u_2
+\end{equation}
+\begin{equation}
+dx_2=x3+u_1
+\end{equation}
+\begin{equation}
+dx_3=x1
+\end{equation}
+\begin{equation}
+w_1=x3+x2
+\end{equation}\newline The DAE representation of this system is then:\\\newline
+$
+\begin{bmatrix}  1 & 0 & 0 \\ 0 & 1 & 0  \\ 0 & 0 & 1 \\ 0 & 0 & 0   \end{bmatrix} \times \left[ \begin{array}{c} dx_1 \\ dx_2 \\ dx_3 \end{array} \right]
+= \begin{bmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0 \\ 0 & 1 & 1 \end{bmatrix} \times \left[ \begin{array}{c} x_1 \\ x_2 \\ x_3 \end{array} \right] + \begin{bmatrix} 0 & 1 \\ 1 & 0 \\ 0 & 0 \\ 0 & 0 \end{bmatrix} \times \left[ \begin{array}{c} u_1 \\ u_2 \end{array} \right]+
+\begin{bmatrix} 1 \\ 0 \\ 0  \\ -1 \end{bmatrix} \times \left[ \begin{array}{c} w_1 \end{array} \right]$\newline
+And has the corresponding SFG:\newline
+\setlength\fboxsep{0pt}
+\setlength\fboxrule{0.5pt}
+\fbox{\includegraphics[scale=0.3,bb=0 0 153mm 162mm] {Figures/DAESFG.pdf}}\\\newline The ODE-representation of the same system would become:\\\newline
+$\left[ \begin{array}{c} dx_1 \\ dx_2 \\ dx_3 \end{array} \right]
+= \begin{bmatrix} 0 & 2 & 1 \\ 0 & 0 & 1 \\ 1 & 0 & 0 \end{bmatrix} \times \left[ \begin{array}{c} x_1 \\ x_2 \\ x_3 \end{array} \right] + \begin{bmatrix} 0 & 1 \\ 1 & 0 \\ 0 & 0 \end{bmatrix} \times \left[ \begin{array}{c} u_1 \\ u_2 \end{array} \right]$
+\newline
+$\left[ \begin{array}{c} w_1  \end{array} \right]
+=  \begin{bmatrix} 0 & 1 & 1\end{bmatrix} \times \left[ \begin{array}{c} x_1 \\ x_2 \\ x_3 \end{array} \right] + \begin{bmatrix} 0 & 0 \end{bmatrix} \times \left[ \begin{array}{c} u_1 \\ u_2 \end{array} \right]$\newline Which then has the corresponding SFG:\newline
+\setlength\fboxsep{0pt}
+\setlength\fboxrule{0.5pt}
+\fbox{\includegraphics[scale=0.3,bb=0 0 153mm 162mm] {Figures/ODESFG.pdf}}\\\newline

@@ -2,7 +2,7 @@ To add a second chapter, simply include it in the main document.
 
 \section{General structure}
 \subsection{JModelica(Compile)Phase}
-The JModelica environment is used to compile the Modelica models to JModelicas JMU representation \cite{jmodelicaorg}\nocite{*}. This representation is internally represented as a, possibly nonlinear, DAE. Since ProMoVis assumes the systems to be linear, the compiled model needs to be linearised around an operating point. Here an assumption is made, that the model is stable at Time 0. See Appendix \ref{appA} for a complete overview of the prerequisites for the original model.\\\\After linearisation a DAE on the following form can be extracted:
+The JModelica environment is used to compile the Modelica models to JModelicas JMU representation \cite{jmodelicaorg}\nocite{*}. This representation is internally represented as a, possibly nonlinear, DAE. Since ProMoVis assumes the systems to be linear, the compiled model needs to be linearised around an operating point. Here an assumption is made, that the model is stable at Time 0.\\\\After linearisation a DAE on the following form can be extracted:
 \begin{equation}
 E*dx = A*x + B*u + F*w + g
 \end{equation}
@@ -24,7 +24,7 @@ $
 = \begin{bmatrix} A_{11} & A_{12} \\ A_{21} & A_{22} \\ A_{31} & A_{32} \\ A_{41} & A_{42} \end{bmatrix} \times \left[ \begin{array}{c} x0 \\ x1 \end{array} \right] + \begin{bmatrix} B_{11} & B_{12} \\ B_{21} & B_{22} \\ B_{31} & B_{32} \\ B_{41} & B_{42} \end{bmatrix} \times \left[ \begin{array}{c} u0 \\ u1 \end{array} \right]+
 \begin{bmatrix} F_{11} & F_{12} \\ F_{21} & F_{22} \\ F_{31} & F_{32} \\ F_{41} & F_{42}\end{bmatrix} \times \left[ \begin{array}{c} w0 \\ w1 \end{array} \right]$
 
-The task is now, to find which of the rows in the system that should be solved for which variable so that the whole system can be solved. A demand on the system is that it should not contain any Algebraic loops. For a more thorough discussion regarding this please review Appendix \ref{appB}\\\\After retrieving which row that we should solve for which of the variables we build up an intermediate representation of the SFG where we store each of the variables together with all of its input variables.\\\\
+The task is now, to find which of the rows in the system that should be solved for which variable so that the whole system can be solved. A demand on the system is that it should not contain any Algebraic loops. For a more thorough discussion regarding this please review Appendix \ref{appA}\\\\After retrieving which row that we should solve for which of the variables we build up an intermediate representation of the SFG where we store each of the variables together with all of its input variables. Where input variables are the states and algebraic variables that directly affect the variable we solve for.\\\\
 As an example, if we assume that we should solve row 1 for x0 the procedure is as follows:\\\\$\begin{array}{rcl} E_{11}*x0*s  +E_{12}*x1*s=A_{11}*x0  +A_{12}*x1 +B_{11}*u0  +B_{12}*u1  +F_{11}*w0  +F_{12}*w1 \end{array}$\\
 \\Putting x0 alone on the left-hand side and collecting the coefficients then yields:\\\\$\begin{array}{rcl} (E_{11}*s-A_{11})*x0  =(A_{12}-E_{12}*s)*x1 +B_{11}*u0  +B_{12}*u1 +F_{11}*w0  +F_{12}*w1 \end{array}$\\\\
 Finally, solving for x0 yields:\\\\
@@ -37,6 +37,7 @@ $\begin{array}{rcl} x0  = \frac{(A_{12}-E_{12}*s)}{(E_{11}*s-A_{11})}*x1 +\frac{
 
 
 \subsection{Validation and Transformations}
+Wh
 \subsection{Scenario generation}
 When the structure is validated and all optional transformations are done. The actual generation of the ProMoVis represenation is straight forward. Basically the ProMoVis representation contains two parts. First the descriptive part, a collection of all variables, with their names, graphical layout and additional mathematical properties. The second part,  the processmodels, describes the relation between a variable and the other variables in the system. 
 \subsubsection{Graphical Layout}
@@ -66,19 +67,7 @@ The filepath and model nodes are the path to the original modelica source file a
 
 
 \section{DAE vs ODE}
-Readers familiar with Modelica and the JModelica environment might be accustomed to working on the ODE-representation of systems. The reason that we stick with the DAE even though the extraction of the SFG from the ODE is less complex is due to the fact that when using the ODE we loose casuality whenever an algebraic variable is in a path. Recall the general DAE representation:
-\begin{equation}
-E*dx = A*x + B*u + F*w + g
-\end{equation}
+Readers familiar with Modelica and the JModelica environment might be accustomed to working on the ODE-representation of systems. The reason that we stick with the DAE even though the extraction of the SFG from the ODE is less complex is due to the fact that when using the ODE we loose casuality whenever an algebraic variable is in a path. For a more thorough dicussion see Appendix \ref{appB}.
 
-Introducing the ODE representation that also can be extracted:
 
-\begin{equation}
-dx = A*x + B*u + g
-\end{equation}
-\begin{equation}
-w  = H*x + M*u + q
-\end{equation}
-
-Here it might be tempting to create the SFGs from the ODE instead, since one can solve for the states and algebraic variables separately. But notice, now the states does not depend at all on the algebraic variables in w. This is still a correct system, since algebraic variables is only a combination of other states, algebraic variables and constants thus they can be reduced and replaced by other states and a constant. But even though it is mathematically correct, we have lost information. The casuality is broken, and a user that has declared states that depends on algebraic variables can no longer view and analyse such a relation inside ProMoVis. One can easilly see this by just looking at the ODE and DAE representations above, the algebraic variables in w only has inputs and never acts as an input itself and therefore will become leafs in the SFG. FIXME DO WE NEED APPENDIX EXPLAINING THIS MORE THOROUGHLY.
 \section{A small case study}

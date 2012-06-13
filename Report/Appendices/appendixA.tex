@@ -1,79 +1,83 @@
-If the number of experiments, $n$, exceed the number of model
-parameters, $p$, there will always be some aberrations between the
-model and the experimental data, i.e.\ there will be at least some
-residuals which are different from zero. Here is shown that the
-relation
-%
-\begin{equation}
-\left(\mathbf{X}^T\mathbf{X}\right)^{-1} \mathbf{X}^T \mathbf{y} = \mathbf{b}
-\end{equation}
-%
-will always give the least squares estimate of the model parameters.
 
-Let $\mathbf{X}$ be the model matrix for a series of n experiments; let $\mathbf{b}$ be the vector of model parameters to be estimated; let $\mathbf{y}$ be the vector of measured responses, such that $\mathbf{y}^T = [y_1, y_2, \ldots, y_n]$; and let $\mathbf{e}$ be the vector of
-unknown residuals, $\mathbf{e}^T = [e_1, e_2, \ldots, e_n]$. For the series of experiments, the following relation applies
-%
+\section{Deciding which variable to solve first}
+When extracting the SFGs from the DAE one has to make sure that one solves each of the rows for the correct variables making sure that you can extract an SFG for every variable in the system.Recall the general equation for the DAE:
 \begin{equation}
-\mathbf{y} = \mathbf{Xb + e},
+E*dx = A*x + B*u + F*w + g
 \end{equation}
-%
-i.e.\
-%
+If no algebraic equations are present in the orignal Modelica model, the resulting DAE would have the following form:
 \begin{equation}
-\mathbf{e = y - Xb}.
-\label{3A:eq:eqA}
+E*dx = A*x + B*u + g
 \end{equation}
-%
-%
+The number of rows in such a system, containing no algebraic variables, would be the same as the amount of the number of declared or inferred states in the systems. The introduction of algebraic variables, that we recall are all variables that does not have a declared derivative, adds 1 row to the DAE.Since states, by definition, has a derivative declared, we can therefore look only at the E and F matrices to solve the problem of which row to solve for which variable. Since a state has to be solved for a row containing its derivative. If we declare:
 \begin{equation}
-\sum e_i^2 = \mathbf{e}^T\mathbf{e} \textnormal{ (a scalar product)}.
+S=[E|F]
 \end{equation}
-%
-Develop the right part of (Eq.\ \ref{3A:eq:eqA}) as a scalar product. This gives
-%
-\begin{eqnarray}
-\sum e_i^2 & = & (\mathbf{y - Xb})^T \mathbf{(y - Xb)}\\%
-\sum e_i^2 & = & \mathbf{y}^T\mathbf{y} - 2\mathbf{y}^T\mathbf{Xb} + (\mathbf{Xb})^T\mathbf{Xb}\\%
-\sum e_i^2 & = & \mathbf{y}^T \mathbf{y} - 2\mathbf{y}^T\mathbf{Xb} + \mathbf{b}^T \mathbf{X}^T \mathbf{Xb}.
-\end{eqnarray}
-%
-We wish to determine which set of model parameters minimizes the sum of squared residuals. This
-minimum can be found by solving the following systems of equations
-%
+Here we easilly realize that the S matrix will be an nxn matrix, since we by concatenating the E and F matrix, add as many columns that there is extra rows.\\
+With the column vector L
 \begin{equation}
-\frac{\partial}{\partial \beta_j}\sum e_i^2 = 0,   \textnormal{ for all parameters } \beta_j.
+L=[dx_0...dx_i, w_0...w_i]
 \end{equation}
-%
-In matrix notation (see Appendix: Matrix calculus), the above expression can be written
-%
+We then examine this system:
 \begin{equation}
-\frac{\partial \mathbf{e}^T\mathbf{e}}{\partial \bfbeta} =
-\mathbf{0},
+S*L
 \end{equation}
-which corresponds to
-%
-\begin{equation}
-\frac{\partial}{\partial \bfbeta} \left( \mathbf{y}^T \mathbf{y} -
-2\mathbf{y}^T\mathbf{X}\bfbeta +
-\bfbeta^T\mathbf{X}^T\mathbf{X}\bfbeta \right) = \mathbf{0}.
-\end{equation}
-%
-This gives
-%
-\begin{equation}
-2(\mathbf{y}^T\mathbf{X})^T + \left[\mathbf{X}^T\mathbf{X} + (\mathbf{X}^T\mathbf{X})^T\right]\mathbf{b}  = \mathbf{0}.
-\end{equation}
-%
-The matrix $\mathbf{X}^T\mathbf{X}$ is symmetric and $\mathbf{X}^T\mathbf{X} = (\mathbf{X}^T\mathbf{X})^T$ and the above expression is equivalent to
-%
-\begin{equation}
-\mathbf{X}^T\mathbf{y} = \mathbf{X}^T\mathbf{Xb}.
-\end{equation}
-%
-Provided that $(\mathbf{X}^T\mathbf{X})^{-1}$ exists, a multiplication of both sides by $(\mathbf{X}^T\mathbf{X})^{-1}$ affords the least squares relation
-%
-\begin{equation}
-(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y} = \mathbf{b}.
-\end{equation}
-%
-Q.E.D.
+By examining each of the columns in S and storing all the rownumbers that contains non-zero elements together with the variable corresponding to the column. In this way a list is retrieved for each of the variables, containing all the rownumbers where the variable is present.
+The pseudo code for this process might look something like this:
+\begin{lstlisting}
+varDict.initWithKeysAndValues(L,[])
+for row in S {
+	for col in row{
+		if(col.value !=0){
+			key=L(numberOf(col));
+			value=numberOf(row)
+			list=varDict(key)
+			list.append(value)		
+		}
+	}			
+}
+\end{lstlisting}
+As one can see, this approach has a quadratic running time, no matter the input, compared to a pure gaussian elimination, that has a cubic time complexity.
+
+The task is then to start extracting the SFGs from the original DAE with the help of this list. If the system contains no algebraic loops, it should be possible to iterate through the dictionary and find a variable that has only one rownumber associated with it. Removing that variable from the dictionary and remove the corresponding rownumber from the remaining variables in the dictionary.
+
+Pseudocode for this process:
+\begin{lstlisting}
+int i=0
+int looped=0 // looped is used to detect algebraic loops
+solvList=[]
+while(varDict!=empty && looped !=2) {
+	key=varDict(i).key
+	list=varDict(key)
+	if(lengthOf(list)==1){
+		//add a tuple with rownumber and key
+		rowNumber=list[0]
+		solvList.append((key,rowNumber);
+		//remove the key (variable), since the
+		// problem is solved for this key
+		varDict.remove(key)
+		
+		for otherLists in varDict{
+			//we remove the rownumber 
+			//from the rest of the variables.
+			//Since this row is already consumed
+			//in the solution
+			otherLists.remove(rowNumber)
+		}
+		looped=0; 	//If we solved for a variable, 
+					//reset looped.
+	}
+	i=i+1;
+	if(i>varDict.size()){
+		i=0; //restart the process from the beginning
+		looped+=1; // increment looped 	
+	}			
+}
+if(looped==2){
+	print "failed due to algebraic loops
+}else{
+	print "success"
+}
+
+\end{lstlisting}
+
+At this point, we have a list of tuples, with each of the tuples containing a variable name and a row number, and we can begin to extract the SFGs from the DAE.
