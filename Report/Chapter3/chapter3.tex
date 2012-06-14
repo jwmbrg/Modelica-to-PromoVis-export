@@ -53,6 +53,7 @@ When we then iterate over each of the variables to get their corresponding descr
 
 \section{Interfacing with the tool}
 Since there are several seperate phases in the tool, and each of the phases might later be extended with additional options and necessary parameters xml is used to pass information to the tool. By using xml and not command line arguments one might, through using existing modules for xml-parsing and object representation of the xml files, just pass the instance of the "parsed" xml document to each of the phases. Where they then might extract the information needed for the phases.FIXME\\\\Following is an example of the input file to the tool, containing all the necessary parameters.
+\lstset{language=XML}
 \begin{lstlisting}
 <?xml version="1.0" ?> 
 <root>

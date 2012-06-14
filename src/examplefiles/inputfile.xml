@@ -2,7 +2,7 @@
 <root>
         <filepath>C:\Users\Public\Documents\JModelica.org\Modelica-to-PromoVis-export\src\examplefiles\QuadTankPack.mo</filepath>
         <model>QuadTankPack.QuadTank</model>
-        <mpattern>_pmv;_blabla;x2</mpattern>
+        <mpattern>_pmv;foo_;x2</mpattern>
         <outputpath>C:\ProMoVis\emitted\output.xml</outputpath>
         <pmvoutputpath>C:\ProMoVis\emitted\QuadTank.pmv</pmvoutputpath>
 </root>
