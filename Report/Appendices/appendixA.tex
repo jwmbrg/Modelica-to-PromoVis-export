@@ -21,8 +21,8 @@ We then examine this system:
 \begin{equation}
 S*L
 \end{equation}
-By examining each of the columns in S and storing all the rownumbers that contains non-zero elements together with the variable corresponding to the column. In this way a list is retrieved for each of the variables, containing all the rownumbers where the variable is present.
-The pseudo code for this process might look something like this:
+By examining each of the columns in S and storing all the rownumbers that contains non-zero elements together with the variable corresponding to the column a list is retrieved for each of the variables.This  list i containing all the rownumbers where the variable is present.
+The pseudocode for this process might look something like this:
 \begin{lstlisting}
 varDict.initWithKeysAndValues(L,[])
 for row in S {
@@ -36,7 +36,7 @@ for row in S {
 	}			
 }
 \end{lstlisting}
-As one can see, this approach has a quadratic running time, no matter the input, compared to a pure gaussian elimination, that has a cubic time complexity.
+As one can see, this approach has a quadratic running time, no matter the input, compared to a pure gaussian elimination approach, that has a cubic time complexity.
 
 The task is then to start extracting the SFGs from the original DAE with the help of this list. If the system contains no algebraic loops, it should be possible to iterate through the dictionary and find a variable that has only one rownumber associated with it. Removing that variable from the dictionary and remove the corresponding rownumber from the remaining variables in the dictionary.
 
@@ -80,4 +80,4 @@ if(looped==2){
 
 \end{lstlisting}
 
-At this point, we have a list of tuples, with each of the tuples containing a variable name and a row number, and we can begin to extract the SFGs from the DAE.
+At this point, we have a list of tuples, with each of the tuples containing a variable name and a row number, and we can begin to extract the SFGs from the DAE by solving each of the variable for the given rownumber.

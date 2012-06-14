@@ -1,13 +1,11 @@
-This is the very short notes from the structured meetings during the project. When exporting them to this report i have tried to indicate if questions and suggestions, where they occur, have been solved or not. So this is also i kind of todo list for future development of the export tool. If Anything is indicated as solved or implemented, the original report contains more information regarding how.
+This is the very short notes from the some of the meetings that occured during the project. When exporting them to this report i have tried to indicate if questions and suggestions, where they occur, have been solved or not. So this is also i kind of todo list for future development of the export tool. If Anything is indicated as solved or implemented, the original report contains more information.
 
 \section{2012-02-27}
-Attending: Johan Karlsson(ProMoVis Front-end), Jesper
-General discussion regarding the structure of the ProMoVis representation of the SFGs. ProMoVis does support any kind of representation of the system, one can specify the inputs to a variable as a single processmodel for every inputvariable, declare them on state space form, or you can create a MIMO-representation of the process model with several transfer functions and multiple input and output variables. 
-The last one, the possibility to create a MIMO-representation should probably be the most convenient to use in the project, since the straight forward way to extract relations from a DAE results in a Single output multiple input model.
+Attending: Johan Karlsson(ProMoVis Front-end), Jesper\\\newline General discussion regarding the structure of the ProMoVis representation of the SFGs. ProMoVis does support any kind of representation of the system, one can specify the inputs to a variable as a single processmodel for every inputvariable, declare them on state space form, or you can create a MIMO-representation of the process model with several transfer functions and multiple input and output variables. The last one, the possibility to create a MIMO-representation should probably be the most convenient to use in the project, since the straight forward way to extract relations from a DAE results in a Single output multiple input model.
 \section{2012-04-02}
-Attending: Wolfgang, Miguel and Jesper
+Attending: Wolfgang, Miguel and Jesper\\\newline 
 \begin{itemize}
-\item Misconception about the E-matrix on my part. I cannot assume that the E-matrix will be on diagonal form. A misunderstanding regarding what an algebraic variable is in Modelica also implies that another assumption, that there will always be exactly as many rows as there is states is wrong. This needs to be solved.[Solved]
+\item Misconception about the E-matrix on my part. I cannot assume that the E-matrix will be on diagonal form. Another misunderstanding regarding what an algebraic variable is in Modelica also implies that anotherno assumption, that there will always be exactly as many rows as there is states is wrong. This needs to be solved.[Solved]
 \item Discussion around how the export tool should create the graphical layout. 
 \begin{itemize}
 \item One might emit the input- and measured variables as the edges of a circle, and then put all the internal variables, that shouldn't be of interest for the user, inside that circle.[Solved]
@@ -17,13 +15,23 @@ Attending: Wolfgang, Miguel and Jesper
 \item lorem ipsum
 \end{itemize}
 
+\section{2012-04-28}
+Attending: Jesper, Miguel, Wolfgang and Johan Karlsson\\\newline The intention was that this would be a discussion with the potential users of ProMoVis, but unfortunately they did not show up. But the following topics where covered.
+\begin{itemize}
+\item Interfacing between the export tool and ProMoVis. Here we discussed several ways to communicate between the export tool and ProMoVis, such as having a server running on localhost, running a script with arguments etc. We decided to use and XML file as input and output from the export tool. Since XML provides a well known structure and the addition of arguments and configuration options should be straight forward when/if further development demands this. 
+\item I should implement a reference Java project that displays how one can call the export tool from Java. But should pitch some kind of interface against the user first.
+\item The discussion regarding the possibility for the user to modify the layout of a system and then re-import a modified Modelica model was again discussed. There is not enough time to solve this, since this is a task with many special cases that depends on the user. To accomplish this i would need time and a structured effort together with a couple of potential users. 
+\item We continued a discussion that started over mail, regarding what should be done with the variables that is not indicated as "measured" by a user. There is the option to merge the transfer functions, but due to the possibility of loops in the paths between to "measured" variables, we initially just keep them as internal. Sticking with the graphical layout discussed in the previous meeting.
+\item I should make sure that there is room for interactivity between the phases. In case we would later find the need to ask the user for additional configuration options.
+\end{itemize}
+FIXME THERE WAS SOME INTENSE DISCUSSIONS, HAVE I MISSED NOTING SOMETHING.
 
 \section{2012-04-27}
-Attending: Jesper, Migueal and Thomas Eriksson (Optimation AB)
-During this meeting we discussed the problem with Algebraic variables and how to make sure that they get valid in the generated ProMoVis representation. There was also the folloing suggestions from Thomas:
+Attending: Jesper, Miguel and Thomas Eriksson (Optimation AB)\\\newline During this meeting we discussed the problem with Algebraic variables and how to make sure that they get valid in the generated ProMoVis representation. There was also the folloing suggestions from Thomas:
 \begin{itemize}
-\item Add the possibility to indicate that a variable in the original Modelica model should be of the type "Measured" in the generated ProMoVis scenario. Prefferably through the matching of the last part of the variable names.[Implemented]
-\item Try to extract the max and min values, if specified in the Modelica model and use these as values as "Saturation" in the ProMoVis representation. [Unimplemented]
-\item If nominal values is specified, use 0-nominal value as "Range" in the ProMoVis representation.[Unimplemented]
-\item See if the scaling factors can be extracted and try to find a way to automatically identify the tolerances on the derivatives with the help from this. E.g. are they "close enough" to zero in the linearized model.[Unimplemented]
+\item Add the possibility to indicate that a variable in the original Modelica model should be of the type "Measured" in the generated ProMoVis scenario. Prefferably through the matching of the last part of the variable names.[Solved]
+\item Try to extract the max and min values, if specified in the Modelica model and use these as values as "Saturation" in the ProMoVis representation. [Not Solved]
+\item If nominal values is specified, use 0-nominal value as "Range" in the ProMoVis representation.[Not Solved]
+\item See if the scaling factors can be extracted and try to find a way to automatically identify the tolerances on the derivatives with the help from this. E.g. are they "close enough" to zero in the linearised model.[Not Solved]
+\item Thomas is going to send som "real" models that we can test in the export tool.
 \end{itemize}

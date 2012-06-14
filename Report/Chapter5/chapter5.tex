@@ -2,4 +2,16 @@ To add a second chapter, simply include it in the main document.
 
 \section{Discussion}
 \subsection{Limitations}
-\section{Future development}
+
+
+\subsubsection{Conditional values}
+A thing that should be implemented is the ability to extract min, max, nominal and other additional parameters that a variable may have in a Modelica-model since this information would also be useful in a generated ProMoVis-representation. But right now there does not seem to be a way to extract this through JModelica. A forum post has been created, at jmodelica.org, regarding the absence of this possibility.
+\subsubsection{The graphical representation}
+Although the translation between Modelica and the ProMoVis-representation is now possible, the two environments is not integrated with each others in such a way that one can do modifications in Modelica, and then only the affected parts of the system is changed in ProMoVis. This is a significant drawback when it comes to the visualisation purpose of ProMoVis. A user that has imported a Modelica model into ProMoVis and done some custom layout and maybe added additional graphical representation through ProMoVis components, cant reuse this information when re-running an export, even though he might only have changed the operating points of the Modelica model.\\\newline There exists two general approaches to this problem: 
+\begin{itemize}
+\item One could add the possibility to do the export with a former ProMoVis-file as additional input. Then let the export tool could scan through the old file, look for variables with the same name and re-use the graphical information from that node. This approach still demands that the user add the graphical information needed for visualisation after the first export.
+\item Another approach is to add support for extracting information from graphical annotations. The graphical annotations are a standardised, through the specification of the language \cite{ModelicaSpec}\nocite{*}, way of creating a visual representation of a modeled system and its components.
+\end{itemize}Of this two approaches, the later should be the one to aim for since supporting the interpretation of graphical annotations in the export-tool could make the transition between a users Modelica environment and ProMoVis a one-click effort. 
+
+\section{The goal}
+This project has shown that it is indeed possible to extract and translate models from Modelica into ProMoVis but for future development the challenge does not lie in any issues related to control theory or mathematical obstructions FIXME. Instead, the challenge lies in making it convenient for the user. 
