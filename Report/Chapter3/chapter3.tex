@@ -35,22 +35,22 @@ $\begin{array}{rcl} x0  = \frac{(A_{12}-E_{12}*s)}{(E_{11}*s-A_{11})}*x1 +\frac{
 
 
 \subsection{Validation and Transformations}
-After extracting the variables, we examine the the derivatives for each of the states to make sure that they are 0, no error is produced if they are not. But a warning is emitted so that the user is aware of the fact that the model they are using probably is invalid.
+After extracting the variables, we examine the the derivatives for each of the states to make sure that they are 0, no error is produced if they are not. But a warning is emitted so that the user is aware of the fact that the model they are using probably is invalid. During this phase, additional modifications, provided by the user, should be done. Currently, the only modification supported, is the ability to indicate that some of the variables in the system should be emitted as measured variables in the resulting ProMoVis representation. 
 \subsection{Scenario generation}
-When the structure is validated and all optional transformations are done. The actual generation of the ProMoVis represenation is straight forward. Basically the ProMoVis representation contains two parts. First the descriptive part, a collection of all variables, with their names, graphical layout and additional mathematical properties. The second part,  the processmodels, describes the relation between a variable and the other variables in the system. 
+When the structure is validated and all optional transformations have been done. The actual generation of the ProMoVis represenation is straightforward. Basically the ProMoVis representation contains two parts. First the descriptive part, a collection of all variables, with their names, graphical layout and additional mathematical properties. The second part, the processmodels, are describing the relations between variables in the system. 
 \subsubsection{Graphical Layout}
-Even though Modelica supports description of position and graphical represenation of models through its annotations interface, these are not necessary for a valid Modelica model. Therefore no effort has been put into trying to recieve this type of meta-information. Instead, to make sure that a user of ProMoVis is able to easilly access and attach controllers to the generated model the variables are emitted as depicted in the figure below.\\\newline
+Even though Modelica supports description of position and graphical representation of models through its annotations interface, these are not necessary for a valid Modelica model. Therefore no effort has been put into trying to extract this type of meta-information. Instead, to make sure that a user of ProMoVis is able to easily access and attach controllers to the generated model the variables are emitted as depicted in the figure below.\\\newline
 \setlength\fboxsep{0pt}
 \setlength\fboxrule{0.5pt}
 \fbox{\includegraphics[scale=0.8,bb=0 0 117mm 154mm] {Figures/layout.pdf}}\\\newline
 
-That is, inputs and measured variables are emitted as the upper and lower half of a circle while internal variables, that are assumed to not be of interest, are collected in the center of the circle. This achieved by a helper object, the layout emitter, that is initiated with the number of internal, measured and input variables and then calculates the step size in x and y direction that will eventually achieve the circular shape. 
+That is, inputs and measured variables are emitted as the upper and lower half of a circle respectively while internal variables, that are assumed not to be of interest to the user, are collected in the center of the circle. This achieved by a helper object, the layout emitter, that is initiated with the number of internal, measured and input variables and then calculates the step sizes in the x and y directions that will eventually achieve the circular shape. 
 
 When we then iterate over each of the variables to get their corresponding descriptive part, the layout emitter is passed as an argument, so that it can be queried for the variables graphical x and y position. This i done in a very naive way, the layout emitter has counters for each of the variable types and then, each time it is queried, it increments the current counter value together with the previously calculated step sizes to generate one x,y coordinate that is returned to the querying variable. 
 \subsubsection{Additional information added}
 
 \section{Interfacing with the tool}
-Since there are several seperate phases in the tool, and each of the phases might later be extended with additional options and necessary parameters xml is used to pass information to the tool. By using xml and not command line arguments one might, through using existing modules for xml-parsing and object representation of the xml files, just pass the instance of the "parsed" xml document to each of the phases. Where they then might extract the information needed for the phases.FIXME\\\\Following is an example of the input file to the tool, containing all the necessary parameters.
+Since there are several separate phases in the tool, and each of the phases might later be extended with additional options and necessary parameters, an XML-file is used to pass information to the tool. By using XML, that is a well known, structured, format for representing data there is not only the benefit of making the inputfiles easy accessible to other developers and software, but also it elmininates the need to develop and maintain the code for parsing a tool specific format. With XML existing modules for parsing and object representation of the XML files can be used. And in the tool, an instance of the inputfile can be passed along to each of the phases. Where each phase then may just extract necessary and optional parameters it needs to use. \\\\Following is an example of the input file to the tool, containing all the necessary parameters.
 \lstset{language=XML}
 \begin{lstlisting}
 <?xml version="1.0" ?> 
@@ -62,10 +62,10 @@ Since there are several seperate phases in the tool, and each of the phases migh
         <pmvoutputpath>C:\ProMoVis\QuadTank.pmv</pmvoutputpath>
 </root>
 \end{lstlisting}
-The filepath and model nodes are the path to the original modelica source file and the full model name, including packagenames, of the target model. The node, mpattern, contains regular expression that the tool will try to match the ending of variable names on, so that if it encounters the variables foo\_pmv, foo\_foobar, foox2 or x2 it will make sure that those variables are indicated as measured variables in the ProMoVis representation.
+The filepath and model nodes are the path to the original Modelica source file and the full model name, including packagename respectively. The node, mpattern, contains regular expression that the tool will try to match the ending of variable names on, so that if it encounters the variables foo\_pmv, foo\_foobar, foox2 or x2 it will make sure that those variables are indicated as measured variables in the ProMoVis representation.
 
 
 \section{DAE vs ODE}
-Readers familiar with Modelica and the JModelica environment might be accustomed to working on the ODE-representation of systems. The reason that we stick with the DAE even though the extraction of the SFG from the ODE is less complex is due to the fact that when using the ODE we loose casuality whenever an algebraic variable is in a path. For a more thorough dicussion see Appendix \ref{appB}.
+Readers familiar with Modelica and the JModelica environment might be accustomed to working on the ODE-representation of systems. The reason that we stick with the DAE even though the extraction of the SFG from the ODE is less complex is due to the fact that when using the ODE we loose causality whenever a state depends on an algebraic variable. For a more thorough discussion see Appendix \ref{appB}.
 
 

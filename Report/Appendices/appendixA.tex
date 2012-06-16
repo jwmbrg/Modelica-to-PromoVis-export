@@ -1,6 +1,6 @@
 
-\section{Deciding which variable to solve first}
-When extracting the SFGs from the DAE one has to make sure that one solves each of the rows for the correct variables making sure that you can extract an SFG for every variable in the system.Recall the general equation for the DAE:
+\section{Deciding which row to solve for which variable}
+When extracting the SFGs from the DAE one has to make sure that one solves each of the rows for the correct variables, making sure that an SFG can be extracted for every variable in the system. Recall the general equation for the DAE:
 \begin{equation}
 E*dx = A*x + B*u + F*w + g
 \end{equation}
@@ -8,11 +8,11 @@ If no algebraic equations are present in the orignal Modelica model, the resulti
 \begin{equation}
 E*dx = A*x + B*u + g
 \end{equation}
-The number of rows in such a system, containing no algebraic variables, would be the same as the amount of the number of declared or inferred states in the systems. The introduction of algebraic variables, that we recall are all variables that does not have a declared derivative, adds 1 row to the DAE.Since states, by definition, has a derivative declared, we can therefore look only at the E and F matrices to solve the problem of which row to solve for which variable. Since a state has to be solved for a row containing its derivative. If we declare:
+The number of rows in such a system, containing no algebraic variables, would be the same as the amount of the number of declared or inferred states in the systems. The introduction of algebraic variables, that we recall are all variables that does not have a declared derivative, adds 1 row to the DAE. Since states, by definition, has a derivative declared, we can therefore look only at the E and F matrices to solve the problem of which row to solve for which variable. This since a state has to be solved for a row containing its derivative. If we declare:
 \begin{equation}
 S=[E|F]
 \end{equation}
-Here we easilly realize that the S matrix will be an nxn matrix, since we by concatenating the E and F matrix, add as many columns that there is extra rows.\\
+Here we easily realize that the S matrix will be an nxn matrix, since we by concatenating the E and F matrix, add as many columns that there is extra rows.\\
 With the column vector L
 \begin{equation}
 L=[dx_0...dx_i, w_0...w_i]
@@ -21,8 +21,8 @@ We then examine this system:
 \begin{equation}
 S*L
 \end{equation}
-By examining each of the columns in S and storing all the rownumbers that contains non-zero elements together with the variable corresponding to the column a list is retrieved for each of the variables.This  list i containing all the rownumbers where the variable is present.
-The pseudocode for this process might look something like this:
+By examining each of the columns in S and storing all the rownumbers that contains non-zero elements together with the variable corresponding to the column a list is retrieved for each of the variables.This  list then contains all the row numbers where the variable is present.
+The pseudocode for the process:
 
 \begin{lstlisting}
 varDict.initWithKeysAndValues(L,[])
@@ -37,11 +37,9 @@ for row in S {
 	}			
 }
 \end{lstlisting}
-As one can see, this approach has a quadratic running time, no matter the input, compared to a pure gaussian elimination approach, that has a cubic time complexity.
+As one can see, this approach has a quadratic running time, no matter the input, compared to a pure Gaussian elimination approach, that has a cubic time complexity.
 
-The task is then to start extracting the SFGs from the original DAE with the help of this list. If the system contains no algebraic loops, it should be possible to iterate through the dictionary and find a variable that has only one rownumber associated with it. Removing that variable from the dictionary and remove the corresponding rownumber from the remaining variables in the dictionary.
-
-Pseudocode for this process:
+The task is then to start extracting the SFGs from the original DAE with the help of this list. If the system contains no algebraic loops, it should be possible to iterate through the dictionary and find a variable that has only one row number associated with it. By removing the found variable from the dictionary and remove the corresponding row number from the remaining variables in the dictionary. We can create a  new list, solvList, in the following manner:
 \begin{lstlisting}
 int i=0
 int looped=0 // looped is used to detect algebraic loops
@@ -74,11 +72,11 @@ while(varDict!=empty && looped !=2) {
 	}			
 }
 if(looped==2){
-	print "failed due to algebraic loops
+	putmessage( "failed due to algebraic loops")
 }else{
-	print "success"
+	putmessage( "success")
 }
 
 \end{lstlisting}
 
-At this point, we have a list of tuples, with each of the tuples containing a variable name and a row number, and we can begin to extract the SFGs from the DAE by solving each of the variable for the given rownumber.
+At this point, we have a list of tuples in solvList, with each of the tuples containing a variable name and a row number, and we can begin to extract the SFGs from the DAE by solving each of the variable for the given row number.
