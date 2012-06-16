@@ -1,8 +1,8 @@
-In this chapter a small we show how a Modelica model is compiled, translated and export to ProMoVis through the export tool. The files used are available throught the source code\cite{githabb}\nocite{*}.
+In this chapter a small Modelica model is compiled, translated and exported to ProMoVis through the export-tool. The files used are available, together with the source code, at GitHub\cite{githabb}\nocite{*}.
 
 \section{The input model}
 
-If we take the following Modelica model: 
+Selecting the following model as input:\\ 
 \lstset{language=modelica}
 \begin{lstlisting}
 package QuadTankPack
@@ -52,24 +52,30 @@ package QuadTankPack
   end QuadTank;
 end QuadTankPack;
 \end{lstlisting}
-This is basically the same model as provided in the JModelica examples, the initial values of the states are just set so that the model is in equilibrium at time 0. There is also the addition of the variable, x1plusx2, just to make the example complete with both states and algebraic variables. 
+This is basically the same model as provided in the JModelica examples with some small changes. The initial values have been configured in such a way that the system is at equlibrium at time zero. As stated earlier, this is something the user has to verify beforhand with the help from his Modelica environment. Besides the initial values a variable, x1plusx2, have been added to the model. This is done entirely to introduce an algebraic variable in the system.
+
 \section{Running the export}
-If we set up our xml file as depicted in chapter 3, and indicate that we want variables with "\_pmv", "foo\_" and "x2" to be measured variables in the resulting ProMoVis-representation. We then get the following SFG in ProMoVis:
+After setting upp the input as depicted in chapter 3 and indicating that variables with "\_pmv", "foo\_" and "x2" should be set as measured variables in the resulting ProMoVis-representation, the exporttool is run. After checking that no warnings were generated, the result can be viewed in ProMoVis:
 
 \setlength\fboxsep{0pt}
 \setlength\fboxrule{0.5pt}
 \fbox{\includegraphics{Figures/exportSFG.png}}\\\newline
-Here we see that x1\_pmv and x2 has been set as measured variables. None of the variable ended with foo\_.
-What if we examine the extracted relations, if we first look at the x1plusx2 variable:\\\newline
+As seen,  x1\_pmv and x2 has been set as measured variables, matching with \_pmv and x2 respectively, while none of the variables matched with the pattern "foo\_". Inspecting the processmodel for x1plusx2:\\\newline
 \setlength\fboxsep{0pt}
 \setlength\fboxrule{0.5pt}
 \fbox{\includegraphics{Figures/x1plusx2Rel.png}}\\\newline
-Here, due to the fact that we have represented all the variables as Multiple input, single output process models, it doesnt matter wich of the incoming arrows to z1plusx2 we examine, we will still see all of the inputs as depicted in the dialog. And as we can see, the transfer functions is just unity, for both of the input variables. \\\newline
+Here, due to the fact that all the variables are represented as Multiple input, single output process models, it doesn't matter which of the incoming arrows to x1plusx2 that are examined. All of the inputs, as depicted in the dialogue, are displayed. As expected, the transfer functions is just unity, for both of the input variables to x1plusx2. \\\newline
+Examining the properties of the variable yields:
+
 \setlength\fboxsep{0pt}
 \setlength\fboxrule{0.5pt}
 \fbox{\includegraphics{Figures/x1plusx2OPP.png}}\\\newline
-Naturally, since we have set the initial values for x1\_pmv and x2 in the original model and the linearisation is done around time 0, the working(operating) point of x1plusx2 is the sum of the initial values.\\\newline
+Naturally, since the initial values for x1\_pmv and x2 were set in the original model, the working(operating) point of x1plusx2 is the sum of the initial values.\\\newline
+Lets look at a variable with some more complex input relations. Choosing x2 it should have both x4\_foo and u2 as inputs and contain a derivative.\\\newline
 \setlength\fboxsep{0pt}
 \setlength\fboxrule{0.5pt}
-\fbox{\includegraphics{Figures/x3rel.png}}\\\newline
-
+\fbox{\includegraphics{Figures/x2rel.png}}\\\newline
+From the picture we can see that the input relations are:\\
+$\begin{array}{rcl} \frac{-3.4285E-4}{-s -0.05275}*u2 \end{array}$\\
+$\begin{array}{rcl} \frac{-0.1817}{-s -0.05275}*x4_foo \end{array}$\\\newline
+Looking at the denominators, it's realised that they are both the same, this is an "heritage" FIXME coming from the algorithm used to extract the SFGs.
