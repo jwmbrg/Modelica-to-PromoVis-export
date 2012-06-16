@@ -139,14 +139,16 @@ class pmv_variable(object):
         for element in self.input_dict :
             if(not first):
                 toSet+=","
-                first=False
+            first=False
             toSet+=str(self.input_dict.get(element).num.tolist())
+            print toSet
         
         for element in self.state_dict :
             if(not first):
                 toSet+=","
-                first=False
+            first=False
             toSet+=str(self.state_dict.get(element).num.tolist()) 
+            print toSet
         toSet+="}"
         toAdd.setAttribute("v",toSet)
         toReturn.appendChild(toAdd)        

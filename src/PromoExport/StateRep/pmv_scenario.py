@@ -401,8 +401,6 @@ class pmv_scenario(object):
         return doc
     
     def setMeasuredVars(self,listOfVars):
-        print listOfVars
-        print self.varArr
         for element in self.varArr:
             for s in listOfVars:
                 if element.name==s:
