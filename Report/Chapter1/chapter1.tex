@@ -1,24 +1,10 @@
-This document serves both as an example of the \LaTeX\ template
-for Master's theses, and at the same time as documentation
-on how to use it.
-
 \section{Background}
-The field of computer aided modelling of physical systems
-\subsection{Modelica}
-Modelica is a object-oriented declarative programming language used to create models of physical system. Unlike many other modelling languages, Modelica is not domain specific and thus can be used to model physical systems consisting of a mix of electrical, mechanical and chemical processes. Since the release of the first language specification in 1997 the continuous development of the language has been maintained by the Modelica Association and the current version of the Language specification is 3.2 \cite{ModelicaSpec}.\nocite{*}
-\subsection{ProMoVis}
-While Modelica, Simulink and other existing tools is very powerful when it comes to simulation and modelling of complex systems. A drawback with existing tools is that although a user declares the relations between inputs and outputs, at simulation time the models are still treated as "black boxes". Making it hard to monitor and analyse the internal behaviour of components in the modelled systems. Due to an identified need for a tool that can solve these problems \cite{ProMoVisPaper}\nocite{*}, the design and implementation of ProMoVis started in 2011(FIXME) and is currently being prepared for release as an open source project.
-
-
-
-
-
+%During a research project at LTU a tool was developed, called ProMoVis,  aimed at structure analysis and visualisation of complex physical processes.
+While Modelica, Simulink and other existing tools is very powerful when it comes to simulation and modelling of complex systems. A drawback with existing tools is that although a user declares the relations between inputs and outputs, at simulation time the models are still assumed to be treated as "black boxes". Making it hard to monitor and analyse the internal behaviour of components in the modelled systems. Due to an identified need for a tool that can solve these problems \cite{ProMoVisPaper}\nocite{*}, the design and implementation of ProMoVis started in 2010 and is currently being prepared for release as an open source project.
 \section{Problem Description}
-As stated earlier, ProMoVis purpose is visualisation and analysis of large systems, thus the components and the relation between them is assumed to be known. Today, there is no scripting interface to ProMoVis and models have to be created in the graphical environment a work that can become very tedious and error-prone for complex systems. At the same time a user that would benefit from using ProMoVis in his design process can be assumed to already have created models intended for simulation. The possibility to import existing models would therefore highly increase the "ease of use" of ProMoVis FIXME UGLY.
-
-\section{Project Goals}
-
-Due to its widespread use and the amount of open source tools that are available for models created in Modelica the projects goal is to create a tool that can, import linearised models into ProMoVis.
+As stated earlier, ProMoVis purpose is visualisation and analysis of large systems. It assumes that the user has information about the components of the system and the relations between them. Today, there is no scripting interface to ProMoVis and models have to be created in the graphical environment, placing the components and defining the relations one by one. This is a task that can become very tedious and error-prone for complex systems. At the same time a user that would benefit from using ProMoVis in his design process can be assumed to already have existing models, from another environment, available. Therefore the possibility to import existing models would make ProMoVis more accessible to its intended users.
+\section{Project Goal}
+In recent time Modelica, as a tool for modeling of physical systems, has shown an increase in popularity and has become somewhat of a standard for describing physical systems. Due to its widespread use and the amount of open source tools that are available for models described with help from the language, this projects goal is to implement a tool that can import models, written in Modelica, into ProMoVis.
 
 
 
