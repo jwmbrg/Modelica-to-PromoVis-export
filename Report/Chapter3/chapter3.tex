@@ -1,6 +1,5 @@
-To add a second chapter, simply include it in the main document.
-
 \section{General structure}
+The internal structure are divided into four explicit phases. 
 \subsection{JModelica(Compile)Phase}
 The JModelica environment is used to compile the Modelica models to JModelicas JMU representation \cite{jmodelicaorg}\nocite{*}. ProMoVis assumes the systems to be linear and the compiled model needs to be linearised around an operating point. The linearisation is performed at time 0, and it is assumed that the system is stable at the time.\\\\After linearisation a DAE on the following form can be extracted:
 \begin{equation}
@@ -21,11 +20,8 @@ This fact is easilly seen with the following example.\\\newline
 If a DAE for a system with two state variables and two algebraic variables is created, the general structure could be described in the following way:\\\newline
 $
 \begin{bmatrix} E_{11} & E_{12} \\ E_{21} & E_{22} \\ E_{31} & E_{32} \\ E_{41} & E_{42} \end{bmatrix} \left[ \begin{array}{c} x0' \\ x1' \end{array} \right]
-= \begin{bmatrix} A_{11} & A_{12} \\ A_{21} & A_{22} \\ A_{31} & A_{32} \\ A_{41} & A_{42} \end{bmatrix} \times \left[ \begin{array}{c} x0 \\ x1 \end{array} \right] + \begin{bmatrix} B_{11} & B_{12} \\ B_{21} & B_{22} \\ B_{31} & B_{32} \\ B_{41} & B_{42} \end{bmatrix} \times \left[ \begin{array}{c} u0 \\ u1 \end{array} \right]+
-\begin{bmatrix} F_{11} & F_{12} \\ F_{21} & F_{22} \\ F_{31} & F_{32} \\ F_{41} & F_{42}\end{bmatrix} \times \left[ \begin{array}{c} w0 \\ w1 \end{array} \right]$
-
-The task is now, to find which of the rows in the system that should be solved for which variable so that the whole system can be solved. Here, the DAE may not contain any Algebraic loops. For a more thorough discussion regarding this please review Appendix \ref{appA}\\\\After deciding which row that should be solved for which of the variables we build up an intermediate representation of the SFG, used internally in the tool, where we store each of the variables together with all of its input variables. Where input variables are the states and algebraic variables that directly affect the variable we solve for.\\\\
-As an example, if we assume that we should solve row 1 for x0 the procedure is as follows:\\\\$\begin{array}{rcl} E_{11}*x0*s  +E_{12}*x1*s=A_{11}*x0  +A_{12}*x1 +B_{11}*u0  +B_{12}*u1  +F_{11}*w0  +F_{12}*w1 \end{array}$\\
+= \begin{bmatrix} A_{11} & A_{12} \\ A_{21} & A_{22} \\ A_{31} & A_{32} \\ A_{41} & A_{42} \end{bmatrix} \left[ \begin{array}{c} x0 \\ x1 \end{array} \right] + \begin{bmatrix} B_{11} & B_{12} \\ B_{21} & B_{22} \\ B_{31} & B_{32} \\ B_{41} & B_{42} \end{bmatrix} \left[ \begin{array}{c} u0 \\ u1 \end{array} \right]+
+\begin{bmatrix} F_{11} & F_{12} \\ F_{21} & F_{22} \\ F_{31} & F_{32} \\ F_{41} & F_{42}\end{bmatrix} \left[ \begin{array}{c} w0 \\ w1 \end{array} \right]$\\\newline The task is now, to find which of the rows in the system that should be solved for which variable so that the whole system can be solved. Here a demand is that the DAE may not contain any Algebraic loops. For a more thorough discussion regarding this please review Appendix \ref{appA}\\\\After deciding which row that should be solved for which of the variables we build up an intermediate representation of the SFG, used internally in the tool, where we store each of the variables together with all of its input variables. This is best explained with the help of an example, if we assume that we should solve row 1 for x0 the procedure is as follows:\\\\$\begin{array}{rcl} E_{11}*x0*s  +E_{12}*x1*s=A_{11}*x0  +A_{12}*x1 +B_{11}*u0  +B_{12}*u1  +F_{11}*w0  +F_{12}*w1 \end{array}$\\
 \\Putting x0 alone on the left-hand side and collecting the coefficients then yields:\\\\$\begin{array}{rcl} (E_{11}*s-A_{11})*x0  =(A_{12}-E_{12}*s)*x1 +B_{11}*u0  +B_{12}*u1 +F_{11}*w0  +F_{12}*w1 \end{array}$\\\\
 Finally, solving for x0 yields:\\\\
 $\begin{array}{rcl} x0  = \frac{(A_{12}-E_{12}*s)}{(E_{11}*s-A_{11})}*x1 +\frac{B_{11}}{(E_{11}*s-A_{11})}*u0  +\frac{B_{12}}{(E_{11}*s-A_{11})}*u1 ++\frac{F_{11}}{(E_{11}*s-A_{11})}*w0 +\frac{F_{12}}{(E_{11}*s-A_{11})}*w1\end{array}$\\\newline Naturally, only the variables with non-zero coeffixients are stored as input variables.\\Roughly, the internal representation looks as the following:\\\newline
@@ -44,9 +40,7 @@ Even though Modelica supports description of position and graphical representati
 \setlength\fboxrule{0.5pt}
 \fbox{\includegraphics[scale=0.8,bb=0 0 117mm 154mm] {Figures/layout.pdf}}\\\newline
 
-That is, inputs and measured variables are emitted as the upper and lower half of a circle respectively while internal variables, that are assumed not to be of interest to the user, are collected in the center of the circle. This achieved by a helper object, the layout emitter, that is initiated with the number of internal, measured and input variables and then calculates the step sizes in the x and y directions that will eventually achieve the circular shape. 
-
-When we then iterate over each of the variables to get their corresponding descriptive part, the layout emitter is passed as an argument, so that it can be queried for the variables graphical x and y position. This i done in a very naive way, the layout emitter has counters for each of the variable types and then, each time it is queried, it increments the current counter value together with the previously calculated step sizes to generate one x,y coordinate that is returned to the querying variable. 
+That is, inputs and measured variables are emitted as the upper and lower half of a circle respectively while internal variables, that are assumed not to be of interest to the user, are collected in the center of the circle. This achieved by a helper object, the layout emitter, that is initiated with the number of internal, measured and input variables and then calculates the step sizes in the x and y directions that will eventually achieve the circular shape. When we then iterate over each of the variables to get their corresponding descriptive part, the layout emitter is passed as an argument, so that it can be queried for the variables graphical x and y position. This i done in a very naive way, the layout emitter has counters for each of the variable types and then, each time it is queried, it increments the current counter value together with the previously calculated step sizes to generate one x,y coordinate that is returned to the querying variable. 
 \subsubsection{Additional information added}
 
 \section{Interfacing with the tool}
@@ -62,7 +56,7 @@ Since there are several separate phases in the tool, and each of the phases migh
         <pmvoutputpath>C:\ProMoVis\QuadTank.pmv</pmvoutputpath>
 </root>
 \end{lstlisting}
-The filepath and model nodes are the path to the original Modelica source file and the full model name, including packagename respectively. The node, mpattern, contains regular expression that the tool will try to match the ending of variable names on, so that if it encounters the variables foo\_pmv, foo\_foobar, foox2 or x2 it will make sure that those variables are indicated as measured variables in the ProMoVis representation.
+The filepath and model nodes are the path to the original Modelica source file and the full model name, including packagename respectively. The node, mpattern, contains a regular expression that the tool will try to match to the ending of the variable names. E.g. if the tool encounters the variables foo\_pmv, foo\_foobar, foox2 or x2 it will make sure that those variables are indicated as measured variables in the ProMoVis representation.
 
 
 \section{DAE vs ODE}
