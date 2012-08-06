@@ -33,7 +33,7 @@ within;
 
 
   equation
-    der(h1) = -a1/A1*sqrt(2*g*h1) +pumprate/A1*u1;
+    der(h1) = -a1/A1*sqrt(2*g*h1) + pumprate/A1*u1;
 	der(h2) = -a2/A2*sqrt(2*g*h2) + a1/A1*sqrt(2*g*h1);
 					
 	

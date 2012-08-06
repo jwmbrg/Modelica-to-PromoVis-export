@@ -2,11 +2,11 @@
 \section{Deciding which row to solve for which variable}
 When extracting the SFG's from the DAE one has to make sure that one solves each of the rows for the correct variables, making sure that an SFG can be extracted for every variable in the system. Recall the general equation for the DAE:
 \begin{equation}
-E*dx = A*x + B*u + F*w + g
+E\dot{x} = Ax + Bu + Fw + g
 \end{equation}
 If no algebraic equations are present in the original Modelica model, the resulting DAE would have the following form:
 \begin{equation}
-E*dx = A*x + B*u + g
+E\dot{x} = Ax + Bu + g
 \end{equation}
 The number of rows in such a system, containing no algebraic variables, would be the same as the amount of the number of declared or inferred states in the systems. The introduction of algebraic variables, that we recall are all variables that does not have a declared derivative, adds 1 row to the DAE. Since states, by definition, has a derivative declared, we can therefore look only at the $E$ and $F$ matrices to solve the problem of which row to solve for which variable. This since a state has to be solved for a row containing its derivative. If we declare:
 \begin{equation}
@@ -37,7 +37,7 @@ for row in S {
 	}			
 }
 \end{lstlisting}
-As one can see, this approach has a quadratic running time, no matter the input, compared to a pure Gaussian elimination approach, that has a cubic time complexity.The task is then to start extracting the SFG's from the original DAE with the help of this list.\\\newline If the system contains no algebraic loops, it should be possible to iterate through the dictionary and find a variable that has only one row number associated with it. By removing the found variable from the dictionary and remove the corresponding row number from the remaining variables in the dictionary. We can create a  new list, solvList, in the following manner:
+As one can see, this approach has a quadratic running time, no matter the input, compared to a pure Gaussian elimination approach, that has a cubic worst case time complexity. The task is then to start extracting the SFG's from the original DAE with the help of this list.\\\newline If the system contains no algebraic loops, it should be possible to iterate through the dictionary and find a variable that has only one row number associated with it. By removing the found variable from the dictionary and remove the corresponding row number from the remaining variables in the dictionary. We can create a  new list, solvList, in the following manner:
 \begin{lstlisting}
 int i=0
 int looped=0 // looped is used to detect algebraic loops

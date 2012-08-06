@@ -53,13 +53,13 @@ package QuadTankPack
   end QuadTank;
 end QuadTankPack;
 \end{lstlisting}
-This is basically the same model as provided in the JModelica examples with some small changes. The initial values have been configured in such a way that the system is at equilibrium at time zero. As stated earlier, this is something the user has to verify beforehand with the help from his Modelica environment. Besides the initial values a variable, x1plusx2, have been added to the model. This is done entirely to introduce an algebraic variable in the system.
+This is basically the same model as provided in the JModelica examples with some small changes. The initial values have been configured in such a way that the system is at equilibrium at time zero. As stated earlier, this is something the user has to verify beforehand with the help of the Modelica environment used. Besides the initial values a variable, x1plusx2, have been added to the model. This is done entirely to introduce an algebraic variable in the system.
 \subsection{Running the export}
 After setup of the input file as depicted in chapter 3, indicating that variables with "\_pmv", "foo\_" and "x2" should be set as measured variables, the exporttool is called. After checking that no warnings were generated, the result can be viewed in ProMoVis:
 \setlength\fboxsep{0pt}
 \setlength\fboxrule{0.5pt}
 \fbox{\includegraphics{Figures/exportSFG.png}}\\\newline
-As seen,  x1\_pmv and x2 has been set as measured variables, matching with \_pmv and x2 respectively, while none of the variables matched with the pattern "foo\_". If we start by inspecting the processmodel for x1plusx2:\\\newline
+As seen,  x1\_pmv and x2 has been set as measured variables, matching with \_pmv and x2 respectively, while none of the variables matched with the pattern "foo\_". If we start by inspecting the process model for x1plusx2:\\\newline
 \setlength\fboxsep{0pt}
 \setlength\fboxrule{0.5pt}
 \fbox{\includegraphics{Figures/x1plusx2Rel.png}}\\\newline
@@ -76,5 +76,5 @@ Lets look at a variable with some more complex input relations. Choosing x2 it s
 \fbox{\includegraphics{Figures/x2rel.png}}\\\newline
 From the picture we can see that the input relations are:\\
 $\begin{array}{rcl} \frac{-3.4285E-4}{-s -0.05275}*u2 \end{array}$\\
-$\begin{array}{rcl} \frac{-0.1817}{-s -0.05275}*x4_foo \end{array}$\\\newline
-Looking at the denominators, they are both the same, recalling the algorithm, described in Appendix \ref{appA}, it is realised that this will always be the case for all of the inputs to a variable, they will all share a common denominator.
+$\begin{array}{rcl} \frac{-0.1817}{-s -0.05275}*x4\_foo \end{array}$\\\newline
+Looking at the denominators, they are both the same, recalling the algorithm, described in Appendix \ref{appA}, one can see that this will always be the case for all of the inputs to a variable, they will all share a common denominator.
