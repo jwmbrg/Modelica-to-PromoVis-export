@@ -29,11 +29,10 @@ within;
 
 
 	// Inputs
-	input Modelica.SIunits.Voltage u1(start=4,min=0,max=4);
-
-
+	input Real inflow(start=1,min=0,max=4);
   equation
-    der(h1) = -a1/A1*sqrt(2*g*h1) +pumprate/A1*u1;
+	
+    der(h1) = -a1/A1*sqrt(2*g*h1) +inflow;
 	der(h2) = -a2/A2*sqrt(2*g*h2) + a1/A1*sqrt(2*g*h1);
 					
 	
