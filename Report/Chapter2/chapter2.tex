@@ -8,12 +8,14 @@ There is several environments, both proprietary and open source, that provides t
 \subsection{Numpy and SciPy}
 Another important feature supporting the use of the JModelica platform was its tight integration with the NumPy and SciPy packages \cite{scipyorg}\nocite{*}. These are two very popular open source packages for Python providing a strong and well documented toolbox for mathematical computing. When extracting the mathematical models through JModelica they are represented using the data-structures provided by NumPy and in many cases this removes the need to "reinvent the wheel" for many of the operations that needs to be performed on the mathematical models before export. Instead one can directly use existing methods provided by SciPy and NumPy. The use of this package also makes the source-code for the export tool more accesible to other programmers familiar with Python and these packages.
 \subsection{The SFG}
-Since the SFG is a fundamental concept in ProMoVis it is motivated to give a brief introduction to how it is used in ProMoVis. ProMoVis bases its analysis and visualisation on SFG representations of dynamical systems. It is this representation the tool needs to be able to accurately extract from the existing Modelica models. Basically the an SFG is a directed graph with the vertices representing each of the states in the systems and the edges representing the relation, in terms of transfer functions, between the vertices.\\\newline A simple two tank system:
+Since the SFG is a fundamental concept in ProMoVis it is motivated to give a brief introduction to how it is used in ProMoVis. ProMoVis bases its analysis and visualisation on SFG representations of dynamical systems. It is this representation the tool needs to be able to accurately extract from the existing Modelica models. Basically the an SFG is a directed graph with the vertices representing each of the states in the systems and the edges representing the relation, in terms of transfer functions, between the vertices.\\\newline The simple two tank system in Fig.~\ref{fig:twotank} Can be described by the general equations.
 
-\setlength\fboxsep{0pt}
-\setlength\fboxrule{0.5pt}
-\fbox{\includegraphics[scale=0.4,bb=0 0 3.67in 7.47in] {Figures/TwoTankSystem.pdf}}\\\newline
-Can be described by the general equation.
+\begin{figure}
+
+\includegraphics[scale=0.4,bb=0 0 3.67in 7.47in] {Figures/TwoTankSystem.pdf}\\\newline
+\caption{A simple two tank system}
+\label{fig:twotank}
+\end{figure}
 \begin{equation}
     \dot{h_1} = -a_1/A_1*\sqrt{2*g*h_1} + inflow\\\newline
 \end{equation}
@@ -23,6 +25,9 @@ Can be described by the general equation.
 Linearising the specific model, described in Modelica,  in Appendix \ref{appD}. We can then extract the transfer functions. For the parameters specified the following is obtained:\\\newline
 Transfer function from inflow to h1 is : 1\\
 Transfer function from h1 to h2 is :$\begin{array}{rcl} \frac{0.23*10^{-2}}{-s -8.9*10^{-2}} \end{array}$\\\newline
-And the corresponding signal flow graph  can be drawn\\\newline
-\fbox{\includegraphics[scale=0.8,bb=0 0 5.38in 1.12in] {Figures/sfgtwotank.pdf}}\\\newline
-That is, the vertices in the SFG is the states of the system and the edges are the transfer functions between the states. In ProMoVis, there is also additional information supplied with the vertices, such as operating point, saturation values etc. 
+And the corresponding signal flow graph, as shown in Fig. ~\ref{fig:sfg}, can be obtained. From the figure, it is easy to see that the vertices in the SFG is the states of the system and the edges are the transfer functions between the states. In ProMoVis, there is also additional information supplied with the vertices, such as operating point, saturation values etc. 
+\begin{figure}
+\fbox{\includegraphics[scale=0.8,bb=0 0 5.38in 1.12in] {Figures/sfgtwotank.pdf}}
+\caption{Corresponding SFG for the two tank system in Fig~\ref{fig:twotank}}
+\label{fig:sfg}
+\end{figure}

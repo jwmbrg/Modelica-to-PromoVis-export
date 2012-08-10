@@ -1,9 +1,7 @@
 \section{A small example}
 In this chapter a small Modelica model is compiled, translated and exported to ProMoVis through the export-tool. The files used are available, together with the source code, at GitHub\cite{githabb}\nocite{*}.
-
 \subsection{The input model}
-
-The model used for the example:
+\begin{figure}
 \lstset{language=modelica}
 \begin{lstlisting}
 package QuadTankPack
@@ -53,28 +51,43 @@ package QuadTankPack
   end QuadTank;
 end QuadTankPack;
 \end{lstlisting}
-This is basically the same model as provided in the JModelica examples with some small changes. The initial values have been configured in such a way that the system is at equilibrium at time zero. As stated earlier, this is something the user has to verify beforehand with the help of the Modelica environment used. Besides the initial values a variable, x1plusx2, have been added to the model. This is done entirely to introduce an algebraic variable in the system.
+\caption{The model used for the example:}
+\label{fig:exfile}
+\end{figure} 
+The model used, shown in Fig.~\ref{fig:exfile}, is basically the same model as provided in the JModelica examples with some small changes. The initial values have been configured in such a way that the system is at equilibrium at time zero. As stated earlier, this is something the user has to verify beforehand with the help of the Modelica environment used. Besides the initial values a variable, x1plusx2, have been added to the model. This is done entirely to introduce an algebraic variable in the system.
 \subsection{Running the export}
-After setup of the input file as depicted in chapter 3, indicating that variables with "\_pmv", "foo\_" and "x2" should be set as measured variables, the exporttool is called. After checking that no warnings were generated, the result can be viewed in ProMoVis:
+After setup of the input file as depicted in chapter 3, indicating that variables with "\_pmv", "foo\_" and "x2" should be set as measured variables, the exporttool is called. After checking that no warnings were generated, the result, shown in Fig. ~\ref{fig:exsfg} can be viewed in ProMoVis. As seen,  x1\_pmv and x2 has been set as measured variables, matching with \_pmv and x2 respectively, while none of the variables matched with the pattern "foo\_".\\\newline If we inspect the process model for x1plusx2 
+, recalling the fact that all the variables are represented as Multiple input single output process models, one can see that it indeed doesn't matter which of the incoming arrows to x1plusx2 that is examined. All of the inputs, as depicted in Fig. ~\ref{fig:x1plusx2}, are displayed. As expected, the transfer functions are unity, for both of the input variables to x1plusx2.\\\newline%
+One can also examine the properties of the variable, as shown in Fig. ~\ref{fig:x1plusx2prop}. Here, since the initial values for x1\_pmv and x2 were set in the original model, the working(operating) point of x1plusx2 is the sum of the initial values.%
+%
+\begin{figure}
+\fbox{\includegraphics{Figures/exportSFG.png}}
+\caption{Resulting SFG in ProMoVis}
+\label{fig:exsfg}
+\end{figure} 
+%
+%
+\begin{figure}
+\fbox{\includegraphics{Figures/x1plusx2Rel.png}}
+\caption{Properties of the process model for x1plusx2}
+\label{fig:x1plusx2}
+\end{figure} 
+%
+\begin{figure}
 \setlength\fboxsep{0pt}
 \setlength\fboxrule{0.5pt}
-\fbox{\includegraphics{Figures/exportSFG.png}}\\\newline
-As seen,  x1\_pmv and x2 has been set as measured variables, matching with \_pmv and x2 respectively, while none of the variables matched with the pattern "foo\_". If we start by inspecting the process model for x1plusx2:\\\newline
+\fbox{\includegraphics{Figures/x1plusx2OPP.png}}
+\caption{Properties of x1plusx2}
+\label{fig:x1plusx2prop}
+\end{figure} 
+\\\newline Finally looking at x2,that should be a variable with some more complex input relations, it should have both x4\_foo and u2 as inputs and contain a derivative.From Fig. ~\ref{fig:x2} we can extract the transfer functions in Eq.~\ref{eq11} and Eq.~\ref{eq22}. Inspecting the denominators, they are both the same, recalling the algorithm, described in Appendix \ref{appA}, one can see that this will always be the case for all of the inputs to a variable, they will all share a common denominator.
+%
+\begin{figure}
 \setlength\fboxsep{0pt}
 \setlength\fboxrule{0.5pt}
-\fbox{\includegraphics{Figures/x1plusx2Rel.png}}\\\newline
-Here, due to the fact that all the variables are represented as Multiple input, single output process models, it doesn't matter which of the incoming arrows to x1plusx2 that is examined. All of the inputs, as depicted in the dialogue, are displayed. As expected, the transfer functions is unity, for both of the input variables to x1plusx2. \\\newline
-Examining the properties of the variable yields:
-
-\setlength\fboxsep{0pt}
-\setlength\fboxrule{0.5pt}
-\fbox{\includegraphics{Figures/x1plusx2OPP.png}}\\\newline
-Since the initial values for x1\_pmv and x2 were set in the original model, the working(operating) point of x1plusx2 is the sum of the initial values.\\\newline
-Lets look at a variable with some more complex input relations. Choosing x2 it should have both x4\_foo and u2 as inputs and contain a derivative.\\\newline
-\setlength\fboxsep{0pt}
-\setlength\fboxrule{0.5pt}
-\fbox{\includegraphics{Figures/x2rel.png}}\\\newline
-From the picture we can see that the input relations are:\\
-$\begin{array}{rcl} \frac{-3.4285E-4}{-s -0.05275}*u2 \end{array}$\\
-$\begin{array}{rcl} \frac{-0.1817}{-s -0.05275}*x4\_foo \end{array}$\\\newline
-Looking at the denominators, they are both the same, recalling the algorithm, described in Appendix \ref{appA}, one can see that this will always be the case for all of the inputs to a variable, they will all share a common denominator.
+\fbox{\includegraphics{Figures/x2rel.png}}
+\caption{Properties of the process model for x2}
+\label{fig:x2}
+\end{figure}
+\begin{equation}\begin{array}{rcl} \frac{-3.4285E-4}{-s -0.05275}*u2 \end{array}\label{eq11}\end{equation}
+\begin{equation}\begin{array}{rcl} \frac{-0.1817}{-s -0.05275}*x4\_foo \end{array}\label{eq22}\end{equation}
