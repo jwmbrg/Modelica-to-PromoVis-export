@@ -23,11 +23,11 @@ Since the SFG is a fundamental concept in ProMoVis it is motivated to give a bri
 	\dot{h_2} = -a_2/A_2*\sqrt{2*g*h_2} + a_1/A_1*\sqrt{2*g*h_1}
 \end{equation}
 Linearising the specific model, described in Modelica,  in Appendix \ref{appD}. We can then extract the transfer functions. For the parameters specified the following is obtained:\\\newline
-Transfer function from inflow to h1 is : 1\\
-Transfer function from h1 to h2 is :$\begin{array}{rcl} \frac{0.23*10^{-2}}{-s -8.9*10^{-2}} \end{array}$\\\newline
-And the corresponding signal flow graph, as shown in Fig. ~\ref{fig:sfg}, can be obtained. From the figure, it is easy to see that the vertices in the SFG is the states of the system and the edges are the transfer functions between the states. In ProMoVis, there is also additional information supplied with the vertices, such as operating point, saturation values etc. 
+Transfer function from inflow to h1 is : $\begin{array}{rcl} \frac{1}{s +2.3*10^{-2}} \end{array}$\\\newline
+Transfer function from h1 to h2 is :$\begin{array}{rcl} \frac{2.3*10^{-2}}{s +8.9*10^{-2}} \end{array}$\\\newline
+And the corresponding signal flow graph, as shown in Fig.~\ref{fig:sfg}, can be obtained. From the figure, it is easy to see that the vertices in the SFG is the states of the system and the edges are the transfer functions between the states. In ProMoVis, there is also additional information supplied with the vertices, such as operating point, saturation values etc. 
 \begin{figure}
-\fbox{\includegraphics[scale=0.8,bb=0 0 5.38in 1.12in] {Figures/sfgtwotank.pdf}}
+\fbox{\includegraphics[scale=0.8,bb=0 0 5.69in 1.04in] {Figures/sfgtwotank.pdf}}
 \caption{Corresponding SFG for the two tank system in Fig~\ref{fig:twotank}}
 \label{fig:sfg}
 \end{figure}

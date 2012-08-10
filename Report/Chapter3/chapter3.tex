@@ -1,5 +1,40 @@
 \section{General structure}
-The internal structure are divided into four explicit phases. 
+The internal structure are divided into four explicit phases and this chapter will provide an indepth explanation of each of the phases. But in short the following is done:
+\begin{itemize}
+\item In the JModelica phase the provided model is compiled and linearised before extracting a Mathematical model used to create the SFG.
+\item In the next phase, Intermediate representation, the obtained mathematical model is converted to an SFG representation used internally by the export tool. 
+\item The internal representation of the SFG is then analysed, checking for inconsistencies or possible problems that might origin from the original Modelica model, before user provided transformations are applied. 
+\item Finally  the  SFG representation, used internally, is translated to the actual XML based representation used in ProMoVis.
+\end{itemize}
+A brief overview is provided in Fig.~\ref{fig:phase}. The four phases have been kept strongly separated  from each other, to make room for adding user interaction in-between them. Although not currently utilized, the main reason for this is that, during the course of the project, a lot of questions have been raised regarding how to handle certain situations from a user perspective. Ranging from what to do when a compile time error occurs and what to do if the system is unstable at the linearisation, to  which states actually is of interest to analyse in ProMoVis and how the graphical representation should be created. Unfortunately, these kind of user experience questions, were not possible to address within the project. 
+\begin{figure}[h]
+\fbox{\includegraphics[scale=0.8,bb=0 0 7.72in 4.75in] {Figures/phases.pdf}}
+\caption{Diagram of the internal structure of the export tool.}
+\label{fig:phase}
+\end{figure}
+
+\subsection{Interfacing with the tool}
+Since there are several separate phases in the tool, and each of the phases might later be extended with additional options and necessary parameters, XML is used to pass information to the tool. By using XML that is a well known, structured, format for representing data there is not only the benefit of making the inputfiles easy accessible to other developers and software, but also it elmininates the need to develop and maintain the code for parsing a tool specific format. With XML, existing software for parsing and object representation of the XML files can be used. And in the tool, an instance, of the whole or parts of the inputfile can be passed along to each of the phases. Where each phase then may just extract the necessary parameters. \\\newline %
+In the example file,  Fig.~\ref{fig:coding},  %
+the \textit{filepath} and \textit{model} nodes are the path to the original Modelica source file and the full model name, including packagename. The node \textit{mpattern} is used to provide information regarding which of the variables declared in the Modelica model that should be measured variables in the output file. This is achieved through providing one or more regular expressions that the tool will try to match to the ending of the variable names. E.g. if the tool encounters the variables foo\_pmv, foo\_foobar, foox2 or x2 it will indicate that those variables should become measured variables in the final ProMoVis representation.
+%
+\begin{figure}
+\lstset{language=XML}
+\begin{lstlisting}
+<?xml version="1.0" ?> 
+<root>
+        <filepath>C:\Users\Public\Documents\QuadTankPack.mo</filepath>
+        <model>QuadTankPack.QuadTank</model>
+        <mpattern>_pmv;_fooBar;x2</mpattern>
+        <outputpath>C:\ProMoVis\output.xml</outputpath>
+        <pmvoutputpath>C:\ProMoVis\QuadTank.pmv</pmvoutputpath>
+</root>
+\end{lstlisting}
+\caption{Example inputfile used to pass information to the tool.}
+\label{fig:coding}
+\end{figure} 
+%
+
 \subsection{JModelica(Compile)Phase}
 The JModelica environment is used to compile the Modelica models to JModelicas JMU representation \cite{jmodelicaorg}\nocite{*}. ProMoVis assumes the systems to be linear and the compiled model needs to be linearised around an operating point. The linearisation is performed at time 0, and it is assumed that the system is stable at that time.\\\\After linearisation a DAE on the following form can be extracted:%
 \begin{equation}
@@ -55,36 +90,12 @@ When the structure is validated and all optional transformations have been done.
 Even though Modelica supports description of position and graphical representation of models through its annotations interface, these are not necessary for a valid Modelica model. Therefore no effort has been put into trying to extract this type of meta-information. Instead, to make sure that a user of ProMoVis is able to easily access and attach controllers to the generated model the variables are emitted as depicted in Fig. ~\ref{fig:promosfg}. That is, control and measured variables are emitted as the upper and lower half of a circle respectively while internal variables, that are assumed not to be of interest to the user, are collected in the center of the circle. This is done due to the fact that no graphical semantics can be assumed to be available in the original modelica model and is achieved by a helper object, the layout emitter, that is initiated with the number of internal, measured and input variables and then calculates the step sizes in the x and y directions that will achieve the desired circular shape.
 %
 \begin{figure}
-\fbox{\includegraphics[scale=0.8,bb=0 0 117mm 154mm] {Figures/layout.pdf}}
+\fbox{\includegraphics[scale=0.4,bb=0 0 117mm 154mm] {Figures/layout.pdf}}
 \caption{Illustration of how the tools outputs the ProMoVis specific graphical representation of an SFG.}
 \label{fig:promosfg}
 \end{figure}
 %  
-\section{Interfacing with the tool}
-Since there are several separate phases in the tool, and each of the phases might later be extended with additional options and necessary parameters, XML is used to pass information to the tool. By using XML that is, a well known, structured, format for representing data there is not only the benefit of making the inputfiles easy accessible to other developers and software, but also it elmininates the need to develop and maintain the code for parsing a tool specific format. With XML, existing software for parsing and object representation of the XML files can be used. And in the tool, an instance, of the whole or parts of the inputfile can be passed along to each of the tasks. Where each task then may just extract necessary and optional parameters needed. \\\newline %
-In the example file,  Fig.~\ref{fig:coding},  %
-the \textit{filepath} and \textit{model} nodes are the path to the original Modelica source file and the full model name, including packagename respectively. The node \textit{mpattern} is used to provide information regarding which of the variables declared in the Modelica model that should be measured variables in the output file. This is achieved through providing one or more regular expressions that the tool will try to match to the ending of the variable names. E.g. if the tool encounters the variables foo\_pmv, foo\_foobar, foox2 or x2 it will indicate that those variables should become measured variables in the ProMoVis representation.
-%
-\begin{figure}
-\lstset{language=XML}
-\begin{lstlisting}
-<?xml version="1.0" ?> 
-<root>
-        <filepath>C:\Users\Public\Documents\QuadTankPack.mo</filepath>
-        <model>QuadTankPack.QuadTank</model>
-        <mpattern>_pmv;_fooBar;x2</mpattern>
-        <outputpath>C:\ProMoVis\output.xml</outputpath>
-        <pmvoutputpath>C:\ProMoVis\QuadTank.pmv</pmvoutputpath>
-</root>
-\end{lstlisting}
-\caption{Example inputfile used to pass information to the tool.}
-\label{fig:coding}
-\end{figure} 
-%
-
-
-
 \section{DAE vs ODE}
-Readers familiar with Modelica and the JModelica environment might be accustomed to working with the ODE-representation of systems. The reason that the tool sticks with the DAE, even though the extraction of SFGs from an ODE is less complex, is due to the fact that when using the ODE we loose causality whenever a state depends on an algebraic variable. For a more thorough discussion of this see Appendix \ref{appB}.
+Readers familiar with Modelica and the JModelica environment might be accustomed to working with the ODE-representation of systems. The reason that the tool sticks with the DAE, even though the extraction of SFGs from an ODE is less complex, is due to the fact that when using the ODE we loose causality whenever a state depends on an algebraic variable. The DAE, although also lacking information, translates to an SFG that is more likely to resemble to structure of the original, physical, model that the user provided for export. For a more thorough discussion of this see Appendix \ref{appB}.
 
 
