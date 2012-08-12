@@ -36,6 +36,8 @@
 \usepackage{verbatim}
 \usepackage{listings}
 \usepackage{dtsyntax}
+\usepackage{amsthm}
+\newtheorem{mydef}{Example}
 \begin{document}
 
 %%==================================================================
@@ -49,7 +51,7 @@
 % Define the English abstract
 \def\theabstract{\input{Abstract/abstract.tex}}
 \def\thepreface{\input{Preface/preface.tex}}
-\def\thedate{DRAFT , 2012-08-07}
+\def\thedate{2012-08-12}
 
 % Use this if you want a Swedish abstract
 %\def\theswedishabstract{\input{SweAbstract/sweabstract.tex}}
@@ -84,6 +86,8 @@
 
 \makechapter{Discussion}{Discussion\label{ch5}}
 \input{Chapter5/chapter5.tex}
+\makechapter{Conclusions}{Conclusions\label{ch5}}
+\input{Chapter6/chapter6.tex}
 
 %%==================================================================
 %% Include any appendices here.

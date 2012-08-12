@@ -13,7 +13,7 @@ A brief overview is provided in Fig.~\ref{fig:phase}. The four phases have been 
 \label{fig:phase}
 \end{figure}
 
-\subsection{Interfacing with the tool}
+\subsection{Interacting with the tool}
 Since there are several separate phases in the tool, and each of the phases might later be extended with additional options and necessary parameters, XML is used to pass information to the tool. By using XML that is a well known, structured, format for representing data there is not only the benefit of making the inputfiles easy accessible to other developers and software, but also it elmininates the need to develop and maintain the code for parsing a tool specific format. With XML, existing software for parsing and object representation of the XML files can be used. And in the tool, an instance, of the whole or parts of the inputfile can be passed along to each of the phases. Where each phase then may just extract the necessary parameters. \\\newline %
 In the example file,  Fig.~\ref{fig:coding},  %
 the \textit{filepath} and \textit{model} nodes are the path to the original Modelica source file and the full model name, including packagename. The node \textit{mpattern} is used to provide information regarding which of the variables declared in the Modelica model that should be measured variables in the output file. This is achieved through providing one or more regular expressions that the tool will try to match to the ending of the variable names. E.g. if the tool encounters the variables foo\_pmv, foo\_foobar, foox2 or x2 it will indicate that those variables should become measured variables in the final ProMoVis representation.
@@ -49,13 +49,13 @@ This represenation should be familiar, the $x$ and $\dot{x}$  vectors represents
 \end{itemize}
 From now on we will refer to states and algebraic variables as simply "variables" and whenever a distinction between the two is needed, it will be explicitly declared.% 
 \subsection{Generation of the internal structure}
-When the DAE is obtained, the task is then to extract the relations between the variables from it. The tool collects and stores each of the variables, together with each of the variables that acts as inputs to it. Although it might feel more natural to store a variable together with each of the variables that it affects, this representation was choosen since ProMoVis supports both of the representations but it is straightforward, from the DAE, to solve a variable for all its inputs.\\\newline
-This fact is easilly seen with the following example.\\\newline
+When the DAE is obtained, the task is then to extract the relations between the variables from it. The tool collects and stores each of the variables, together with each of the variables that acts as inputs to it. Although it might feel more natural to store a variable together with each of the variables that it affects, this representation was choosen since ProMoVis supports both of the representations and it is straightforward, from the DAE, to solve a variable for all its inputs.
+\begin{mydef}
 The DAE for a model with two state variables, two inputs and and two algebraic variables could be described by the following general structure:
 %
 \begin{equation}\begin{bmatrix} E_{11} & E_{12} \\ E_{21} & E_{22} \\ E_{31} & E_{32} \\ E_{41} & E_{42} \end{bmatrix} \left[ \begin{array}{c} \dot{x_0} \\ \dot{x_1} \end{array} \right] = \begin{bmatrix} A_{11} & A_{12} \\ A_{21} & A_{22} \\ A_{31} & A_{32} \\ A_{41} & A_{42} \end{bmatrix} \left[ \begin{array}{c} x_0 \\ x_1 \end{array} \right] + \begin{bmatrix} B_{11} & B_{12} \\ B_{21} & B_{22} \\ B_{31} & B_{32} \\ B_{41} & B_{42} \end{bmatrix} \left[ \begin{array}{c} u_0 \\ u_1 \end{array} \right]+\begin{bmatrix} F_{11} & F_{12} \\ F_{21} & F_{22} \\ F_{31} & F_{32} \\ F_{41} & F_{42}\end{bmatrix} \left[ \begin{array}{c} w_0 \\ w_1 \end{array} \right]\end{equation}
 %
-The task is now, to find which of the rows in the system that should be solved for which variable so that the whole system can be solved. Here a demand is that the DAE may not contain any Algebraic loops. For a more thorough discussion regarding this and the decision of which row to solve for which variable please review Appendix \ref{appA}.\\\newline After deciding which row that should be solved for which of the variables we build up an intermediate representation of the SFG, used internally in the tool, where we store each of the variables together with all of its input variables. This is best explained with the help of an example, if we assume that we should solve row 1 for x0 the procedure is, after laplace transformation, as follows:
+The task is now, to find which of the rows in the system that should be solved for which variable so that the whole system can be solved. Here a demand is that the DAE may not contain any Algebraic loops. For a more thorough discussion regarding this and the decision of which row to solve for which variable please review Appendix \ref{appA}.\\\newline After deciding which row that should be solved for which of the variables we build up an intermediate representation of the SFG, used internally in the tool, where we store each of the variables together with all of its input variables. This can be seen, if we decide that we should solve row 1 for x0 the procedure is, after laplace transformation, as follows:
 %
 \begin{equation}
 \begin{array}{rcl} E_{11}x_0s  +E_{12}x_1s=A_{11}x_0  +A_{12}x_1 +B_{11}u_0  +B_{12}u_1  +F_{11}w_0  +F_{12}w_1 
@@ -68,12 +68,12 @@ Putting $x_0$ alone on the left-hand side and collecting the coefficients then y
 \end{array}
 \end{equation}
 %
-Finally, solving for $x_0$ yields:
+Finally, solving for $x_0$ yields:%
 \begin{equation}
 \begin{array}{rcl} x_0  = \frac{(A_{12}-E_{12}s)}{(E_{11}s-A_{11})}x_1 +\frac{B_{11}}{(E_{11}s-A_{11})}u_0  +\frac{B_{12}}{(E_{11}s-A_{11})}u_1 +\frac{F_{11}}{(E_{11}s-A_{11})}w_0 +\frac{F_{12}}{(E_{11}s-A_{11})}w_1
 \end{array}
 \end{equation}
-%
+\end{mydef}
 Naturally, only the variables with non-zero coefficients are stored as input variables. For a complete overview of how the information retrieved from the Modelica is represented, please refer to the source code \cite{githabb}\nocite{*}. But for the continued discussion, the internal representation of a variable, equivalent to a node in the SFG can be viewed upon as depicted in Fig. ~\ref{fig:internalrep}. Where \textit{Variable} corresponds to a vertice in the SFG. It holds a dictionary, \textit{inputs}, with variable names as keys and the corresponding transfer functions as a values. These key-value pairs corresponds to the edges in the SFG going into the vertice. There is also additional, information that may be obtained from the Modelica models if provided, such as saturation values, operating points etc.%
 %
 \begin{figure}
@@ -83,7 +83,7 @@ Naturally, only the variables with non-zero coefficients are stored as input var
 \end{figure}
 %
 \subsection{Validation and Transformations}
-After extracting the variables, we examine the value of the derivatives at the linearisation point. They should preferrably be 0, if they are different from 0 a warning is emitted so that the user is notified that the model they are using probably is not stable at the choosen linearisation point. It is also during this phase that additional modifications, provided by the user, should be done. Currently, the only modification supported, is the ability to indicate that some of the variables in the system should be emitted as measured variables in the resulting ProMoVis representation. By default, all variables declared as inputs, in the original Modelica model,  are emitted as controlled variables, while the other variables are emitted as internal variables.
+After extracting the variables, we examine the value of the derivatives at the linearisation point. They should preferrably be 0, if they are different from 0 a warning is emitted so that the user is notified that the model they are using probably is not stable at the choosen linearisation point. It is also during this phase that additional modifications, provided by the user, can be done. Currently, the only modification supported, is the ability to indicate that some of the variables in the system should be emitted as measured variables in the resulting ProMoVis representation. By default, all variables declared as inputs, in the original Modelica model,  are emitted as controlled variables, while the other variables are emitted as internal variables.
 \subsection{Scenario generation}
 When the structure is validated and all optional transformations have been done. The actual generation of the ProMoVis represenation is straightforward. Basically the ProMoVis representation contains two parts. First the descriptive part, a collection of all variables, with their names, graphical layout and additional mathematical properties. The second part, the processmodels, are describing the relations between variables in the system. 
 \subsubsection{Graphical Layout}
